@@ -1,0 +1,6 @@
+{
+  "ConnectionStrings": {
+    //"BlogConnectionString": "Host=localhost;Username=postgres;Password=tuan0777844595;Database=MegaShift;Pooling=true"
+    "BlogConnectionString": "Server=DESKTOP-6EMR9LK\\SQLEXPRESS;Database=Blog;User Id=sa;Password=12345;TrustServerCertificate=True;"
+  }
+}

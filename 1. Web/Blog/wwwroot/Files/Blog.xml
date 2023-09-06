@@ -1,0 +1,127 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MegaShift</name>
+    </assembly>
+    <members>
+        <member name="M:MegaShift.Controllers.CompaniesController.Create(DTOs.MegaShift.Company.CreateCompanyDto)">
+            <summary>
+            Create company
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MegaShift.Controllers.CompaniesController.GetAll">
+            <summary>
+            Get all company
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MegaShift.Controllers.DepartmentsController.Create(DTOs.MegaShift.CreateDepartmentDto)">
+            <summary>
+            Create department
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MegaShift.Controllers.DepartmentsController.GetDepartmentByCompanyId">
+            <summary>
+            Get department by companyid
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MegaShift.Controllers.DepartmentsController.GetAll">
+            <summary>
+            Get all department
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MegaShift.Controllers.EmployeesController.Create(DTOs.MegaShift.Employee.CreateEmployeeDto)">
+            <summary>
+            Create employee
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MegaShift.Controllers.EmployeesController.GetEmployeeWorkingShiftBySearchFilter(DTOs.MegaShift.Shift.FilterShiftDto)">
+            <summary>
+            Get employee, workingshift by searchFilter
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MegaShift.Controllers.EmployeesController.GetEmployeeByDepartmentId(System.Int32)">
+            <summary>
+            Get employee by departmentId
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MegaShift.Controllers.GeneralConfigurationsController.GetGeneralConfigureByKey(System.String)">
+            <summary>
+            Get general configuration by key
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MegaShift.Controllers.LoginController.Login(DTOs.MegaShift.Login.LoginDto)">
+            <summary>
+            Đăng nhập
+            </summary>
+        </member>
+        <member name="M:MegaShift.Controllers.LoginController.Refresh">
+            <summary>
+            Refresh token
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MegaShift.Controllers.LoginController.Logout">
+            <summary>
+            Logout
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MegaShift.Controllers.ShiftsController.CreateShift(DTOs.MegaShift.Shift.CreateShiftDto)">
+            <summary>
+            Create shift
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MegaShift.Controllers.ShiftsController.GetShiftWorkingshiftByUserId">
+            <summary>
+            Get shift by userId
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MegaShift.Controllers.ShiftsController.GetShiftBySearchFilter(DTOs.MegaShift.Shift.FilterShiftDto)">
+            <summary>
+            Get shift, workingshift by searchFilter
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MegaShift.Controllers.ShiftsController.CreateWorkingshiftByShift(DTOs.MegaShift.Shift.CreateWorkingShiftDto)">
+            <summary>
+            Create workingshift by shifts
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MegaShift.Controllers.ShiftsController.CreateWorkingshiftByEmployees(DTOs.MegaShift.Shift.CreateWorkingShiftEmployeeDto)">
+            <summary>
+            Create workingshift by employees
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MegaShift.Controllers.ShiftsController.DeleteWorkingshift(System.Collections.Generic.List{System.Int32})">
+            <summary>
+            Delete workingshift
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MegaShift.Controllers.UsersController.Create(DTOs.MegaShift.User.CreateUserDto)">
+            <summary>
+            Create user
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MegaShift.Controllers.UsersController.GetAll">
+            <summary>
+            Get all user
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
