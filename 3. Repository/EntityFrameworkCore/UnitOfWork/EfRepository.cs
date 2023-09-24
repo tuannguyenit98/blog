@@ -66,7 +66,7 @@ namespace EntityFrameworkCore.UnitOfWork
 
         public TEntity Insert(TEntity entity)
         {
-            SetId(entity);
+            //SetId(entity);
             //CheckAndSetDefaultValues(entity);
 
             Context.Entry(entity).State = EntityState.Added;

@@ -16,11 +16,11 @@ namespace Entities.BlogConfigurations
 
             builder.Property(e => e.Email).HasColumnName("email");
 
-            builder.Property(e => e.PassWord).HasColumnName("password");
+            builder.Property(e => e.Password).HasColumnName("password");
 
             builder.Property(e => e.Role).HasColumnName("role");
 
-            builder.Property(e => e.RefreshToken).HasColumnName("refresh_token");
+            builder.Property(e => e.RefreshToken).IsRequired(false).HasColumnName("refresh_token");
 
         }
     }

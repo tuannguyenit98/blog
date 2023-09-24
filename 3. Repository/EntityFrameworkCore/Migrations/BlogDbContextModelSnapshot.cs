@@ -317,7 +317,7 @@ namespace EntityFrameworkCore.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("full_name");
 
-                    b.Property<string>("PassWord")
+                    b.Property<string>("Password")
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("password");
 

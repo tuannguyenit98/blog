@@ -1,4 +1,7 @@
 ﻿using Common.Helpers;
+using Entities.Blog;
+using System.Linq;
+using System;
 
 namespace EntityFrameworkCore.Contexts
 {
@@ -8,7 +11,19 @@ namespace EntityFrameworkCore.Contexts
         {
             context.Database.EnsureCreated();
 
-            
+            if (!context.Users.Any())
+            {
+                context.Users.Add(new User
+                {
+                    UserName = "Admin",
+                    Password = EncryptPassword("123456"),
+                    Role = "Admin",
+                    CreatedAt = DateTime.Now,
+                    FullName = "Admin",
+                    Email = "admin@gmail.com",
+                });
+            }
+
             context.SaveChanges();
         }
 

@@ -74,9 +74,9 @@ namespace Blog
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, BlogDbContext megaShiftDbContext)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, BlogDbContext blogDbContext)
         {
-            //DbInitializer.Initialize(megaShiftDbContext);
+            DbInitializer.Initialize(blogDbContext);
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

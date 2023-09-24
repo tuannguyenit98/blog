@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EntityFrameworkCore.Migrations
 {
     [DbContext(typeof(BlogDbContext))]
-    [Migration("20230906160300_Initial_db")]
+    [Migration("20230909164727_Initial_db")]
     partial class Initial_db
     {
         /// <inheritdoc />
@@ -320,7 +320,7 @@ namespace EntityFrameworkCore.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("full_name");
 
-                    b.Property<string>("PassWord")
+                    b.Property<string>("Password")
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("password");
 
