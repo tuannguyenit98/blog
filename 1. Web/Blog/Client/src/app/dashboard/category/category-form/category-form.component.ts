@@ -90,7 +90,7 @@ export class CategoryFormComponent implements OnInit {
       if (res)
       {
         this.router.navigate([`/dashboard/category/list`]);
-        this.nzNotificationService.success('Thông báo', 'Thêm sản phẩm thành công!', { nzPlacement: 'bottomRight'});
+        this.nzNotificationService.success('Thông báo', 'Thêm danh mục thành công!', { nzPlacement: 'bottomRight'});
       }
     });
   }

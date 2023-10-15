@@ -6,6 +6,7 @@ using Entities.Blog;
 using Infrastructure.Filters;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Services.Implementations;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -51,6 +52,20 @@ namespace Blog.Controllers
         }
 
         /// <summary>
+        /// Get By Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet("{id}")]
+        [ModelValidationFilter]
+        [TypeFilter(typeof(ApiAuthorizeFilter))]
+        public async Task<IActionResult> GetById(int id)
+        {
+            var result = await _postService.GetPostByIdAsync(id);
+            return Ok(ApiResponse<Post>.Success(result));
+        }
+
+        /// <summary>
         /// Create
         /// </summary>
         /// <param name="createPostDto"></param>
@@ -58,7 +73,7 @@ namespace Blog.Controllers
         [HttpPost]
         [ModelValidationFilter]
         [TypeFilter(typeof(ApiAuthorizeFilter))]
-        public async Task<IActionResult> CreatePost([FromBody] CreatePostDto createPostDto)
+        public async Task<IActionResult> CreatePost([FromForm] CreatePostDto createPostDto)
         {
             await _postService.CreatePostAsync(createPostDto);
             return StatusCode(201);
@@ -74,7 +89,7 @@ namespace Blog.Controllers
         [Route("{id}")]
         [ModelValidationFilter]
         [TypeFilter(typeof(ApiAuthorizeFilter))]
-        public async Task<IActionResult> UpdatePost([FromQuery] UpdatePostDto updatePostDto, int id)
+        public async Task<IActionResult> UpdatePost([FromForm] UpdatePostDto updatePostDto, int id)
         {
             await _postService.UpdatePostAsync(id, updatePostDto);
             return NoContent();

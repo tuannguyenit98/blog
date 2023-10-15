@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { UserComponent } from './user/user.component';
-import { PostComponent } from './post/post.component';
 import { TagComponent } from './tag/tag.component';
 import { CommentComponent } from './comment/comment.component';
 import { SharedModule } from '../shared/shared.module';

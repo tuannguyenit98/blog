@@ -32,16 +32,22 @@ export class PostService extends BaseService {
      }
 
      getById(id: number): Observable<Post> {
-      return this.get(`api/blog/post/${id}`);
+      return this.get(`api/blog/posts/${id}`);
      }
 
      public createOrUpdate(form: PostCreateModel, id?: number): Observable<any>{
+      const formData: FormData = new FormData();
+      formData.append('title', form.title);
+      formData.append('metaTitle', form.metaTitle);
+      formData.append('content', form.content);
+      formData.append('fK_CategoryId', form.fK_CategoryId.toString());
+      formData.append('file', form.file, form.file.name);
       if (id)
       {
-        return this.put<any>(`api/blog/posts/${id}`, form);
+        return this.http.put<any>(this.baseUrl + `api/blog/posts/${id}`, formData);
       }
       else{
-        return this.post<any>(`api/blog/posts`, form);
+        return this.http.post<any>(this.baseUrl + `api/blog/posts`, formData);
       }
     }
 }

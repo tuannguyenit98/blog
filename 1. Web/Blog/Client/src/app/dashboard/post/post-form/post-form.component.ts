@@ -9,6 +9,7 @@ import { PostCreateModel } from 'src/app/shared/models/post/post-create.model';
 import { Post } from 'src/app/shared/models/post/post.model';
 import { CategoryService } from 'src/app/shared/services/category.service';
 import { PostService } from 'src/app/shared/services/post.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-post-form',
@@ -18,7 +19,8 @@ import { PostService } from 'src/app/shared/services/post.service';
 export class PostFormComponent {
   @Input() id: number | undefined;
   postForm!: FormGroup;
-  post: PostCreateModel = new PostCreateModel();
+  postCreate: PostCreateModel = new PostCreateModel();
+  post: Post = new Post();
   categories: Category[] = [];
   invalidMessages: string[] = [];
   formErrors = {
@@ -29,6 +31,8 @@ export class PostFormComponent {
     image: '',
     status: '',
   };
+  url = environment.API_ENDPOINT_LOCAL;
+
   constructor(
     private postService: PostService,
     private formBuilder: FormBuilder,
@@ -52,7 +56,7 @@ export class PostFormComponent {
     else{
       this.categoryService.getAll().subscribe((res) => {
         this.categories = res;
-        this.post = this.mappingProduct();
+        this.post = this.mapping();
         this.createForm();
       });
     }
@@ -65,7 +69,6 @@ export class PostFormComponent {
       metaTitle: [this.post.metaTitle, Validators.required],
       content: [this.post.content, Validators.required],
       image: [this.post.image, Validators.required],
-      status: [this.post.status, Validators.required],
     });
   }
 
@@ -77,11 +80,13 @@ export class PostFormComponent {
     return this.invalidMessages.length === 0;
   }
 
-  mappingProduct(): any{
+  mapping(): any{
     return {
       title: '',
       metaTitle: '',
-      Post: null
+      category: null,
+      content: '',
+      image: '',
     };
   }
 
@@ -89,11 +94,18 @@ export class PostFormComponent {
     return {
       title: form.title,
       metaTitle: form.metaTitle,
-      fK_CategoryId: form.fK_CategoryId,
+      fK_CategoryId: form.category.id,
       content: form.content,
-      image: form.image,
-      status: form.status
+      file: this.postCreate.file,
     };
+  }
+
+  onSelectFile(event: any): void {
+    const fileList: FileList = event.target.files;
+    if (fileList.length > 0) {
+      const file: File = fileList[0];
+      this.postCreate.file = file;
+    }
   }
 
   onSubmit(): void{
@@ -102,12 +114,27 @@ export class PostFormComponent {
       if (res)
       {
         this.router.navigate([`/dashboard/post/list`]);
-        this.nzNotificationService.success('Thông báo', 'Thêm sản phẩm thành công!', { nzPlacement: 'bottomRight'});
+        this.nzNotificationService.success('Thông báo', 'Thêm bài thành công!', { nzPlacement: 'bottomRight'});
       }
     });
   }
 
   compareData(o1: any, o2: any): boolean {
     return o1 && o2 ? o1.id.toString() === o2.id.toString() : o1 === o2;
+  }
+
+  removeImg(): void{
+    this.post.image = '';
+  }
+
+  showPreview(event: any) {
+    const file = (event.target as HTMLInputElement).files![0];
+    this.postCreate.file = file;
+    // File Preview
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.post.image = reader.result as string;
+    }
+    reader.readAsDataURL(file)
   }
 }

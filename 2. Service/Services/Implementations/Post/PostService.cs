@@ -1,13 +1,19 @@
 ﻿using Abstractions.Interfaces;
 using AutoMapper;
+using Azure;
+using Common.Constants;
+using Common.Exceptions;
 using Common.Runtime.Session;
 using DTOs.Blog.Post;
 using DTOs.Share;
 using Entities.Blog;
 using EntityFrameworkCore.UnitOfWork;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Services.Implementations.Helpers;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -38,6 +44,7 @@ namespace Services.Implementations
         {
             var post = _mapper.Map<Post>(createPostDto);
             post.FK_UserId = CurrentUser.Current.Id;
+            post.Image = await UploadFile(createPostDto.File);
             await _postRepository.InsertAsync(post);
             await _unitOfWork.CompleteAsync();
         }
@@ -78,6 +85,30 @@ namespace Services.Implementations
         {
            var posts = await _postRepository.GetAll().Where(x => x.FK_CategoryId == categoryId).ToListAsync();
             return posts;
+        }
+
+        private async Task<string> UploadFile(IFormFile file)
+        {
+            var pathBuilt = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads");// all file phải nằm trong wwwroot
+            if (!Directory.Exists(pathBuilt))
+            {
+                Directory.CreateDirectory(pathBuilt);
+            }
+            var extension = Path.GetExtension(file.FileName).ToLower();
+
+            var allowEts = new List<string>() { ".jpg", ".png", ".doc", ".jpeg" };
+
+            if (!allowEts.Contains(extension))
+            {
+                throw new BusinessException("Invalid file");
+            }
+
+            var path = Path.Combine(pathBuilt, file.FileName);
+            using (var stream = new FileStream(path, FileMode.Create))
+            {
+                await file.CopyToAsync(stream);
+            }
+            return "http://localhost:55288/uploads/" + file.FileName;
         }
     }
 }

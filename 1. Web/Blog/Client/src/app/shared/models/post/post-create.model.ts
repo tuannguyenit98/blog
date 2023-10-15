@@ -1,9 +1,8 @@
 export class PostCreateModel {
-  fK_CategoryId: number | undefined;
+  fK_CategoryId!: number;
   title!: string;
-  metaTitle: string | undefined;
-  image: string | undefined;
-  content: string | undefined;
-  status: string | undefined;
+  metaTitle!: string;
+  file!: File;
+  content!: string;
   }
   
