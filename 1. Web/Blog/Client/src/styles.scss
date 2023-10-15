@@ -1,1 +1,156 @@
 /* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files */
+/* Importing Bootstrap SCSS file. */
+// @import '~bootstrap/scss/bootstrap';
+*{
+  box-sizing: border-box;
+}
+
+:root {
+  --color-orange: #f4883f;
+  --color-black: #2e2751;
+  --color-white: #fff;
+  --font-family: 'Roboto', sans-serif;
+  --font-16: 16px;
+  --font-15: 15px;
+  --font-13: 13px;
+  --font-14: 14px;
+}
+
+body{
+  font-family: var(--font-family);
+  color: var(--color-black);
+}
+
+.m-p-header {
+  margin-top: 80px;
+  padding-top: 10px;
+}
+
+.form-control {
+    font-size: 13px;
+}
+
+button {
+    padding: 5px 12px;
+    border-radius: 5px;
+}
+
+.warning {
+    padding-top: 2px;
+    font-size: 100%;
+}
+
+html {
+  font-size: 13px;
+}
+
+.font{
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.upload{
+  display: none;
+}
+
+.perspective-image {
+  width: 60px;
+  height: 60px;
+  border: #cccccc 2px dashed;
+  background-color: #f2f2f2;
+  color: #cccccc;
+  font-size: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.upload-image {
+  display: flex;
+
+  .display-img {
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+    position: relative;
+
+    .icon-delete-image {
+      position: absolute;
+      top: 0;
+      right: 0;
+      cursor: pointer;
+      padding: 0.25rem;
+      display: none;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      border-radius: 8px;
+    }
+
+    &:hover {
+      box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+
+      img {
+        opacity: 0.5;
+      }
+
+      .icon-delete-image {
+        display: block;
+      }
+    }
+  }
+}
+
+.shadow{
+  box-shadow: 3px 3px 3px 3px #d4d4d4;
+}
+
+.required:after {
+  content: "*";
+  color: red;
+  font-style: italic;
+}
+
+.border-radius{
+  border-radius: 10px;
+}
+
+.visibility-hidden {
+  visibility: hidden;
+}
+
+.ant-spin-spinning {
+  max-height: unset !important;
+}
+
+.ant-spin-spinning {
+  max-height: unset !important;
+}
+
+.ant-spin-nested-loading {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 9999;
+}
+
+label{
+  display: flex;
+}
+
+::ng-deep {
+  .cdk-overlay-container {
+    position: fixed;
+    z-index: 2000;
+  }
+
+  .ant-table-wrapper {
+    position: relative;
+    z-index: 10;
+  }
+}

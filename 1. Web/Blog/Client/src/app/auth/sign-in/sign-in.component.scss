@@ -1,0 +1,102 @@
+h1 {
+    color:  rgb(59, 143, 112);
+    margin-bottom: 1rem;
+    font-weight:bold;
+    font-family:'Muli';
+    font-size: 20px;
+  }
+  
+  button:focus{
+  outline:none;
+  }
+  
+  .color-btn{
+  background-color: rgb(59, 143, 112);
+  color: white;
+  border: none;
+  }
+  
+  .auth{
+  background-color: rgb(175, 175, 175);
+  }
+  
+  .form{
+  background-color: white;
+  }
+  
+  .auth {
+  background: url('/assets/bg-login-page.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  display: flex;
+  height: 100%;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  overflow: auto;
+  .container {
+    padding: 0 6.7rem;
+  }
+  .auth-popup{
+      background: white;
+      //min-height: 100%;
+      .banner{
+          &-bg{
+            height: 100%;
+            width: 100%;
+          }
+      }
+      .content {
+          .form{
+            padding-top: 50px;
+            padding-bottom: 30px;
+              .form-content{
+                margin: 0 20px;
+                padding-bottom: 10px;
+                  width: 100%;
+              }
+              .icon{
+                  color: #A9A9A9;
+              }
+              &-input {
+                background-color: transparent;
+                border: none;
+                border-bottom: 1px solid #d5d5d5;
+                font-size: 16px;
+  
+              }
+              .btn-login {
+                color: #ffffff;
+                background-color: #2f66b7;
+                border-color: transparent;
+                border-radius: 5px;
+                opacity: 0.85;
+              }
+          }
+      }
+  }
+  }
+  
+  
+  :host ::ng-deep {
+  .ant-input-affix-wrapper .ant-input-prefix {
+    left: 3px !important;
+  }
+  .ant-input-affix-wrapper .ant-input-prefix, .ant-input-affix-wrapper .ant-input-suffix {
+    position: absolute;
+    top: 50%;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    color: black;
+    line-height: 0;
+    transform: translateY(-50%);
+    font-size: 18px;
+  }
+  .ant-input:focus {
+  border: none;
+  outline: 0;
+  box-shadow: none;
+  }
+  }

@@ -1,10 +1,12 @@
 ﻿using Abstractions.Interfaces;
 using AutoMapper;
+using Common.Runtime.Session;
 using DTOs.Blog.Comment;
 using DTOs.Share;
 using Entities.Blog;
 using EntityFrameworkCore.UnitOfWork;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Hosting;
 using Services.Implementations.Helpers;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,6 +38,7 @@ namespace Services.Implementations
         public async Task CreateCommentAsync(CreateCommentDto createCommentDto)
         {
             var comment = _mapper.Map<Comment>(createCommentDto);
+            comment.FK_UserId = CurrentUser.Current.Id;
             await _commentRepository.InsertAsync(comment);
             await _unitOfWork.CompleteAsync();
         }
@@ -49,7 +52,7 @@ namespace Services.Implementations
         public async Task UpdateCommentAsync(int commentId, UpdateCommentDto updateCommentDto)
         {
             var comment = await _commentRepository.GetAll().FirstOrDefaultAsync(x => x.Id == commentId);
-            comment.FK_UserId = updateCommentDto.FK_UserId;
+            comment.FK_UserId = CurrentUser.Current.Id;
             comment.ParentId = updateCommentDto.ParentId;
             comment.FK_PostId = updateCommentDto.FK_PostId;
             comment.Content = updateCommentDto.Content;

@@ -1,0 +1,61 @@
+<nav class="navbar navbar-expand-lg navbar-light fixed-top py-0">
+    <div class="container">
+      <a class="navbar-brand py-0" href="#">
+        <img src="../../../../assets/logo.png" class="logo" [routerLink]="['/']">
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+  
+      <div class="collapse navbar-collapse row text-uppercase font-weight-bold" id="navbarSupportedContent">
+        <ul class="navbar-nav navbar-nav-left col-md-6 justify-content-end px-0">
+          <li class="nav-item">
+            <a class="nav-link active">Quản lý cửa hàng <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link">Đơn hàng của bạn</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" >Món đã chọn</a>
+          </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0 col-md-3 pl-2">
+          <div class="search-area" nz-tooltip nzTooltipTitle="Tìm kiếm cửa hàng" nzTooltipPlacement="left">
+            <nz-input-group class="search" nzSearch [nzAddOnAfter]="suffixButton">
+              <input type="text" nz-input [placeholder]="'Tìm kiếm cửa hàng'" />
+            </nz-input-group>
+            <ng-template #suffixButton>
+              <button nz-button nzType="primary" nzSearch>
+                <i nz-icon nzType="search"></i>
+              </button>
+            </ng-template>
+          </div>
+        </form>
+        <ul class="navbar-nav navbar-nav-right col-md-3 pl-2">
+          <ng-container>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              <img  alt="" class="avatar mr-1">
+              <span>Admin</span>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <ng-container>
+                <a class="dropdown-item" [routerLink]="['/dashboard']">Trang admin</a>
+              </ng-container>
+              <a class="dropdown-item" [routerLink]="['/account']">Tài khoản</a>
+              <a class="dropdown-item">Thay đổi mật khẩu</a>
+              <a class="dropdown-item">Đăng xuất</a>
+            </div>
+          </li>
+        </ng-container>
+        <ng-template #userNull>
+          <div class="btn-login">
+            <button nz-button nzType="default" [routerLink]="['/auth/sign-in']">Đăng nhập</button>
+          </div>
+        </ng-template>
+        </ul>
+      </div>
+    </div>
+  </nav>

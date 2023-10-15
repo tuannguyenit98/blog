@@ -1,5 +1,6 @@
 ﻿using Abstractions.Interfaces;
 using AutoMapper;
+using Common.Runtime.Session;
 using DTOs.Blog.Post;
 using DTOs.Share;
 using Entities.Blog;
@@ -35,8 +36,9 @@ namespace Services.Implementations
 
         public async Task CreatePostAsync(CreatePostDto createPostDto)
         {
-            var Post = _mapper.Map<Post>(createPostDto);
-            await _postRepository.InsertAsync(Post);
+            var post = _mapper.Map<Post>(createPostDto);
+            post.FK_UserId = CurrentUser.Current.Id;
+            await _postRepository.InsertAsync(post);
             await _unitOfWork.CompleteAsync();
         }
 
@@ -55,7 +57,7 @@ namespace Services.Implementations
             post.Content = updatePostDto.Content;
             post.Image = updatePostDto.Image;
             post.FK_CategoryId = updatePostDto.FK_CategoryId;
-            post.FK_UserId = updatePostDto.FK_UserId;
+            post.FK_UserId = CurrentUser.Current.Id;
             await _postRepository.UpdateAsync(post);
             await _unitOfWork.CompleteAsync();
         }

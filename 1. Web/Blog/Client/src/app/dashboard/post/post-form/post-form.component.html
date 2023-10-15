@@ -1,0 +1,47 @@
+<form #form [formGroup]="postForm" class="form-content" *ngIf="postForm" (ngSubmit)="onSubmit()">
+    <div class="form-group row">
+      <label class="col-md-12">Tiêu đề</label>
+      <div class="col-md-12 input-group">
+        <input nz-input class="form-control" type="text" formControlName="title" [class.is-invalid]="formErrors.title">
+      </div>
+      <p class="warning text-danger">{{formErrors.title}}</p>
+    </div>
+  
+    <div class="form-group row">
+      <label class="col-md-12">Tiêu đề meta</label>
+      <div class="col-md-12 input-group">
+        <input nz-input class="form-control" type="text" formControlName="metaTitle"
+          [class.is-invalid]="formErrors.metaTitle">
+      </div>
+      <p class="warning text-danger">{{formErrors.metaTitle}}</p>
+    </div>
+  
+    <div class="form-group row">
+      <label class="col-md-12">Danh mục</label>
+      <div class="col-md-12 input-group">
+        <nz-select class="w-100" formControlName="category" name="category" nzShowSearch nzAllowClear
+          nzPlaceHolder="Chọn" [compareWith]="compareData">
+          <nz-option *ngFor="let item of categories" [nzLabel]="item.title" [nzValue]="item">
+          </nz-option>
+        </nz-select>
+      </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-md-12">Nội dung</label>
+        <div class="col-md-12 input-group">
+          <input nz-input class="form-control" type="text" formControlName="content"
+            [class.is-invalid]="formErrors.content">
+        </div>
+        <p class="warning text-danger">{{formErrors.content}}</p>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-md-12">Image</label>
+        <div class="col-md-12 input-group">
+          <input nz-input class="form-control" type="text" formControlName="image"
+            [class.is-invalid]="formErrors.image">
+        </div>
+        <p class="warning text-danger">{{formErrors.image}}</p>
+      </div>
+  </form>
