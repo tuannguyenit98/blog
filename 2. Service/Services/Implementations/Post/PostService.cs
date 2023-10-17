@@ -1,7 +1,5 @@
 ﻿using Abstractions.Interfaces;
 using AutoMapper;
-using Azure;
-using Common.Constants;
 using Common.Exceptions;
 using Common.Runtime.Session;
 using DTOs.Blog.Post;
@@ -9,7 +7,6 @@ using DTOs.Share;
 using Entities.Blog;
 using EntityFrameworkCore.UnitOfWork;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Services.Implementations.Helpers;
 using System.Collections.Generic;

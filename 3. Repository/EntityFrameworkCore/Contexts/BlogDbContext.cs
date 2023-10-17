@@ -23,12 +23,12 @@ namespace EntityFrameworkCore.Contexts
         {
             if (optionsBuilder.IsConfigured) return;
             
-            //AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true); //Using this configure to inform that the Datatime type will be generated to "timestamp without time zone" instead of "timestamp with time zone"
+            AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true); //Using this configure to inform that the Datatime type will be generated to "timestamp without time zone" instead of "timestamp with time zone"
             IConfigurationRoot configuration = new ConfigurationBuilder()
                 .AddJsonFile("connectionconfig.json", false, true)
                 .Build();
             var connectionString = configuration.GetConnectionString("BlogConnectionString");
-            optionsBuilder.UseSqlServer(connectionString);
+            optionsBuilder.UseNpgsql(connectionString);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
