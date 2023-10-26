@@ -44,4 +44,8 @@ export class CategoryService extends BaseService {
         return this.post<any>(`api/blog/categories`, form);
       }
     }
+
+    deleteById(id: number): Observable<Category> {
+      return this.delete(`api/blog/categories/${id}`);
+    }
 }

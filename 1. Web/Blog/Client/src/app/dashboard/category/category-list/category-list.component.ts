@@ -53,4 +53,12 @@ export class CategoryListComponent implements OnInit {
   renderIndex(index: number): number{
     return index + this.pageSize * (this.pageIndex - 1) + 1;
   }
+
+  delete(id: number): void {
+    this.categoryService
+      .deleteById(id)
+      .subscribe((result) => {
+        this.filterProductList();
+      });
+  }
 }
