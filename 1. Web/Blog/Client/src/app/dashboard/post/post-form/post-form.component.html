@@ -30,8 +30,8 @@
     <div class="form-group row">
         <label class="col-md-12">Nội dung</label>
         <div class="col-md-12 input-group">
-          <input nz-input class="form-control" type="text" formControlName="content"
-            [class.is-invalid]="formErrors.content">
+          <textarea nz-input class="form-control" type="text" formControlName="content"
+            [class.is-invalid]="formErrors.content"></textarea>
         </div>
         <p class="warning text-danger">{{formErrors.content}}</p>
       </div>

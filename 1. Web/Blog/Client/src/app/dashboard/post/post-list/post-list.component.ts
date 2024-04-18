@@ -54,4 +54,12 @@ export class PostListComponent implements OnInit {
   renderIndex(index: number): number{
     return index + this.pageSize * (this.pageIndex - 1) + 1;
   }
+
+  delete(id: number): void {
+    this.postService
+      .deleteById(id)
+      .subscribe((_) => {
+        this.filterProductList();
+      });
+  }
 }

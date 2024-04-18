@@ -28,8 +28,7 @@ namespace Blog.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("all")]
-        [ModelValidationFilter]
-        [TypeFilter(typeof(ApiAuthorizeFilter))]
+        [AllowAnonymous]
         public async Task<IActionResult> GetCategories()
         {
             var result = await _categoryService.GetAll();

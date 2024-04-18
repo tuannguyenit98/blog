@@ -20,11 +20,13 @@ import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { NzBackTopModule } from 'ng-zorro-antd/back-top';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
+import { BrowserModule } from '@angular/platform-browser';
 
 
 @NgModule({
   declarations: [],
   imports: [
+    BrowserModule,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
@@ -49,6 +51,7 @@ import { NzSpinModule } from 'ng-zorro-antd/spin';
     NzSpinModule
   ],
   exports: [
+    BrowserModule,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,

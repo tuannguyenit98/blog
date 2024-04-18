@@ -50,4 +50,8 @@ export class PostService extends BaseService {
         return this.http.post<any>(this.baseUrl + `api/blog/posts`, formData);
       }
     }
+
+    deleteById(id: number): Observable<Post> {
+      return this.delete(`api/blog/posts/${id}`);
+    }
 }
