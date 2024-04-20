@@ -26,7 +26,7 @@ import { BrowserModule } from '@angular/platform-browser';
 @NgModule({
   declarations: [],
   imports: [
-    BrowserModule,
+    // BrowserModule,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
@@ -51,7 +51,7 @@ import { BrowserModule } from '@angular/platform-browser';
     NzSpinModule
   ],
   exports: [
-    BrowserModule,
+    // BrowserModule,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,

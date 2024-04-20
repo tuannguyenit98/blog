@@ -15,10 +15,6 @@ export class HomeComponent implements OnInit {
 
   } 
   ngOnInit(): void {
-    this.categorySevice.getAll().subscribe(res => {
-      this.categories = res;
-      console.log(this.categories)
-    })
   }
 
 }

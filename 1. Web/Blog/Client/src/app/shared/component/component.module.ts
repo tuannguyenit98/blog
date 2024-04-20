@@ -14,6 +14,10 @@ import { SharedModule } from '../shared.module';
   imports: [
     CommonModule,
     SharedModule
+  ],
+  exports: [
+    HeaderComponent,
+    FooterComponent
   ]
 })
 export class ComponentModule { }

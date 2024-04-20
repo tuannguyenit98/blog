@@ -15,7 +15,6 @@ import { AuthComponent } from './auth.component';
     AuthComponent
   ],
   imports: [
-    CommonModule,
     AuthRoutingModule,
     SharedModule
   ]

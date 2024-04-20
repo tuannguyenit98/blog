@@ -1,61 +1,99 @@
-<nav class="navbar navbar-expand-lg navbar-light fixed-top py-0">
-    <div class="container">
-      <a class="navbar-brand py-0" href="#">
-        <img src="../../../../assets/logo.png" class="logo" [routerLink]="['/']">
-      </a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-  
-      <div class="collapse navbar-collapse row text-uppercase font-weight-bold" id="navbarSupportedContent">
-        <ul class="navbar-nav navbar-nav-left col-md-6 justify-content-end px-0">
-          <li class="nav-item">
-            <a class="nav-link active">Quản lý cửa hàng <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link">Đơn hàng của bạn</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" >Món đã chọn</a>
-          </li>
-        </ul>
-        <form class="form-inline my-2 my-lg-0 col-md-3 pl-2">
-          <div class="search-area" nz-tooltip nzTooltipTitle="Tìm kiếm cửa hàng" nzTooltipPlacement="left">
-            <nz-input-group class="search" nzSearch [nzAddOnAfter]="suffixButton">
-              <input type="text" nz-input [placeholder]="'Tìm kiếm cửa hàng'" />
-            </nz-input-group>
-            <ng-template #suffixButton>
-              <button nz-button nzType="primary" nzSearch>
-                <i nz-icon nzType="search"></i>
-              </button>
-            </ng-template>
+<header>
+  <!-- Header Start -->
+  <div class="header-area">
+      <div class="main-header ">
+          <div class="header-top black-bg d-none d-md-block">
+              <div class="container">
+                  <div class="col-xl-12">
+                      <div class="row d-flex justify-content-between align-items-center">
+                          <div class="header-info-left">
+                              <ul>
+                                  <li><img src="../../assets/img/icon/header_icon1.png" alt="">34ºc, Sunny </li>
+                                  <li><img src="../../assets/img/icon/header_icon1.png" alt="">Tuesday, 18th June,
+                                      2019</li>
+                              </ul>
+                          </div>
+                          <div class="header-info-right">
+                              <ul class="header-social">
+                                  <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                  <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                                  <li> <a href="#"><i class="fab fa-pinterest-p"></i></a></li>
+                              </ul>
+                          </div>
+                      </div>
+                  </div>
+              </div>
           </div>
-        </form>
-        <ul class="navbar-nav navbar-nav-right col-md-3 pl-2">
-          <ng-container>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false">
-              <img  alt="" class="avatar mr-1">
-              <span>Admin</span>
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <ng-container>
-                <a class="dropdown-item" [routerLink]="['/dashboard']">Trang admin</a>
-              </ng-container>
-              <a class="dropdown-item" [routerLink]="['/account']">Tài khoản</a>
-              <a class="dropdown-item">Thay đổi mật khẩu</a>
-              <a class="dropdown-item">Đăng xuất</a>
-            </div>
-          </li>
-        </ng-container>
-        <ng-template #userNull>
-          <div class="btn-login">
-            <button nz-button nzType="default" [routerLink]="['/auth/sign-in']">Đăng nhập</button>
+          <div class="header-mid d-none d-md-block">
+              <div class="container">
+                  <div class="row d-flex align-items-center">
+                      <!-- Logo -->
+                      <div class="col-xl-3 col-lg-3 col-md-3">
+                          <div class="logo">
+                              <a [routerLink]="['/']" routerLinkActive="router-link-active" ><img src="../../assets/img/logo/logo.png" alt=""></a>
+                          </div>
+                      </div>
+                      <!-- <div class="col-xl-9 col-lg-9 col-md-9">
+                          <div class="trending-tittle">
+                              <strong>Hello</strong>
+                              <div class="trending-animated">
+                                  <ul id="js-news" class="js-hidden">
+                                      <li class="news-item">Chào bạn đã đến với blog của TTech.</li>
+                                      <li class="news-item">Huy vọng bạn có một trải nghiệm tốt về blog của TTech.
+                                      </li>
+                                      <li class="news-item">Chúc bạn có một ngày tốt đẹp.</li>
+                                  </ul>
+                              </div>
+                          </div>
+                      </div> -->
+                  </div>
+              </div>
           </div>
-        </ng-template>
-        </ul>
+          <div class="header-bottom header-sticky">
+              <div class="container">
+                  <div class="row align-items-center">
+                      <div class="col-xl-10 col-lg-10 col-md-12 header-flex">
+                          <!-- sticky -->
+                          <div class="sticky-logo">
+                              <a [routerLink]="['/']"><img src="../../assets/img/logo/logo.png" alt=""></a>
+                          </div>
+                          <!-- Main-menu -->
+                          <div class="main-menu d-none d-md-block">
+                              <nav>
+                                  <ul id="navigation">
+                                      <li><a [routerLink]="['/']">Home</a></li>
+                                      <li><a href="categori.html">Category</a>
+                                          <ul class="submenu">
+                                              <li *ngFor="let item of categories">
+                                                  <a href="elements.html">{{item.title}}</a>
+                                              </li>
+                                          </ul>
+                                      </li>
+                                      <li><a href="about.html">About</a></li>
+                                      <li><a [routerLink]="['contact']">Contact</a></li>
+                                  </ul>
+                              </nav>
+                          </div>
+                      </div>
+                      <div class="col-xl-2 col-lg-2 col-md-4">
+                          <div class="header-right-btn f-right d-none d-lg-block">
+                              <i class="fas fa-search special-tag"></i>
+                              <div class="search-box">
+                                  <form action="#">
+                                      <input type="text" placeholder="Search">
+
+                                  </form>
+                              </div>
+                          </div>
+                      </div>
+                      <!-- Mobile Menu -->
+                      <div class="col-12">
+                          <div class="mobile_menu d-block d-md-none"></div>
+                      </div>
+                  </div>
+              </div>
+          </div>
       </div>
-    </div>
-  </nav>
+  </div>
+  <!-- Header End -->
+</header>
