@@ -20,6 +20,7 @@ namespace Infrastructure.ContainerConfigs
             // jwt wire up
             // Get options from app settings
             var jwtAppSettingOptions = configuration.GetSection(nameof(JwtIssuerOptions));
+            var cloudinarySettings = configuration.GetSection(nameof(CloudinarySettings));
 
             // Configure JwtIssuerOptions
             services.Configure<JwtIssuerOptions>(
@@ -34,6 +35,8 @@ namespace Infrastructure.ContainerConfigs
                     options.ErpExpirationInHours = jwtAppSettingOptions[nameof(JwtIssuerOptions.ErpExpirationInHours)].ParseInt();
                     options.SigningCredentials = new SigningCredentials(signingKey, SecurityAlgorithms.HmacSha256);
                 });
+
+            services.Configure<CloudinarySettings>(cloudinarySettings);
 
             var tokenValidationParameters = new TokenValidationParameters
             {

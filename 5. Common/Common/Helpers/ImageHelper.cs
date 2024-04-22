@@ -21,5 +21,19 @@ namespace Common.Helpers
             string fileEts = Path.GetExtension(filename).Replace(".", "").ToLower();
             return ImageType.Contains(fileEts) && reg.Contains(fileEts) ? true : false;
         }
+
+        public static string GetPublicIdFromUrl(string url)
+        {
+            int idx = url.LastIndexOf('.');
+            string publicId = string.Empty;
+
+            if (idx != -1)
+            {
+                var a = url.Substring(0, idx); // "https://res.cloudinary.com/dibbsh3z8/image/upload/v1713799824/jxxiykyxay3eoordxngh"
+                int idx1 = a.LastIndexOf('/');
+                publicId = a.Substring(idx1 + 1);
+            }
+            return publicId;
+        }
     }
 }

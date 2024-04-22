@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="CloudinaryDotNet" Version="1.26.2" />
     <PackageReference Include="Dapper" Version="2.0.143" />
     <PackageReference Include="Google.OrTools" Version="9.6.2534" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.31.0" />
