@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Category } from '../shared/models/category/category.model';
-import { CategoryService } from '../shared/services/category.service';
+import { PostService } from '../shared/services/post.service';
+import { PostFeatureModel } from '../shared/models/post/post-feature.model';
 
 @Component({
   selector: 'app-home',
@@ -8,13 +9,16 @@ import { CategoryService } from '../shared/services/category.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  categories: Category[] = [];
+  postFeature: PostFeatureModel = new PostFeatureModel();
   constructor(
-    private categorySevice: CategoryService
+    private postService: PostService
   ){
 
   } 
   ngOnInit(): void {
+    this.postService.getPostFeatures().subscribe((res) => {
+      this.postFeature = res;
+    })
   }
 
 }

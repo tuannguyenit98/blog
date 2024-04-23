@@ -6,6 +6,7 @@ using Common.Exceptions;
 using Common.Helpers;
 using Common.Runtime.Security;
 using Common.Runtime.Session;
+using DTOs.Blog;
 using DTOs.Blog.Post;
 using DTOs.Share;
 using Entities.Blog;
@@ -14,7 +15,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Services.Implementations.Helpers;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -99,7 +99,7 @@ namespace Services.Implementations
 
         public async Task<List<Post>> GetPostsByCategoryIdAsync(int categoryId)
         {
-           var posts = await _postRepository.GetAll().Where(x => x.FK_CategoryId == categoryId).ToListAsync();
+            var posts = await _postRepository.GetAll().Where(x => x.FK_CategoryId == categoryId).ToListAsync();
             return posts;
         }
 
@@ -130,7 +130,7 @@ namespace Services.Implementations
         private async Task<string> AddPhotoAsyc(IFormFile file)
         {
             var uploadResult = new ImageUploadResult();
-            if (file.Length > 0)                                        
+            if (file.Length > 0)
             {
                 using (var stream = file.OpenReadStream())
                 {
@@ -149,6 +149,28 @@ namespace Services.Implementations
         {
             var deleteParams = new DeletionParams(publicId);
             await _cloudinary.DestroyAsync(deleteParams);
+        }
+
+        public async Task<FeaturePostDto> GetPostFeaturesAsync()
+        {
+            var post = _postRepository.GetAll()
+                .Include(x => x.Category)
+                .OrderByDescending(p => p.Id)
+                .Select(x => new PostDto
+                {
+                    Slug = x.Slug,
+                    Id = x.Id,
+                    Image = x.Image,
+                    Title = x.Title,
+                    MetaTitle = x.MetaTitle,
+                    CategoryName = x.Category.Title
+                });
+
+            return new FeaturePostDto()
+            {
+                PostFeature = await post.FirstOrDefaultAsync(),
+                PostViews = await post.Skip(2).Take(5).ToListAsync()
+            };
         }
     }
 }

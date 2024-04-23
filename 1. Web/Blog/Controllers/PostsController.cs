@@ -1,12 +1,12 @@
 ﻿using Abstractions.Interfaces;
 using Common.Helpers;
+using DTOs.Blog;
 using DTOs.Blog.Post;
 using DTOs.Share;
 using Entities.Blog;
 using Infrastructure.Filters;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Services.Implementations;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -108,6 +108,15 @@ namespace Blog.Controllers
         {
             await _postService.DeletePostAsync(id);
             return NoContent();
+        }
+
+        [HttpGet]
+        [Route("feature")]
+        [AllowAnonymous]
+        public async Task<IActionResult> GetPostFeatures()
+        {
+            var result = await _postService.GetPostFeaturesAsync();
+            return Ok(ApiResponse<FeaturePostDto>.Success(result));
         }
     }
 }

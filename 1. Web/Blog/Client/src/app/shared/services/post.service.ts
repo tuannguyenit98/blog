@@ -54,4 +54,8 @@ export class PostService extends BaseService {
     deleteById(id: number): Observable<Post> {
       return this.delete(`api/blog/posts/${id}`);
     }
+
+    getPostFeatures(): Observable<any> {
+      return this.get('api/blog/posts/feature');
+     }
 }
