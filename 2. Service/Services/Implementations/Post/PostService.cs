@@ -81,7 +81,7 @@ namespace Services.Implementations
             post.FK_CategoryId = updatePostDto.FK_CategoryId;
             post.FK_UserId = CurrentUser.Current.Id;
             await _postRepository.UpdateAsync(post);
-            await DeletePhotoAsyc(ImageHelper.GetPublicIdFromUrl(photoUrl));
+            if (!string.IsNullOrEmpty(photoUrl)) await DeletePhotoAsyc(ImageHelper.GetPublicIdFromUrl(photoUrl));
             await _unitOfWork.CompleteAsync();
         }
 
@@ -91,9 +91,18 @@ namespace Services.Implementations
             await _unitOfWork.CompleteAsync();
         }
 
-        public async Task<IPagedResultDto<Post>> GetPosts(PagedResultRequestDto pagedResultRequest)
+        public async Task<IPagedResultDto<PostDto>> GetPosts(PagedResultRequestDto pagedResultRequest)
         {
-            var categories = _postRepository.GetAll();
+            var categories = _postRepository.GetAll().Select(x => new PostDto
+            {
+                Slug = x.Slug,
+                Id = x.Id,
+                Image = x.Image,
+                Title = x.Title,
+                MetaTitle = x.MetaTitle,
+                CategoryName = x.Category.Title,
+                DeleteAt = x.DeleteAt
+            });
             return await categories.GetPagedResultAsync(pagedResultRequest.Page, pagedResultRequest.PageSize, x => x);
         }
 

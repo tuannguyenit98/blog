@@ -47,18 +47,18 @@
           <th class="table-col-name">
             <p class="mb-0">Tên bài meta</p>
           </th>
-          <th class="table-col-name">
+          <!-- <th class="table-col-name">
             <p class="mb-0">Người đăng</p>
-          </th>
+          </th> -->
           <th class="table-col-owner">
             <p class="mb-0">Danh mục</p>
           </th>
           <th class="table-col-name">
             <p class="mb-0">Image</p>
           </th>
-          <th class="table-col-name">
+          <!-- <th class="table-col-name">
             <p class="mb-0">Nội dung</p>
-          </th>
+          </th> -->
           <th class="table-col-status">
             <p class="mb-0">Trạng thái</p>
           </th>
@@ -70,12 +70,12 @@
       <tbody>
         <tr *ngFor="let item of basicTable.data; let i = index">
           <td class="text-center">{{renderIndex(i)}}</td>
-          <td>{{item.title}}</td>
+          <td>{{item.title}} {{total}}</td>
           <td>{{item.metaTitle}}</td>
-          <td>{{item.fK_UserId}}</td>
-          <td>{{item.fK_CategoryId}}</td>
+          <!-- <td>{{item.fK_UserId}}</td> -->
+          <td>{{item.categoryName}}</td>
           <td>{{item.image}}</td>
-          <td>{{item.content}}</td>
+          <!-- <td>{{item.content}}</td> -->
           <td>{{item.deleteAt ? 'Không hoạt động' : 'Hoạt động'}}</td>
           <td nzRight>
             <div class="d-flex justify-content-center align-items-center">

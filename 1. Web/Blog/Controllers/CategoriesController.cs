@@ -32,7 +32,7 @@ namespace Blog.Controllers
         public async Task<IActionResult> GetCategories()
         {
             var result = await _categoryService.GetAll();
-            return Ok(ApiResponse<List<Category>>.Success(result));
+            return Ok(ApiResponse<List<CategoryDto>>.Success(result));
         }
 
         /// <summary>

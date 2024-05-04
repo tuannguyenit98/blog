@@ -1,4 +1,6 @@
-﻿namespace DTOs.Blog.Post
+﻿using System;
+
+namespace DTOs.Blog.Post
 {
     public class PostDto
     {
@@ -8,5 +10,6 @@
         public string Slug { get; set; }
         public string Image { get; set; }
         public string CategoryName { get; set; }
+        public DateTime? DeleteAt { get; set; }
     }
 }

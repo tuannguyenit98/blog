@@ -6,6 +6,7 @@ import { PostFilter } from '../models/post/post-filter.model';
 import { Post } from '../models/post/post.model';
 import { PostCreateModel } from '../models/post/post-create.model';
 import { PagePagination } from '../models/page-pagination.model';
+import { PostDto } from '../models/post/post-feature.model';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,7 @@ export class PostService extends BaseService {
       super(httpClient, baseUrl);
      }
 
-     getPosts(params: PostFilter): Observable<PagePagination<Post>> {
+     getPosts(params: PostFilter): Observable<PagePagination<PostDto>> {
       const paramsFilter: PostFilter = { ...params };
     if (!paramsFilter.keyWord) {
       delete paramsFilter.keyWord;

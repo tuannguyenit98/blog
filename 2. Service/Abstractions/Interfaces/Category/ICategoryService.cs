@@ -12,7 +12,7 @@ namespace Abstractions.Interfaces
         Task UpdateCategoryAsync(int categoryId, UpdateCategoryDto updateCategoryDto);
         Task DeleteCategoryAsync(int categoryId);
         Task<Category> GetCategoryByIdAsync(int categoryId);
-        Task<List<Category>> GetAll();
+        Task<List<CategoryDto>> GetAll();
         Task<IPagedResultDto<Category>> GetCategories(PagedResultRequestDto pagedResultRequest);
     }
 }

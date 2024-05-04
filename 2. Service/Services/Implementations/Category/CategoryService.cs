@@ -1,6 +1,5 @@
 ﻿using Abstractions.Interfaces;
 using AutoMapper;
-using Common.Extentions;
 using DTOs.Blog.Category;
 using DTOs.Share;
 using Entities.Blog;
@@ -41,10 +40,19 @@ namespace Services.Implementations
             await _unitOfWork.CompleteAsync();
         }
 
-        public async Task<List<Category>> GetAll()
+        public async Task<List<CategoryDto>> GetAll()
         {
-            var users = await _categoryRepository.GetAll().ToListAsync();
-            return users;
+            return await _categoryRepository.GetAll()
+                .Include(x => x.Posts)
+                .Select(x => new CategoryDto
+                {
+                    Title = x.Title,
+                    MetaTitle = x.MetaTitle,
+                    Slug = x.Slug,
+                    Id = x.Id,
+                    CreatedAt = x.CreatedAt,
+                    PostNumber = x.Posts.Where(y => y.FK_CategoryId == x.Id).Count(),
+                }).ToListAsync();
         }
 
         public async Task UpdateCategoryAsync(int categoryId, UpdateCategoryDto updateCategoryDto)

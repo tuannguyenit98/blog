@@ -112,7 +112,7 @@ export class PostFormComponent {
     this.postService.createOrUpdate(this.mappingModel(this.postForm.value), this.id).subscribe((res) =>
     {
       this.router.navigate([`/dashboard/post/list`]);
-        this.nzNotificationService.success('Thông báo', 'Thêm bài thành công!', { nzPlacement: 'bottomRight'});
+        this.nzNotificationService.success('Thông báo', `${this.id ? 'Cập nhật' : 'Thêm bài'} thành công!`, { nzPlacement: 'bottomRight'});
     });
   }
 

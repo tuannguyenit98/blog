@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { debounceTime } from 'rxjs';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
+import { PostDto } from 'src/app/shared/models/post/post-feature.model';
 import { PostFilter } from 'src/app/shared/models/post/post-filter.model';
 import { Post } from 'src/app/shared/models/post/post.model';
 import { PostService } from 'src/app/shared/services/post.service';
@@ -12,11 +13,11 @@ import { PostService } from 'src/app/shared/services/post.service';
 })
 export class PostListComponent implements OnInit {
   filterModel: PostFilter = new PostFilter();
-  posts: Post[] = [];
+  posts: PostDto[] = [];
   searchTerm$ = new BehaviorSubject('');
   pageIndex = 1;
-  pageSize = 5;
-  total = 1;
+  pageSize = this.filterModel.pageSize;
+  total: number = 3;
   constructor(
     private postService: PostService,
   ) {}
@@ -29,14 +30,13 @@ export class PostListComponent implements OnInit {
     });
   }
 
-  filterProductList(pageIndex?: number): void {
-    this.filterModel.page = pageIndex ? pageIndex : this.filterModel.page;
+  filterProductList(): void {
     const filter = { ...this.filterModel };
     this.postService
       .getPosts(filter)
       .subscribe((result) => {
         this.posts = result.items;
-        this.total = result.totalPages;
+        this.total = result.totalCount;
         this.pageIndex = this.filterModel.page;
         this.pageSize = this.filterModel.pageSize;
       });
@@ -48,7 +48,8 @@ export class PostListComponent implements OnInit {
   }
 
   changePageIndex(event: number): void {
-    this.filterProductList(event);
+    this.filterModel.page = event
+    this.filterProductList();
   }
 
   renderIndex(index: number): number{

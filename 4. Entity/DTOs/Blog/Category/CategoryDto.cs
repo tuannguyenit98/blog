@@ -10,9 +10,9 @@ namespace DTOs.Blog.Category
         public int? CreatedBy { get; set; }
         public int? UpdatedBy { get; set; }
         public DateTime? DeleteAt { get; set; }
-        public CategoryDto Category { get; set; }
         public string Title { get; set; }
         public string MetaTitle { get; set; }
         public string Slug { get; set; }
+        public int PostNumber { get; set; }
     }
 }

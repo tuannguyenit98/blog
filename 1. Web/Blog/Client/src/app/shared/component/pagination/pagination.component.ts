@@ -7,10 +7,9 @@ import { Observable, filter, map, range, toArray } from 'rxjs';
   styleUrls: ['./pagination.component.scss']
 })
 export class PaginationComponent implements OnInit {
-  @Input() offset!: number; // current offset
-  @Input() limit!: number; // record per page
-  @Input() size!: number; // total records
-  @Input() range: number = 3;
+  @Input() pageIndex!: number; // current pageIndex
+  @Input() pageSize!: number; // record per page
+  @Input() total!: number; // total records
 
 
   @Output() pageChange: EventEmitter<any>;
@@ -22,32 +21,31 @@ export class PaginationComponent implements OnInit {
   }
 
  ngOnInit() {
-  this.getPages(this.offset, this.limit, this.size);
+  this.getPages(this.pageIndex, this.pageSize, this.total);
 }
 
 ngOnChanges() {
-  this.getPages(this.offset, this.limit, this.size);
+  this.getPages(this.pageIndex, this.pageSize, this.total);
 }
 
 
-  getCurrentPage(offset: number, limit: number): number {
-    return Math.floor(offset / limit) + 1;
+  getCurrentPage(pageIndex: number, pageSize: number): number {
+    return Math.floor(pageIndex / pageSize) + 1;
   }
 
-  getTotalPages(limit: number, size: number): number {
-   return Math.ceil(Math.max(size, 1) / Math.max(limit, 1));
+  getTotalPages(pageSize: number, total: number): number {
+   return Math.ceil(Math.max(total, 1) / Math.max(pageSize, 1));
   }
 
-  getPages(offset: number, limit: number, size: number) {
-    this.currentPage = this.getCurrentPage(offset, limit);
-    this.totalPages = this.getTotalPages(limit, size);
-    this.pages = range(-this.range, this.range * 2 + 1)
+  getPages(pageIndex: number, pageSize: number, total: number) {
+    this.currentPage = pageIndex;
+    this.totalPages = total;
+    this.pages = range(1, total)
     .pipe(
-      map((offset: number) => this.currentPage + offset),
+      // map((offset: number) => this.currentPage + offset),
       filter((page: number) => this.isValidPageNumber(page, this.totalPages)),
       toArray()
     )
-      
   }
 
 
@@ -58,7 +56,7 @@ ngOnChanges() {
 selectPage(page: number, event: any) {
   event.preventDefault();
   if (this.isValidPageNumber(page, this.totalPages)) {
-    this.pageChange.emit((page - 1) * this.limit);
+    this.pageChange.emit(page);
   }
 }
 

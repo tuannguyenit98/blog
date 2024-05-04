@@ -1,6 +1,6 @@
 export class PostFeatureModel {
     postFeature: PostDto = new PostDto();
-    postViews: [] = []
+    postViews: PostDto[] = []
 }
 
 export class PostDto {
@@ -10,5 +10,6 @@ export class PostDto {
     categoryName: string | undefined;
     image: string | undefined;
     content: string | undefined;
+    deleteAt: Date | undefined;
 }
   

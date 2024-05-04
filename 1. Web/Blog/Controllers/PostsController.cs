@@ -43,12 +43,11 @@ namespace Blog.Controllers
         /// <param name="pagedResultRequestDto"></param>
         /// <returns></returns>
         [HttpGet]
-        [ModelValidationFilter]
-        [TypeFilter(typeof(ApiAuthorizeFilter))]
+        [AllowAnonymous]
         public async Task<IActionResult> GetPagingPosts([FromQuery] PagedResultRequestDto pagedResultRequestDto)
         {
             var result = await _postService.GetPosts(pagedResultRequestDto);
-            return Ok(ApiResponse<IPagedResultDto<Post>>.Success(result));
+            return Ok(ApiResponse<IPagedResultDto<PostDto>>.Success(result));
         }
 
         /// <summary>
