@@ -13,6 +13,7 @@ namespace Abstractions.Interfaces
         Task UpdatePostAsync(int postId, UpdatePostDto updatePostDto);
         Task DeletePostAsync(int postId);
         Task<Post> GetPostByIdAsync(int postId);
+        Task<Post> GetPostBySlugAsync(string slug);
         Task<List<Post>> GetPostsByCategoryIdAsync(int categoryId);
         Task<List<Post>> GetAll();
         Task<IPagedResultDto<PostDto>> GetPosts(PagedResultRequestDto pagedResultRequest);

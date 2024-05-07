@@ -36,6 +36,10 @@ export class PostService extends BaseService {
       return this.get(`api/blog/posts/${id}`);
      }
 
+     getBySlug(slug: string): Observable<Post> {
+      return this.get(`api/blog/posts/${slug}/detail`);
+     }
+
      public createOrUpdate(form: PostCreateModel, id?: number): Observable<any>{
       const formData: FormData = new FormData();
       formData.append('title', form.title);

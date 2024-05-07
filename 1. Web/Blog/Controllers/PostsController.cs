@@ -117,5 +117,18 @@ namespace Blog.Controllers
             var result = await _postService.GetPostFeaturesAsync();
             return Ok(ApiResponse<FeaturePostDto>.Success(result));
         }
+
+        /// <summary>
+        /// Get By Slug
+        /// </summary>
+        /// <param name="slug"></param>
+        /// <returns></returns>
+        [HttpGet("{slug}/detail")]
+        [AllowAnonymous]
+        public async Task<IActionResult> GetBySlug(string slug)
+        {
+            var result = await _postService.GetPostBySlugAsync(slug);
+            return Ok(ApiResponse<Post>.Success(result));
+        }
     }
 }

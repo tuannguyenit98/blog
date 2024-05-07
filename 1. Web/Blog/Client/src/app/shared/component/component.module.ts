@@ -4,6 +4,7 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { SharedModule } from '../shared.module';
 import { PaginationComponent } from './pagination/pagination.component';
+import { CategoryComponent } from './category/category.component';
 
 
 
@@ -11,7 +12,8 @@ import { PaginationComponent } from './pagination/pagination.component';
   declarations: [
     HeaderComponent,
     FooterComponent,
-    PaginationComponent
+    PaginationComponent,
+    CategoryComponent
   ],
   imports: [
     CommonModule,
@@ -20,7 +22,8 @@ import { PaginationComponent } from './pagination/pagination.component';
   exports: [
     HeaderComponent,
     FooterComponent,
-    PaginationComponent
+    PaginationComponent,
+    CategoryComponent
   ]
 })
 export class ComponentModule { }

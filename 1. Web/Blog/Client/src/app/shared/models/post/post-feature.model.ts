@@ -11,5 +11,6 @@ export class PostDto {
     image: string | undefined;
     content: string | undefined;
     deleteAt: Date | undefined;
+    slug: string | undefined;
 }
   

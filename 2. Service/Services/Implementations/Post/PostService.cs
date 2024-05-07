@@ -181,5 +181,14 @@ namespace Services.Implementations
                 PostViews = await post.Skip(2).Take(5).ToListAsync()
             };
         }
+
+        public async Task<Post> GetPostBySlugAsync(string slug)
+        {
+            var result = await _postRepository
+                        .GetAll()
+                        .Where(x => x.Slug == slug)
+                        .FirstOrDefaultAsync();
+            return result;
+        }
     }
 }
