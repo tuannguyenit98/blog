@@ -63,4 +63,9 @@ export class PostService extends BaseService {
     getPostFeatures(): Observable<any> {
       return this.get('api/blog/posts/feature');
      }
+
+     getPostsByCategorySlug(params: PostFilter, slug: string): Observable<PagePagination<PostDto>> {
+      const paramsFilter: PostFilter = { ...params };
+      return this.get(`api/blog/posts/${slug}/category`, paramsFilter);
+     }
 }

@@ -8,5 +8,6 @@ export class Category {
   parentId: number | undefined;
   title!: string;
   metaTitle: string | undefined;
+  slug: string | undefined;
   postNumber: number | undefined;
 }

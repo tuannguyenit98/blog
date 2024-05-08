@@ -1,0 +1,100 @@
+<main>
+    <!-- Trending Area Start -->
+    <div class="trending-area fix">
+        <div class="container">
+            <div class="trending-main">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <section class="whats-news-area mt-30 pb-20">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <!-- Nav Card -->
+                                            <div class="tab-content" id="nav-tabContent">
+                                                <!-- card one -->
+                                                <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
+                                                    aria-labelledby="nav-home-tab">
+                                                    <div class="whats-news-caption">
+                                                        <div class="row">
+                                                            <div class="col-lg-6 col-md-6" *ngFor="let item of posts">
+                                                                <div class="single-what-news mb-100">
+                                                                    <div class="what-img">
+                                                                        <img src={{item.image}} alt="">
+                                                                    </div>
+                                                                    <div class="what-cap">
+                                                                        <span
+                                                                            class="color1">{{item.categoryName}}</span>
+                                                                        <h4><a
+                                                                                [routerLink]="['/post', item.slug]">{{item.title}}</a>
+                                                                        </h4>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- End Nav Card -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <!--Start pagination -->
+                        <app-pagination [pageIndex]="pageIndex" [pageSize]="pageSize" [total]="total"
+                            (pageChange)="onPageChange($event)"></app-pagination>
+                        <!-- End pagination  -->
+                        <!-- Whats New End -->
+                    </div>
+                    <!-- Riht content -->
+                    <div class="col-lg-4 mt-30">
+                        <app-category></app-category>
+                        <div class="blog_right_sidebar">
+                        <aside class="single_sidebar_widget popular_post_widget">
+                            <h3 class="widget_title">Recent Post</h3>
+                            <div class="media post_item">
+                               <img src="assets/img/post/post_1.png" alt="post">
+                               <div class="media-body">
+                                  <a href="single-blog.html">
+                                     <h3>From life was you fish...</h3>
+                                  </a>
+                                  <p>January 12, 2019</p>
+                               </div>
+                            </div>
+                            <div class="media post_item">
+                               <img src="assets/img/post/post_2.png" alt="post">
+                               <div class="media-body">
+                                  <a href="single-blog.html">
+                                     <h3>The Amazing Hubble</h3>
+                                  </a>
+                                  <p>02 Hours ago</p>
+                               </div>
+                            </div>
+                            <div class="media post_item">
+                               <img src="assets/img/post/post_3.png" alt="post">
+                               <div class="media-body">
+                                  <a href="single-blog.html">
+                                     <h3>Astronomy Or Astrology</h3>
+                                  </a>
+                                  <p>03 Hours ago</p>
+                               </div>
+                            </div>
+                            <div class="media post_item">
+                               <img src="assets/img/post/post_4.png" alt="post">
+                               <div class="media-body">
+                                  <a href="single-blog.html">
+                                     <h3>Asteroids telescope</h3>
+                                  </a>
+                                  <p>01 Hours ago</p>
+                               </div>
+                            </div>
+                         </aside>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Trending Area End -->
+</main>

@@ -27,7 +27,7 @@
                                 <img src={{postFeature.postFeature.image}} alt="">
                                 <div class="trend-top-cap">
                                     <span>{{postFeature.postFeature.categoryName}}</span>
-                                    <h2><a href="details.html">
+                                    <h2><a [routerLink]="['/post', postFeature.postFeature.slug]">
                                         {{postFeature.postFeature.title}}
                                         </a>
                                     </h2>
@@ -55,7 +55,7 @@
                                                 </div>
                                                 <div class="what-cap">
                                                     <span class="color1">{{item.categoryName}}</span>
-                                                    <h4><a href="#">{{item.title}}</a>
+                                                    <h4><a [routerLink]="['/post', item.slug]">{{item.title}}</a>
                                                     </h4>
                                                 </div>
                                             </div>
@@ -83,22 +83,10 @@
                             </div>
                             <div class="trand-right-cap">
                                 <span class="color1">{{item.categoryName}}</span>
-                                <h4><a [routerLink]="['/post', item.slug]" routerLinkActive="router-link-active"  >{{item.title}}</a></h4>
+                                <h4><a [routerLink]="['/post', item.slug]"  >{{item.title}}</a></h4>
                             </div>
                         </div>
-                        <div class="blog_right_sidebar">
-                            <aside class="single_sidebar_widget post_category_widget">
-                                <h4 class="widget_title">Category</h4>
-                                <ul class="list cat-list">
-                                    <li *ngFor="let item of categories">
-                                        <a href="#" class="d-flex">
-                                            <p>{{item.title}}</p>
-                                            <p>({{item.postNumber}})</p>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </aside>
-                        </div>
+                        <app-category></app-category>
                     </div>
                 </div>
             </div>

@@ -18,5 +18,6 @@ namespace Abstractions.Interfaces
         Task<List<Post>> GetAll();
         Task<IPagedResultDto<PostDto>> GetPosts(PagedResultRequestDto pagedResultRequest);
         Task<FeaturePostDto> GetPostFeaturesAsync();
+        Task<IPagedResultDto<PostDto>> GetPostsByCategorySlugAsync(PagedResultRequestDto pagedResultRequest, string slug);
     }
 }

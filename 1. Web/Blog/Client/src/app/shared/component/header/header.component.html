@@ -65,7 +65,7 @@
                                       <li><a href="categori.html">Category</a>
                                           <ul class="submenu">
                                               <li *ngFor="let item of categories">
-                                                  <a href="elements.html">{{item.title}}</a>
+                                                  <a [routerLink]="['/post', item.slug, 'category']" routerLinkActive="router-link-active" >{{item.title}}</a>
                                               </li>
                                           </ul>
                                       </li>

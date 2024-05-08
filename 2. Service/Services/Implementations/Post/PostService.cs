@@ -93,7 +93,7 @@ namespace Services.Implementations
 
         public async Task<IPagedResultDto<PostDto>> GetPosts(PagedResultRequestDto pagedResultRequest)
         {
-            var categories = _postRepository.GetAll().Select(x => new PostDto
+            var posts = _postRepository.GetAll().Select(x => new PostDto
             {
                 Slug = x.Slug,
                 Id = x.Id,
@@ -103,7 +103,7 @@ namespace Services.Implementations
                 CategoryName = x.Category.Title,
                 DeleteAt = x.DeleteAt
             });
-            return await categories.GetPagedResultAsync(pagedResultRequest.Page, pagedResultRequest.PageSize, x => x);
+            return await posts.GetPagedResultAsync(pagedResultRequest.Page, pagedResultRequest.PageSize, x => x);
         }
 
         public async Task<List<Post>> GetPostsByCategoryIdAsync(int categoryId)
@@ -189,6 +189,24 @@ namespace Services.Implementations
                         .Where(x => x.Slug == slug)
                         .FirstOrDefaultAsync();
             return result;
+        }
+
+        public async Task<IPagedResultDto<PostDto>> GetPostsByCategorySlugAsync(PagedResultRequestDto pagedResultRequest, string slug)
+        {
+            var posts = _postRepository.GetAll()
+                .Include(x => x.Category)
+                .Where(x => x.Category.Slug == slug)
+                .Select(x => new PostDto
+                {
+                    Slug = x.Slug,
+                    Id = x.Id,
+                    Image = x.Image,
+                    Title = x.Title,
+                    MetaTitle = x.MetaTitle,
+                    CategoryName = x.Category.Title,
+                    DeleteAt = x.DeleteAt
+                });
+            return await posts.OrderByDescending(x => x.Id).GetPagedResultAsync(pagedResultRequest.Page, pagedResultRequest.PageSize, x => x);
         }
     }
 }

@@ -130,5 +130,13 @@ namespace Blog.Controllers
             var result = await _postService.GetPostBySlugAsync(slug);
             return Ok(ApiResponse<Post>.Success(result));
         }
+
+        [HttpGet("{slug}/category")]
+        [AllowAnonymous]
+        public async Task<IActionResult> GetPagingPosts([FromQuery] PagedResultRequestDto pagedResultRequestDto, string slug)
+        {
+            var result = await _postService.GetPostsByCategorySlugAsync(pagedResultRequestDto, slug);
+            return Ok(ApiResponse<IPagedResultDto<PostDto>>.Success(result));
+        }
     }
 }

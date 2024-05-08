@@ -7,13 +7,15 @@ import { ComponentModule } from "../shared/component/component.module";
 import { PostDetailComponent } from './post-detail/post-detail.component';
 import { IndexComponent } from './index/index.component';
 import { SharedModule } from '../shared/shared.module';
+import { CategoryDetailComponent } from './category-detail/category-detail.component';
 
 
 @NgModule({
     declarations: [
         HomeComponent,
         PostDetailComponent,
-        IndexComponent
+        IndexComponent,
+        CategoryDetailComponent
     ],
     imports: [
         CommonModule,
