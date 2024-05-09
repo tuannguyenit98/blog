@@ -1,5 +1,6 @@
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, DoCheck, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { PostDto } from 'src/app/shared/models/post/post-feature.model';
 import { PostFilter } from 'src/app/shared/models/post/post-filter.model';
 import { PostService } from 'src/app/shared/services/post.service';
@@ -9,38 +10,45 @@ import { PostService } from 'src/app/shared/services/post.service';
   templateUrl: './category-detail.component.html',
   styleUrls: ['./category-detail.component.scss']
 })
-export class CategoryDetailComponent implements OnInit, OnChanges {
+export class CategoryDetailComponent implements OnInit, OnDestroy {
   slug: string | undefined;
   posts: PostDto[] = [];
   pageIndex: number = 1;
   pageSize: number = 4;
   total: number = 2;
   filterModel: PostFilter = new PostFilter();
+  subscription: Subscription = new Subscription();
+  loading: boolean = false;
   constructor(
     private postService: PostService,
     private activatedRoute: ActivatedRoute
   ){
 
   }
-  ngOnChanges(changes: SimpleChanges): void {
-    this.filterPostList();
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
+
   ngOnInit(): void {
-    this.slug = this.activatedRoute.snapshot.paramMap.get('slug')!;
-    this.filterPostList();
+    this.loading = true;
+    this.subscription.add(this.activatedRoute.params.subscribe((params: Params) => {
+      this.slug = params['slug'];
+      this.filterPostList();
+    }))
   }
 
   filterPostList(pageIndex?: number): void {
     this.filterModel.page = pageIndex ? pageIndex : this.filterModel.page;
     this.filterModel.pageSize = this.pageSize;
     const filter = { ...this.filterModel };
-    this.postService
+    this.subscription.add(this.postService
       .getPostsByCategorySlug(filter, this.slug!)
       .subscribe((result) => {
         this.posts = result.items;
         this.total = result.totalPages;
         this.pageIndex = this.filterModel.page;
-      });
+        this.loading = false;
+      }));
   }
 
   onPageChange(pageIndex: number) {

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap, Route, Router } from '@angular/router';
+import { ActivatedRoute, ParamMap, Params, Route, Router } from '@angular/router';
 import { PostDto } from 'src/app/shared/models/post/post-feature.model';
 import { Post } from 'src/app/shared/models/post/post.model';
 import { PostService } from 'src/app/shared/services/post.service';
@@ -12,6 +12,8 @@ import { PostService } from 'src/app/shared/services/post.service';
 export class PostDetailComponent implements OnInit {
   slug: string | undefined;
   post: Post = new Post();
+  loading: boolean = false;
+  
   constructor(
     private postSerive: PostService,
     private activatedRoute: ActivatedRoute
@@ -19,9 +21,13 @@ export class PostDetailComponent implements OnInit {
 
   }
   ngOnInit(): void {
-    this.slug = this.activatedRoute.snapshot.paramMap.get('slug')!;
-    this.postSerive.getBySlug(this.slug).subscribe((res) => {
-      this.post = res;
+    this.loading = true;
+    this.activatedRoute.params.subscribe((params: Params) => {
+      this.slug = params['slug'];
+      this.postSerive.getBySlug(this.slug!).subscribe((res) => {
+        this.post = res;
+        this.loading = false;
+      })
     })
   }
 

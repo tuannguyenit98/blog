@@ -16,56 +16,60 @@ export class PostService extends BaseService {
   constructor(
     private httpClient: HttpClient,
     @Inject('API_BASE_URL') baseUrl: string,
-    ) {
-      super(httpClient, baseUrl);
-     }
+  ) {
+    super(httpClient, baseUrl);
+  }
 
-     getPosts(params: PostFilter): Observable<PagePagination<PostDto>> {
-      const paramsFilter: PostFilter = { ...params };
+  getPosts(params: PostFilter): Observable<PagePagination<PostDto>> {
+    const paramsFilter: PostFilter = { ...params };
     if (!paramsFilter.keyWord) {
       delete paramsFilter.keyWord;
     }
-      return this.get('api/blog/posts', paramsFilter);
-     }
+    return this.get('api/blog/posts', paramsFilter);
+  }
 
-     getAll(): Observable<Post[]> {
-      return this.get('api/blog/posts/all');
-     }
+  getAll(): Observable<Post[]> {
+    return this.get('api/blog/posts/all');
+  }
 
-     getById(id: number): Observable<Post> {
-      return this.get(`api/blog/posts/${id}`);
-     }
+  getById(id: number): Observable<Post> {
+    return this.get(`api/blog/posts/${id}`);
+  }
 
-     getBySlug(slug: string): Observable<Post> {
-      return this.get(`api/blog/posts/${slug}/detail`);
-     }
+  getBySlug(slug: string): Observable<Post> {
+    return this.get(`api/blog/posts/${slug}/detail`);
+  }
 
-     public createOrUpdate(form: PostCreateModel, id?: number): Observable<any>{
-      const formData: FormData = new FormData();
-      formData.append('title', form.title);
-      formData.append('metaTitle', form.metaTitle);
-      formData.append('content', form.content);
-      formData.append('fK_CategoryId', form.fK_CategoryId.toString());
+  public createOrUpdate(form: PostCreateModel, id?: number): Observable<any> {
+    const formData: FormData = new FormData();
+    formData.append('title', form.title);
+    formData.append('metaTitle', form.metaTitle);
+    formData.append('content', form.content);
+    formData.append('fK_CategoryId', form.fK_CategoryId.toString());
+    if (form.file) {
       formData.append('file', form.file, form.file.name);
-      if (id)
-      {
-        return this.http.put<any>(this.baseUrl + `api/blog/posts/${id}`, formData);
-      }
-      else{
-        return this.http.post<any>(this.baseUrl + `api/blog/posts`, formData);
-      }
     }
-
-    deleteById(id: number): Observable<Post> {
-      return this.delete(`api/blog/posts/${id}`);
+    else {
+      formData.append('file', form.file);
     }
+    if (id) {
+      return this.http.put<any>(this.baseUrl + `api/blog/posts/${id}`, formData);
+    }
+    else {
+      return this.http.post<any>(this.baseUrl + `api/blog/posts`, formData);
+    }
+  }
 
-    getPostFeatures(): Observable<any> {
-      return this.get('api/blog/posts/feature');
-     }
+  deleteById(id: number): Observable<Post> {
+    return this.delete(`api/blog/posts/${id}`);
+  }
 
-     getPostsByCategorySlug(params: PostFilter, slug: string): Observable<PagePagination<PostDto>> {
-      const paramsFilter: PostFilter = { ...params };
-      return this.get(`api/blog/posts/${slug}/category`, paramsFilter);
-     }
+  getPostFeatures(): Observable<any> {
+    return this.get('api/blog/posts/feature');
+  }
+
+  getPostsByCategorySlug(params: PostFilter, slug: string): Observable<PagePagination<PostDto>> {
+    const paramsFilter: PostFilter = { ...params };
+    return this.get(`api/blog/posts/${slug}/category`, paramsFilter);
+  }
 }

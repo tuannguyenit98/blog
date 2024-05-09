@@ -20,7 +20,7 @@ import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { NzBackTopModule } from 'ng-zorro-antd/back-top';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
-import { BrowserModule } from '@angular/platform-browser';
+import { EditorModule } from '@tinymce/tinymce-angular';
 
 
 @NgModule({
@@ -48,7 +48,8 @@ import { BrowserModule } from '@angular/platform-browser';
     NzModalModule,
     NzDatePickerModule,
     NzBackTopModule,
-    NzSpinModule
+    NzSpinModule,
+    EditorModule
   ],
   exports: [
     // BrowserModule,
@@ -73,7 +74,8 @@ import { BrowserModule } from '@angular/platform-browser';
     NzModalModule,
     NzDatePickerModule,
     NzBackTopModule,
-    NzSpinModule
-  ]
+    NzSpinModule,
+    EditorModule
+  ],
 })
 export class SharedModule { }

@@ -77,11 +77,12 @@ namespace Services.Implementations
             post.MetaTitle = updatePostDto.MetaTitle;
             post.Status = updatePostDto.Status;
             post.Content = updatePostDto.Content;
-            post.Image = await AddPhotoAsyc(updatePostDto.File);
+            if (updatePostDto.File is not null && photoUrl != updatePostDto.File.Name)
+                post.Image = await AddPhotoAsyc(updatePostDto.File);
             post.FK_CategoryId = updatePostDto.FK_CategoryId;
             post.FK_UserId = CurrentUser.Current.Id;
             await _postRepository.UpdateAsync(post);
-            if (!string.IsNullOrEmpty(photoUrl)) await DeletePhotoAsyc(ImageHelper.GetPublicIdFromUrl(photoUrl));
+            if (!string.IsNullOrEmpty(photoUrl) && updatePostDto.File is not null && photoUrl != updatePostDto.File.Name) await DeletePhotoAsyc(ImageHelper.GetPublicIdFromUrl(photoUrl));
             await _unitOfWork.CompleteAsync();
         }
 

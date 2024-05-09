@@ -19,6 +19,7 @@ export class IndexComponent implements OnInit {
   posts: PostDto[] = [];
   categories: Category[] = [];
   filterModel: PostFilter = new PostFilter();
+  loading: boolean = false;
   constructor(
     private postService: PostService,
     private categoryService: CategoryService
@@ -26,6 +27,7 @@ export class IndexComponent implements OnInit {
 
   } 
   ngOnInit(): void {
+    this.loading = true;
     forkJoin([this.postService.getPostFeatures(), this.categoryService.getAll()]).subscribe(([res1, res2]) => {
       this.postFeature = res1;
       this.categories = res2;
@@ -43,6 +45,7 @@ export class IndexComponent implements OnInit {
         this.posts = result.items;
         this.total = result.totalPages;
         this.pageIndex = this.filterModel.page;
+        this.loading = false;
       });
   }
 

@@ -1,57 +1,60 @@
 <form #form [formGroup]="postForm" class="form-content" *ngIf="postForm" (ngSubmit)="onSubmit()">
-    <div class="form-group row">
-      <label class="col-md-12">Tiêu đề</label>
-      <div class="col-md-12 input-group">
-        <input nz-input class="form-control" type="text" formControlName="title" [class.is-invalid]="formErrors.title">
-      </div>
-      <p class="warning text-danger">{{formErrors.title}}</p>
+  <div class="form-group row">
+    <label class="col-md-12">Tiêu đề</label>
+    <div class="col-md-12 input-group">
+      <input nz-input class="form-control" type="text" formControlName="title" [class.is-invalid]="formErrors.title">
     </div>
-  
-    <div class="form-group row">
-      <label class="col-md-12">Tiêu đề meta</label>
-      <div class="col-md-12 input-group">
-        <input nz-input class="form-control" type="text" formControlName="metaTitle"
-          [class.is-invalid]="formErrors.metaTitle">
-      </div>
-      <p class="warning text-danger">{{formErrors.metaTitle}}</p>
-    </div>
-  
-    <div class="form-group row">
-      <label class="col-md-12">Danh mục</label>
-      <div class="col-md-12 input-group">
-        <nz-select class="w-100" formControlName="category" name="category" nzShowSearch nzAllowClear
-          nzPlaceHolder="Chọn" [compareWith]="compareData">
-          <nz-option *ngFor="let item of categories" [nzLabel]="item.title" [nzValue]="item">
-          </nz-option>
-        </nz-select>
-      </div>
-    </div>
+    <p class="warning text-danger">{{formErrors.title}}</p>
+  </div>
 
-    <div class="form-group row">
-        <label class="col-md-12">Nội dung</label>
-        <div class="col-md-12 input-group">
-          <textarea nz-input class="form-control" type="text" formControlName="content"
-            [class.is-invalid]="formErrors.content"></textarea>
-        </div>
-        <p class="warning text-danger">{{formErrors.content}}</p>
-      </div>
+  <div class="form-group row">
+    <label class="col-md-12">Tiêu đề meta</label>
+    <div class="col-md-12 input-group">
+      <input nz-input class="form-control" type="text" formControlName="metaTitle"
+        [class.is-invalid]="formErrors.metaTitle">
+    </div>
+    <p class="warning text-danger">{{formErrors.metaTitle}}</p>
+  </div>
 
-      <div class="form-group row">
-        <label class="col-md-12">Ảnh đại diện</label>
-        <div class="upload-image col-md-12">
-          <input #upload class="upload" type='file' (change)="showPreview($event)" name="image"
-            accept=".jpg, .jpeg, .png">
-          <input type="hidden" name="fileHidden" formControlName="image"/>
-          <div class="display-img" *ngIf="post.image">
-            <img [src]="post.image" class="img">
-            <i class="icon-delete-image" nz-icon nzType="close" nzTheme="outline" (click)="removeImg()"></i>
-          </div>
-          <ng-container *ngIf="!post.image">
-            <div class="perspective-image" (click)="upload.click()">
-              <i nz-icon nzType="file-add" nzTheme="outline"></i>
-            </div>
-          </ng-container>
-        </div>
-        <p class="warning text-danger">{{formErrors.image}}</p>
+  <div class="form-group row">
+    <label class="col-md-12">Danh mục</label>
+    <div class="col-md-12 input-group">
+      <nz-select class="w-100" formControlName="category" name="category" nzShowSearch nzAllowClear nzPlaceHolder="Chọn"
+        [compareWith]="compareData">
+        <nz-option *ngFor="let item of categories" [nzLabel]="item.title" [nzValue]="item">
+        </nz-option>
+      </nz-select>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-md-12">Nội dung</label>
+    <!-- <div class="col-md-12 input-group">
+      <textarea nz-input class="form-control" type="text" formControlName="content"
+        [class.is-invalid]="formErrors.content"></textarea>
+    </div> -->
+    <p class="warning text-danger">{{formErrors.content}}</p>
+  </div>
+  <editor apiKey="hhj1brjre6ca1c4cuvm70rrgwgdf5d3ajel9yk64iyzraf4o" formControlName="content"
+  [init]="{ plugins: 'lists link image table code help wordcount' }"
+></editor>
+<p class="warning text-danger">{{formErrors.content}}</p>
+
+  <div class="form-group row">
+    <label class="col-md-12">Ảnh đại diện</label>
+    <div class="upload-image col-md-12">
+      <input #upload class="upload" type='file' (change)="showPreview($event)" name="image" accept=".jpg, .jpeg, .png">
+      <input type="hidden" name="fileHidden" formControlName="image" />
+      <div class="display-img" *ngIf="post.image">
+        <img [src]="post.image" class="img">
+        <i class="icon-delete-image" nz-icon nzType="close" nzTheme="outline" (click)="removeImg()"></i>
       </div>
-  </form>
+      <ng-container *ngIf="!post.image">
+        <div class="perspective-image" (click)="upload.click()">
+          <i nz-icon nzType="file-add" nzTheme="outline"></i>
+        </div>
+      </ng-container>
+    </div>
+    <p class="warning text-danger">{{formErrors.image}}</p>
+  </div>
+</form>

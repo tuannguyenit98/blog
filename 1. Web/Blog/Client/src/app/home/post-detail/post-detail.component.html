@@ -1,5 +1,6 @@
+<app-loading [loading]="loading"></app-loading>
 <!--================Blog Area =================-->
-<section class="blog_area single-post-area section-padding">
+<section class="blog_area single-post-area pt-30 pb-30">
    <div class="container">
       <div class="row">
          <div class="col-lg-8 posts-list">
@@ -14,8 +15,7 @@
                      <li><a href="#"><i class="fa fa-user"></i> Travel, Lifestyle</a></li>
                      <li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>
                   </ul>
-                  <p class="excert">
-                     {{post.content}}
+                  <p class="excert" [innerHTML]="post.content">
                   </p>
                   <!-- <p>
                       MCSE boot camps have its supporters and its detractors. Some people do not understand why you

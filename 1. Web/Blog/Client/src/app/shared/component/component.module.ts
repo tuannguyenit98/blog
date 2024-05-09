@@ -5,6 +5,7 @@ import { FooterComponent } from './footer/footer.component';
 import { SharedModule } from '../shared.module';
 import { PaginationComponent } from './pagination/pagination.component';
 import { CategoryComponent } from './category/category.component';
+import { LoadingComponent } from './loading/loading.component';
 
 
 
@@ -13,7 +14,8 @@ import { CategoryComponent } from './category/category.component';
     HeaderComponent,
     FooterComponent,
     PaginationComponent,
-    CategoryComponent
+    CategoryComponent,
+    LoadingComponent
   ],
   imports: [
     CommonModule,
@@ -23,7 +25,8 @@ import { CategoryComponent } from './category/category.component';
     HeaderComponent,
     FooterComponent,
     PaginationComponent,
-    CategoryComponent
+    CategoryComponent,
+    LoadingComponent
   ]
 })
 export class ComponentModule { }
