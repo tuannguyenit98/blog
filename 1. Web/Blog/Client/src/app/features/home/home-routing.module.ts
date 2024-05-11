@@ -5,6 +5,7 @@ import { PostDetailComponent } from './post-detail/post-detail.component';
 import { HomeComponent } from './home.component';
 import { CategoryDetailComponent } from './category-detail/category-detail.component';
 import { ContactComponent } from './contact/contact.component';
+import { PostSearchComponent } from './post-search/post-search.component';
 
 const routes: Routes = [
   {
@@ -31,6 +32,10 @@ const routes: Routes = [
       {
         path: 'contact',
         component: ContactComponent
+      },
+      {
+        path: 'search',
+        component: PostSearchComponent,
       },
     ]
   }

@@ -92,18 +92,20 @@ namespace Services.Implementations
             await _unitOfWork.CompleteAsync();
         }
 
-        public async Task<IPagedResultDto<PostDto>> GetPosts(PagedResultRequestDto pagedResultRequest)
+        public async Task<IPagedResultDto<PostDto>> GetPosts(PagedResultRequestDto pagedResultRequest, string searchTerm)
         {
-            var posts = _postRepository.GetAll().Select(x => new PostDto
-            {
-                Slug = x.Slug,
-                Id = x.Id,
-                Image = x.Image,
-                Title = x.Title,
-                MetaTitle = x.MetaTitle,
-                CategoryName = x.Category.Title,
-                DeleteAt = x.DeleteAt
-            });
+            var posts = _postRepository.GetAll()
+                .Where(x => !string.IsNullOrEmpty(searchTerm) ? x.Title.ToLower().Contains(searchTerm.ToLower()) : 1 == 1)
+                .Select(x => new PostDto
+                {
+                    Slug = x.Slug,
+                    Id = x.Id,
+                    Image = x.Image,
+                    Title = x.Title,
+                    MetaTitle = x.MetaTitle,
+                    CategoryName = x.Category.Title,
+                    DeleteAt = x.DeleteAt
+                });
             return await posts.GetPagedResultAsync(pagedResultRequest.Page, pagedResultRequest.PageSize, x => x);
         }
 

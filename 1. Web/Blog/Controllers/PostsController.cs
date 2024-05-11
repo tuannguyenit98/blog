@@ -44,9 +44,9 @@ namespace Blog.Controllers
         /// <returns></returns>
         [HttpGet]
         [AllowAnonymous]
-        public async Task<IActionResult> GetPagingPosts([FromQuery] PagedResultRequestDto pagedResultRequestDto)
+        public async Task<IActionResult> GetPagingPosts([FromQuery] PagedResultRequestDto pagedResultRequestDto, [FromQuery] string searchTerm)
         {
-            var result = await _postService.GetPosts(pagedResultRequestDto);
+            var result = await _postService.GetPosts(pagedResultRequestDto, searchTerm);
             return Ok(ApiResponse<IPagedResultDto<PostDto>>.Success(result));
         }
 
@@ -133,7 +133,7 @@ namespace Blog.Controllers
 
         [HttpGet("{slug}/category")]
         [AllowAnonymous]
-        public async Task<IActionResult> GetPagingPosts([FromQuery] PagedResultRequestDto pagedResultRequestDto, string slug)
+        public async Task<IActionResult> GetPostsByCategorySlug([FromQuery] PagedResultRequestDto pagedResultRequestDto, string slug)
         {
             var result = await _postService.GetPostsByCategorySlugAsync(pagedResultRequestDto, slug);
             return Ok(ApiResponse<IPagedResultDto<PostDto>>.Success(result));

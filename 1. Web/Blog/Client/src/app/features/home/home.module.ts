@@ -8,6 +8,7 @@ import { ComponentModule } from 'src/app/shared/component/component.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
+import { PostSearchComponent } from './post-search/post-search.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { HomeComponent } from './home.component';
         IndexComponent,
         CategoryDetailComponent,
         ContactComponent,
-        HomeComponent
+        HomeComponent,
+        PostSearchComponent
     ],
     imports: [
         CommonModule,

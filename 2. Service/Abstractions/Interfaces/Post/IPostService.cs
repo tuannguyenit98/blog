@@ -16,7 +16,7 @@ namespace Abstractions.Interfaces
         Task<Post> GetPostBySlugAsync(string slug);
         Task<List<Post>> GetPostsByCategoryIdAsync(int categoryId);
         Task<List<Post>> GetAll();
-        Task<IPagedResultDto<PostDto>> GetPosts(PagedResultRequestDto pagedResultRequest);
+        Task<IPagedResultDto<PostDto>> GetPosts(PagedResultRequestDto pagedResultRequest, string searchTerm);
         Task<FeaturePostDto> GetPostFeaturesAsync();
         Task<IPagedResultDto<PostDto>> GetPostsByCategorySlugAsync(PagedResultRequestDto pagedResultRequest, string slug);
     }

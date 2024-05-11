@@ -22,8 +22,8 @@ export class PostService extends BaseService {
 
   getPosts(params: PostFilter): Observable<PagePagination<PostDto>> {
     const paramsFilter: PostFilter = { ...params };
-    if (!paramsFilter.keyWord) {
-      delete paramsFilter.keyWord;
+    if (!paramsFilter.searchTerm) {
+      delete paramsFilter.searchTerm;
     }
     return this.get('api/blog/posts', paramsFilter);
   }

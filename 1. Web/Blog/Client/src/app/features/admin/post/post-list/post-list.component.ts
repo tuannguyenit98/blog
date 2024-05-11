@@ -24,7 +24,7 @@ export class PostListComponent implements OnInit {
 
   ngOnInit(): void {
     this.searchTerm$.pipe(debounceTime(200)).subscribe((_) => {
-      this.filterModel.keyWord = this.searchTerm$.value.trim();
+      this.filterModel.searchTerm = this.searchTerm$.value.trim();
       this.pageIndex = 1;
       this.filterProductList();
     });

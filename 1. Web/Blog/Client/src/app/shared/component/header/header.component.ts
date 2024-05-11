@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Category } from '../../models/category/category.model';
 import { CategoryService } from '../../services/category.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -9,8 +10,10 @@ import { CategoryService } from '../../services/category.service';
 })
 export class HeaderComponent implements OnInit {
   categories: Category[] = [];
+  searchTerm: string = '';
   constructor(
-    private categorySevice: CategoryService
+    private categorySevice: CategoryService,
+    private router: Router
   ){
 
   } 
@@ -18,5 +21,13 @@ export class HeaderComponent implements OnInit {
     this.categorySevice.getAll().subscribe(res => {
       this.categories = res;
     })
+  }
+
+  handleSearch(): void{
+    if(this.searchTerm){
+      this.router.navigate(['/search'], {
+        queryParams: {searchTerm: this.searchTerm}
+      })
+    }
   }
 }
