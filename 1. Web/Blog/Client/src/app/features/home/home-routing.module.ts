@@ -4,6 +4,7 @@ import { IndexComponent } from './index/index.component';
 import { PostDetailComponent } from './post-detail/post-detail.component';
 import { HomeComponent } from './home.component';
 import { CategoryDetailComponent } from './category-detail/category-detail.component';
+import { ContactComponent } from './contact/contact.component';
 
 const routes: Routes = [
   {
@@ -26,7 +27,11 @@ const routes: Routes = [
       {
         path: 'post/:slug/category',
         component: CategoryDetailComponent
-      }
+      },
+      {
+        path: 'contact',
+        component: ContactComponent
+      },
     ]
   }
 ];

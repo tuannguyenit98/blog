@@ -1,21 +1,22 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { HomeRoutingModule } from './home-routing.module';
-import { HomeComponent } from './home.component';
-import { ComponentModule } from "../shared/component/component.module";
 import { PostDetailComponent } from './post-detail/post-detail.component';
 import { IndexComponent } from './index/index.component';
-import { SharedModule } from '../shared/shared.module';
 import { CategoryDetailComponent } from './category-detail/category-detail.component';
+import { ContactComponent } from './contact/contact.component';
+import { ComponentModule } from 'src/app/shared/component/component.module';
+import { SharedModule } from 'src/app/shared/shared.module';
+import { HomeRoutingModule } from './home-routing.module';
+import { HomeComponent } from './home.component';
 
 
 @NgModule({
     declarations: [
-        HomeComponent,
         PostDetailComponent,
         IndexComponent,
-        CategoryDetailComponent
+        CategoryDetailComponent,
+        ContactComponent,
+        HomeComponent
     ],
     imports: [
         CommonModule,

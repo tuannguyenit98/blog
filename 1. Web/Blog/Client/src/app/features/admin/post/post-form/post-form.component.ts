@@ -68,7 +68,7 @@ export class PostFormComponent {
       title: [this.post.title, Validators.required],
       metaTitle: [this.post.metaTitle, Validators.required],
       content: [this.post.content, Validators.required],
-      image: [this.post.image, Validators.required],
+      image: [this.post.image, this.id ? null : Validators.required],
     });
   }
 
