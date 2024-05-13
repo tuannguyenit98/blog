@@ -52,7 +52,7 @@ export class SignInComponent implements OnInit {
       this.authService
         .login(data)
         .subscribe((result: any) => {
-          this.router.navigate(['/dashboard']);
+          this.router.navigate(['/admin']);
         });
     } else {
       this.router.navigate(['/']);

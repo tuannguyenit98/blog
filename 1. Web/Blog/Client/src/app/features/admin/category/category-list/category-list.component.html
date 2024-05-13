@@ -21,7 +21,7 @@
           </div>
           <button nz-button nzType="primary" type="submit"
             class="text-uppercase d-flex align-items-center justify-content-center mx-1"
-            [routerLink]="['/dashboard/category/create']">
+            [routerLink]="['/admin/category/create']">
             Tạo mới
           </button>
           <!-- <button nz-button nzType="primary" type="click"
@@ -64,7 +64,7 @@
           <td nzRight>
             <div class="d-flex justify-content-center align-items-center">
               <i nz-icon class="edit-active pointer mr-3" nzType="edit" nzTheme="outline"
-                [routerLink]="['/dashboard/category/edit', item.id]"></i>
+                [routerLink]="['/admin/category/edit', item.id]"></i>
                 <i nz-icon class="edit-active pointer mr-3" nzType="delete" nzTheme="outline"
                 (click)="delete(item.id!)" ></i>
             </div>
