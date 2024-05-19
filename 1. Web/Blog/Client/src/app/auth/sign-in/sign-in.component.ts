@@ -16,7 +16,7 @@ export class SignInComponent implements OnInit {
     username: '',
     password: '',
   };
-  isSubmit: boolean | undefined;
+  isSubmit = false;
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
@@ -53,6 +53,7 @@ export class SignInComponent implements OnInit {
         .login(data)
         .subscribe((result: any) => {
           this.router.navigate(['/admin']);
+          this.isSubmit = false;
         });
     } else {
       this.router.navigate(['/']);

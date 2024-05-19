@@ -8,7 +8,6 @@ import { ErrorInterceptor } from './core/interceptors/error.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
 import { ComponentModule } from "./shared/component/component.module";
-import { TINYMCE_SCRIPT_SRC } from '@tinymce/tinymce-angular';
 
 @NgModule({
     declarations: [
@@ -17,7 +16,6 @@ import { TINYMCE_SCRIPT_SRC } from '@tinymce/tinymce-angular';
     providers: [
         { provide: 'API_BASE_URL', useFactory: getApiBaseUrl, deps: [] },
         { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-        // { provide: TINYMCE_SCRIPT_SRC, useValue: 'hhj1brjre6ca1c4cuvm70rrgwgdf5d3ajel9yk64iyzraf4o' }
     ],
     bootstrap: [AppComponent],
     imports: [
@@ -27,7 +25,7 @@ import { TINYMCE_SCRIPT_SRC } from '@tinymce/tinymce-angular';
         HttpClientModule,
         SharedModule,
         BrowserAnimationsModule,
-        ComponentModule
+        ComponentModule,
     ]
 })
 export class AppModule { }

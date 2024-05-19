@@ -2604,9 +2604,9 @@ hr {
 
 .header-area .search-box {
     position: absolute;
-    right: 0;
-    opacity: 0;
-    visibility: hidden;
+    right: 10px;
+    /* opacity: 0;
+    visibility: hidden; */
     transition: .3s
 }
 
@@ -2637,15 +2637,15 @@ hr {
     top: 2px
 }
 
-.header-area .header-right-btn:hover .search-box {
+/* .header-area .header-right-btn:hover .search-box {
     visibility: visible;
     opacity: 1;
     transition: .3s
-}
+} */
 
-.header-area .header-right-btn:hover .search-box input {
+/* .header-area .header-right-btn:hover .search-box input {
     right: 37px
-}
+} */
 
 .main-header {
     position: relative;
@@ -4034,7 +4034,7 @@ hr {
 
 .single-blog .thumb {
     overflow: hidden;
-    position: relative
+    position: relative;
 }
 
 .single-blog .thumb:after {
@@ -5065,7 +5065,7 @@ hr {
 }
 
 .comments-area .comment-list {
-    padding-bottom: 48px
+    padding-bottom: 0px
 }
 
 .comments-area .comment-list:last-child {
@@ -5095,7 +5095,7 @@ hr {
 }
 
 .comments-area .thumb img {
-    width: 70px;
+    width: 50px;
     border-radius: 50%
 }
 
@@ -6395,10 +6395,10 @@ del {
     border: 1px solid #f1f1f1
 }
 
-.primary-checkbox input:checked+label {
-    background: url(../img/elements/primary-check.png) no-repeat center center/cover;
+/* .primary-checkbox input:checked+label {
+    background: url(/primary-check.png) no-repeat center center/cover;
     border: none
-}
+} */
 
 .confirm-checkbox {
     width: 16px;
@@ -6433,10 +6433,10 @@ del {
     border: 1px solid #f1f1f1
 }
 
-.confirm-checkbox input:checked+label {
+/* .confirm-checkbox input:checked+label {
     background: url(../img/elements/success-check.png) no-repeat center center/cover;
     border: none
-}
+} */
 
 .disabled-checkbox {
     width: 16px;
@@ -6476,10 +6476,10 @@ del {
     z-index: 3
 }
 
-.disabled-checkbox input:checked+label {
+/* .disabled-checkbox input:checked+label {
     background: url(../img/elements/disabled-check.png) no-repeat center center/cover;
     border: none
-}
+} */
 
 .primary-radio {
     width: 16px;
@@ -6514,10 +6514,10 @@ del {
     border: 1px solid #f1f1f1
 }
 
-.primary-radio input:checked+label {
+/* .primary-radio input:checked+label {
     background: url(../img/elements/primary-radio.png) no-repeat center center/cover;
     border: none
-}
+} */
 
 .confirm-radio {
     width: 16px;
@@ -6553,7 +6553,7 @@ del {
 }
 
 .confirm-radio input:checked+label {
-    background: url(../img/elements/success-radio.png) no-repeat center center/cover;
+    background: url(/success-radio.png) no-repeat center center/cover;
     border: none
 }
 
@@ -6595,10 +6595,10 @@ del {
     z-index: 3
 }
 
-.disabled-radio input:checked+label {
-    background: url(../img/elements/disabled-radio.png) no-repeat center center/cover;
+/* .disabled-radio input:checked+label {
+    background: url(/disabled-radio.png) no-repeat center center/cover;
     border: none
-}
+} */
 
 .default-select {
     height: 40px

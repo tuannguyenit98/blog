@@ -16,15 +16,18 @@ export class CategoryListComponent implements OnInit {
   pageIndex = 1;
   pageSize = 5;
   total = 1;
+  loading = false;
   constructor(
     private categoryService: CategoryService,
   ) {}
 
   ngOnInit(): void {
+    this.loading = true;
     this.searchTerm$.pipe(debounceTime(200)).subscribe((_) => {
       this.filterModel.keyWord = this.searchTerm$.value.trim();
       this.pageIndex = 1;
       this.filterProductList();
+      this.loading = false;
     });
   }
 

@@ -34,7 +34,7 @@
   </div>
   <div class="h-100 w-100 table-content pt-3">
     <nz-table #basicTable nzBordered [nzFrontPagination]="false" [nzData]="categories"
-      (nzPageIndexChange)="changePageIndex($event)" (nzPageSizeChange)="changPageSize($event)" [nzLoading]="false"
+      (nzPageIndexChange)="changePageIndex($event)" (nzPageSizeChange)="changPageSize($event)" [nzLoading]="loading"
       [nzTotal]="total" [(nzPageIndex)]="pageIndex" [(nzPageSize)]="pageSize" [nzScroll]="{ x: '1100px' }">
       <thead>
         <tr>

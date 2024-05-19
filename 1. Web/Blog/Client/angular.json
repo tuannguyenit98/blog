@@ -28,14 +28,22 @@
             "assets": [
               "src/favicon.png",
               "src/assets",
-              { "glob": "**/*", "input": "node_modules/tinymce", "output": "/tinymce/" }
+              {
+                "glob": "**/*",
+                "input": "./node_modules/@ant-design/icons-angular/src/inline-svg/",
+                "output": "/assets/"
+              },
+              {
+                "glob": "**/*",
+                "input": "./node_modules/@kolkov/angular-editor/assets/",
+                "output": "./assets/fonts/"
+              }
             ],
             "styles": [
               "src/styles.scss",
               "node_modules/ng-zorro-antd/ng-zorro-antd.min.css"
             ],
             "scripts": [
-              "node_modules/tinymce/tinymce.min.js"
             ]
           },
           "configurations": {
@@ -94,13 +102,22 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "src/favicon.png",
-              "src/assets"
+              "src/assets",
+              {
+                "glob": "**/*",
+                "input": "./node_modules/@ant-design/icons-angular/src/inline-svg/",
+                "output": "/assets/"
+              },
+              {
+                "glob": "**/*",
+                "input": "./node_modules/@kolkov/angular-editor/assets/",
+                "output": "./assets/fonts/"
+              }
             ],
             "styles": [
               "src/styles.scss"
             ],
             "scripts": [
-              "node_modules/tinymce/tinymce.min.js"
             ]
           }
         }

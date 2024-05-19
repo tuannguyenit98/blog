@@ -12,13 +12,14 @@ import { PostService } from 'src/app/shared/services/post.service';
   styleUrls: ['./index.component.scss']
 })
 export class IndexComponent implements OnInit {
-  postFeature: PostFeatureModel = new PostFeatureModel();
-  pageIndex: number = 1;
-  pageSize: number = 4;
-  total: number = 2;
-  posts: PostDto[] = [];
-  categories: Category[] = [];
   filterModel: PostFilter = new PostFilter();
+  postRecent: PostDto = new PostDto();
+  posts: PostDto[] = [];
+  postFeatures: PostDto[] = [];
+  pageIndex: number = 1;
+  pageSize: number = this.filterModel.pageSize;
+  total: number = 2;
+  categories: Category[] = [];
   loading: boolean = false;
   constructor(
     private postService: PostService,
@@ -28,9 +29,11 @@ export class IndexComponent implements OnInit {
   } 
   ngOnInit(): void {
     this.loading = true;
-    forkJoin([this.postService.getPostFeatures(), this.categoryService.getAll()]).subscribe(([res1, res2]) => {
-      this.postFeature = res1;
-      this.categories = res2;
+    forkJoin([this.postService.getPostRecent(), this.postService.getPostFeatures(),this.categoryService.getAll()])
+    .subscribe(([res1, res2, res3]) => {
+      this.postRecent = res1;
+      this.postFeatures = res2;
+      this.categories = res3;
       this.filterPostList();
     })
   }

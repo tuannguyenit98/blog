@@ -64,8 +64,12 @@ export class PostService extends BaseService {
     return this.delete(`api/blog/posts/${id}`);
   }
 
-  getPostFeatures(): Observable<any> {
-    return this.get('api/blog/posts/feature');
+  getPostFeatures(): Observable<PostDto[]> {
+    return this.get('api/blog/posts/featured');
+  }
+
+  getPostRecent(): Observable<PostDto> {
+    return this.get('api/blog/posts/recent');
   }
 
   getPostsByCategorySlug(params: PostFilter, slug: string): Observable<PagePagination<PostDto>> {

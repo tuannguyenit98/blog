@@ -1,6 +1,5 @@
 ﻿using Abstractions.Interfaces;
 using Common.Helpers;
-using DTOs.Blog;
 using DTOs.Blog.Post;
 using DTOs.Share;
 using Entities.Blog;
@@ -110,12 +109,21 @@ namespace Blog.Controllers
         }
 
         [HttpGet]
-        [Route("feature")]
+        [Route("featured")]
         [AllowAnonymous]
         public async Task<IActionResult> GetPostFeatures()
         {
             var result = await _postService.GetPostFeaturesAsync();
-            return Ok(ApiResponse<FeaturePostDto>.Success(result));
+            return Ok(ApiResponse<List<PostDto>>.Success(result));
+        }
+
+        [HttpGet]
+        [Route("recent")]
+        [AllowAnonymous]
+        public async Task<IActionResult> GetPostRecent()
+        {
+            var result = await _postService.GetPostRecentAsync();
+            return Ok(ApiResponse<PostDto>.Success(result));
         }
 
         /// <summary>
@@ -128,7 +136,7 @@ namespace Blog.Controllers
         public async Task<IActionResult> GetBySlug(string slug)
         {
             var result = await _postService.GetPostBySlugAsync(slug);
-            return Ok(ApiResponse<Post>.Success(result));
+            return Ok(ApiResponse<PostDetailDto>.Success(result));
         }
 
         [HttpGet("{slug}/category")]

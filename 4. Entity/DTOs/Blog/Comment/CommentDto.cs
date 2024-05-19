@@ -1,9 +1,9 @@
-﻿using Entities.Interfaces;
-using System;
+﻿using System;
+using System.Collections.Generic;
 
-namespace Entities.Blog
+namespace DTOs.Blog.Comment
 {
-    public class Comment : IFullEntity
+    public class CommentDto
     {
         public int Id { get; set; }
         public DateTime CreatedAt { get; set; }
@@ -13,8 +13,7 @@ namespace Entities.Blog
         public DateTime? DeleteAt { get; set; }
         public int FK_PostId { get; set; }
         public string UserName { get; set; }
-        public int? ParentId { get; set; }
+        public List<CommentDto> Comments { get; set; }
         public string Content { get; set; }
-        public Post Post { get; set; }
     }
 }

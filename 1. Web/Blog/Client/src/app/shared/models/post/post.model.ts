@@ -12,4 +12,6 @@ export class Post {
   image: string | undefined;
   content: string | undefined;
   status: string | undefined;
+  comments: any[] = [];
+  totalComment: number | undefined;
 }

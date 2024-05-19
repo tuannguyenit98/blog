@@ -18,15 +18,18 @@ export class PostListComponent implements OnInit {
   pageIndex = 1;
   pageSize = this.filterModel.pageSize;
   total: number = 3;
+  loading = false;
   constructor(
     private postService: PostService,
   ) {}
 
   ngOnInit(): void {
+    this.loading = true;
     this.searchTerm$.pipe(debounceTime(200)).subscribe((_) => {
       this.filterModel.searchTerm = this.searchTerm$.value.trim();
       this.pageIndex = 1;
       this.filterProductList();
+      this.loading = false;
     });
   }
 

@@ -1,5 +1,4 @@
-﻿using DTOs.Blog;
-using DTOs.Blog.Post;
+﻿using DTOs.Blog.Post;
 using DTOs.Share;
 using Entities.Blog;
 using System.Collections.Generic;
@@ -13,11 +12,12 @@ namespace Abstractions.Interfaces
         Task UpdatePostAsync(int postId, UpdatePostDto updatePostDto);
         Task DeletePostAsync(int postId);
         Task<Post> GetPostByIdAsync(int postId);
-        Task<Post> GetPostBySlugAsync(string slug);
+        Task<PostDetailDto> GetPostBySlugAsync(string slug);
         Task<List<Post>> GetPostsByCategoryIdAsync(int categoryId);
         Task<List<Post>> GetAll();
         Task<IPagedResultDto<PostDto>> GetPosts(PagedResultRequestDto pagedResultRequest, string searchTerm);
-        Task<FeaturePostDto> GetPostFeaturesAsync();
+        Task<List<PostDto>> GetPostFeaturesAsync();
+        Task<PostDto> GetPostRecentAsync();
         Task<IPagedResultDto<PostDto>> GetPostsByCategorySlugAsync(PagedResultRequestDto pagedResultRequest, string slug);
     }
 }

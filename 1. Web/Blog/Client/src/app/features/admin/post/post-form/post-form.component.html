@@ -35,9 +35,8 @@
     </div> -->
     <p class="warning text-danger">{{formErrors.content}}</p>
   </div>
-  <editor apiKey="hhj1brjre6ca1c4cuvm70rrgwgdf5d3ajel9yk64iyzraf4o" formControlName="content"
-  [init]="{ plugins: 'lists link image table code help wordcount' }"
-></editor>
+  <!-- <ckeditor id="editor" [editor]="editor" formControlName="content" ></ckeditor> -->
+  <angular-editor formControlName="content" [config]="editorConfig"></angular-editor>
 <p class="warning text-danger">{{formErrors.content}}</p>
 
   <div class="form-group row">

@@ -6,6 +6,7 @@ import { SharedModule } from '../shared.module';
 import { PaginationComponent } from './pagination/pagination.component';
 import { CategoryComponent } from './category/category.component';
 import { LoadingComponent } from './loading/loading.component';
+import { PostFeaturedComponent } from './post-featured/post-featured.component';
 
 
 
@@ -15,7 +16,8 @@ import { LoadingComponent } from './loading/loading.component';
     FooterComponent,
     PaginationComponent,
     CategoryComponent,
-    LoadingComponent
+    LoadingComponent,
+    PostFeaturedComponent
   ],
   imports: [
     CommonModule,
@@ -26,7 +28,8 @@ import { LoadingComponent } from './loading/loading.component';
     FooterComponent,
     PaginationComponent,
     CategoryComponent,
-    LoadingComponent
+    LoadingComponent,
+    PostFeaturedComponent
   ]
 })
 export class ComponentModule { }

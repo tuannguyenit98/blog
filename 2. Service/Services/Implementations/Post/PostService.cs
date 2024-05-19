@@ -6,7 +6,7 @@ using Common.Exceptions;
 using Common.Helpers;
 using Common.Runtime.Security;
 using Common.Runtime.Session;
-using DTOs.Blog;
+using DTOs.Blog.Comment;
 using DTOs.Blog.Post;
 using DTOs.Share;
 using Entities.Blog;
@@ -49,6 +49,7 @@ namespace Services.Implementations
         {
             var result = await _postRepository
                         .GetAll()
+                        .Include(x => x.Comments)
                         .Where(x => x.Id == postId)
                         .FirstOrDefaultAsync();
             return result;
@@ -163,33 +164,50 @@ namespace Services.Implementations
             await _cloudinary.DestroyAsync(deleteParams);
         }
 
-        public async Task<FeaturePostDto> GetPostFeaturesAsync()
+        public async Task<PostDetailDto> GetPostBySlugAsync(string slug)
         {
-            var post = _postRepository.GetAll()
-                .Include(x => x.Category)
-                .OrderByDescending(p => p.Id)
-                .Select(x => new PostDto
-                {
-                    Slug = x.Slug,
-                    Id = x.Id,
-                    Image = x.Image,
-                    Title = x.Title,
-                    MetaTitle = x.MetaTitle,
-                    CategoryName = x.Category.Title
-                });
-
-            return new FeaturePostDto()
-            {
-                PostFeature = await post.FirstOrDefaultAsync(),
-                PostViews = await post.Skip(2).Take(5).ToListAsync()
-            };
-        }
-
-        public async Task<Post> GetPostBySlugAsync(string slug)
-        {
+            var post = await _postRepository.GetAll().Where(x => x.Slug == slug).FirstOrDefaultAsync();
+            post.NumberView += 1;
+            await _postRepository.UpdateAsync(post);
+            await _unitOfWork.CompleteAsync();
             var result = await _postRepository
                         .GetAll()
+                        .Include(x => x.Comments)
                         .Where(x => x.Slug == slug)
+                        .Select(x => new PostDetailDto
+                        {
+                            Id = x.Id,
+                            Title = x.Title,
+                            Image = x.Image,
+                            Slug = x.Slug,
+                            MetaTitle = x.MetaTitle,
+                            Content = x.Content,
+                            TotalComment = x.Comments.Count(),
+                            Comments = x.Comments.Where(x => x.ParentId == null).Select(y => new CommentDto
+                            {
+                                Id = y.Id,
+                                UserName = y.UserName,
+                                Content = y.Content,
+                                CreatedAt = y.CreatedAt,
+                                UpdatedAt = y.UpdatedAt,
+                                CreatedBy = y.CreatedBy,
+                                DeleteAt = y.DeleteAt,
+                                UpdatedBy = y.UpdatedBy,
+                                FK_PostId = y.FK_PostId,
+                                Comments = x.Comments.Where(z => z.ParentId == y.Id).Select(y => new CommentDto
+                                {
+                                    Id = y.Id,
+                                    UserName = y.UserName,
+                                    Content = y.Content,
+                                    CreatedAt = y.CreatedAt,
+                                    UpdatedAt = y.UpdatedAt,
+                                    CreatedBy = y.CreatedBy,
+                                    DeleteAt = y.DeleteAt,
+                                    UpdatedBy = y.UpdatedBy,
+                                    FK_PostId = y.FK_PostId
+                                }).ToList()
+                            }).ToList()
+                        })
                         .FirstOrDefaultAsync();
             return result;
         }
@@ -210,6 +228,45 @@ namespace Services.Implementations
                     DeleteAt = x.DeleteAt
                 });
             return await posts.OrderByDescending(x => x.Id).GetPagedResultAsync(pagedResultRequest.Page, pagedResultRequest.PageSize, x => x);
+        }
+
+        public async Task<List<PostDto>> GetPostFeaturesAsync()
+        {
+            var posts = await _postRepository.GetAll()
+                .Include(x => x.Category)
+                .OrderByDescending(x => x.NumberView)
+                .Select(x => new PostDto
+                {
+                    Slug = x.Slug,
+                    Id = x.Id,
+                    Image = x.Image,
+                    Title = x.Title,
+                    MetaTitle = x.MetaTitle,
+                    CategoryName = x.Category.Title,
+                    NumberView = x.NumberView,
+                    CreatedAt = x.CreatedAt,
+                }).Take(4).ToListAsync();
+            return posts;
+        }
+
+        public async Task<PostDto> GetPostRecentAsync()
+        {
+            var post = await _postRepository.GetAll()
+                .Include(x => x.Category)
+                .OrderByDescending(x => x.Id)
+                .Select(x => new PostDto
+                {
+                    Slug = x.Slug,
+                    Id = x.Id,
+                    Image = x.Image,
+                    Title = x.Title,
+                    MetaTitle = x.MetaTitle,
+                    CategoryName = x.Category.Title,
+                    NumberView = x.NumberView,
+                    CreatedAt = x.CreatedAt
+                }).FirstOrDefaultAsync();
+
+            return post;
         }
     }
 }

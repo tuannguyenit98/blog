@@ -19,6 +19,7 @@ namespace Entities.Blog
         public string Slug { get; set; }
         public string Image { get; set; }
         public string Content { get; set; }
+        public long NumberView { get; set; }
         public string Status { get; set; }
         public User User { get; set; }
         public Category Category { get; set; }

@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { forkJoin } from 'rxjs';
 import ValidationHelper from 'src/app/shared/helpers/validation.helper';
@@ -9,7 +11,6 @@ import { PostCreateModel } from 'src/app/shared/models/post/post-create.model';
 import { Post } from 'src/app/shared/models/post/post.model';
 import { CategoryService } from 'src/app/shared/services/category.service';
 import { PostService } from 'src/app/shared/services/post.service';
-import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-post-form',
@@ -31,7 +32,53 @@ export class PostFormComponent {
     image: '',
     status: '',
   };
-  url = environment.API_ENDPOINT_LOCAL;
+  editor: any = ClassicEditor;
+
+  editorConfig: AngularEditorConfig = {
+    editable: true,
+      spellcheck: true,
+      height: 'auto',
+      minHeight: '0',
+      maxHeight: 'auto',
+      width: 'auto',
+      minWidth: '0',
+      translate: 'yes',
+      enableToolbar: true,
+      showToolbar: true,
+      placeholder: 'Enter text here...',
+      defaultParagraphSeparator: '',
+      defaultFontName: '',
+      defaultFontSize: '',
+      fonts: [
+        {class: 'arial', name: 'Arial'},
+        {class: 'times-new-roman', name: 'Times New Roman'},
+        {class: 'calibri', name: 'Calibri'},
+        {class: 'comic-sans-ms', name: 'Comic Sans MS'}
+      ],
+      customClasses: [
+      {
+        name: 'quote',
+        class: 'quote',
+      },
+      {
+        name: 'redText',
+        class: 'redText'
+      },
+      {
+        name: 'titleText',
+        class: 'titleText',
+        tag: 'h1',
+      },
+    ],
+    uploadUrl: 'v1/image',
+    uploadWithCredentials: false,
+    sanitize: true,
+    toolbarPosition: 'top',
+    toolbarHiddenButtons: [
+      ['bold', 'italic'],
+      ['fontSize']
+    ]
+};
 
   constructor(
     private postService: PostService,

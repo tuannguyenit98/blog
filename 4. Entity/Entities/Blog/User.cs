@@ -18,7 +18,6 @@ namespace Entities.Blog
         public int? CreatedBy { get; set; }
         public int? UpdatedBy { get; set; }
         public DateTime? DeleteAt { get; set; }
-        public ICollection<Comment> Comments { get; set; }
         public ICollection<Post> Posts { get; set; }
     }
 }

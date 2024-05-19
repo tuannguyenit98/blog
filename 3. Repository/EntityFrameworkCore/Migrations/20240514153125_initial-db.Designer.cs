@@ -3,6 +3,7 @@ using System;
 using EntityFrameworkCore.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace EntityFrameworkCore.Migrations
 {
     [DbContext(typeof(BlogDbContext))]
-    partial class BlogDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240514153125_initial-db")]
+    partial class initialdb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -164,10 +167,6 @@ namespace EntityFrameworkCore.Migrations
                     b.Property<string>("MetaTitle")
                         .HasColumnType("text")
                         .HasColumnName("meta_title");
-
-                    b.Property<long>("NumberView")
-                        .HasColumnType("bigint")
-                        .HasColumnName("number_view");
 
                     b.Property<string>("Slug")
                         .HasColumnType("text")

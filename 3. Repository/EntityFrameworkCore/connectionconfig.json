@@ -1,6 +1,6 @@
 {
   "ConnectionStrings": {
-    "BlogConnectionString": "Host=urban-chimp-5462.6xw.cockroachlabs.cloud:26257;Username=tuanka;Password=x8KgG8Ya5W-T36M1Cf0vNQ;Database=postgres;Pooling=true"
+    "BlogConnectionString": "Host=clear-batfish-6795.6xw.aws-ap-southeast-1.cockroachlabs.cloud:26257;Username=tuanka;Password=VNDlA7pcon4bL10P9FXRLw;Database=postgres;Pooling=true"
     //"BlogConnectionString": "Server=DESKTOP-6LK2GU0;Database=Blog;User Id=sa;Password=123456;TrustServerCertificate=True;"
 
   }

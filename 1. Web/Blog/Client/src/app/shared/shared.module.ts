@@ -20,13 +20,12 @@ import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { NzBackTopModule } from 'ng-zorro-antd/back-top';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
-import { EditorModule } from '@tinymce/tinymce-angular';
-
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { AngularEditorModule } from '@kolkov/angular-editor';
 
 @NgModule({
   declarations: [],
   imports: [
-    // BrowserModule,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
@@ -49,7 +48,9 @@ import { EditorModule } from '@tinymce/tinymce-angular';
     NzDatePickerModule,
     NzBackTopModule,
     NzSpinModule,
-    EditorModule
+    CKEditorModule,
+    NzIconModule,
+    AngularEditorModule
   ],
   exports: [
     // BrowserModule,
@@ -75,7 +76,9 @@ import { EditorModule } from '@tinymce/tinymce-angular';
     NzDatePickerModule,
     NzBackTopModule,
     NzSpinModule,
-    EditorModule
+    CKEditorModule,
+    NzIconModule,
+    AngularEditorModule
   ],
 })
 export class SharedModule { }

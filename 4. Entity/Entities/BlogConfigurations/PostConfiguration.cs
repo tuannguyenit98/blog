@@ -23,6 +23,8 @@ namespace Entities.BlogConfigurations
 
             builder.Property(e => e.Content).HasColumnName("content");
 
+            builder.Property(e => e.NumberView).HasColumnName("number_view");
+
             builder.Property(e => e.FK_CategoryId).HasColumnName("fk_category_id");
             builder.HasOne(e => e.Category).WithMany(e => e.Posts).HasForeignKey(e => e.FK_CategoryId);
 

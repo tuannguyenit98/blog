@@ -56,9 +56,8 @@ namespace Blog.Controllers
         /// <param name="createCommentDto"></param>
         /// <returns></returns>
         [HttpPost]
-        [ModelValidationFilter]
-        [TypeFilter(typeof(ApiAuthorizeFilter))]
-        public async Task<IActionResult> CreateComment([FromBody] CreateCommentDto createCommentDto)
+        [AllowAnonymous]
+        public async Task<IActionResult> CreateComment([FromBody] CreateOrUpdateCommentDto createCommentDto)
         {
             await _commentService.CreateCommentAsync(createCommentDto);
             return StatusCode(201);
@@ -72,9 +71,8 @@ namespace Blog.Controllers
         /// <returns></returns>
         [HttpPut]
         [Route("{id}")]
-        [ModelValidationFilter]
-        [TypeFilter(typeof(ApiAuthorizeFilter))]
-        public async Task<IActionResult> UpdateComment([FromQuery] UpdateCommentDto updateCommentDto, int id)
+        [AllowAnonymous]
+        public async Task<IActionResult> UpdateComment([FromQuery] CreateOrUpdateCommentDto updateCommentDto, int id)
         {
             await _commentService.UpdateCommentAsync(id, updateCommentDto);
             return NoContent();

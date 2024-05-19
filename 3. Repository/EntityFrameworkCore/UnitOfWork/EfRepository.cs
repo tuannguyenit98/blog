@@ -70,6 +70,7 @@ namespace EntityFrameworkCore.UnitOfWork
             //CheckAndSetDefaultValues(entity);
 
             Context.Entry(entity).State = EntityState.Added;
+            entity.As<IFullEntity>().CreatedAt = DateTime.Now;
 
             return Table.Add(entity).Entity;
         }
@@ -160,6 +161,7 @@ namespace EntityFrameworkCore.UnitOfWork
         {
             AttachIfNot(entity);
             Context.Entry(entity).State = EntityState.Modified;
+            entity.As<IFullEntity>().UpdatedAt = DateTime.Now;
             return entity;
         }
 

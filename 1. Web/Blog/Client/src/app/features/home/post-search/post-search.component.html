@@ -44,11 +44,11 @@
                                     </div>
                                 </div>
                                 <app-pagination [pageIndex]="pageIndex" [pageSize]="pageSize" [total]="total"
-                            (pageChange)="onPageChange($event)"></app-pagination>
+                                    (pageChange)="onPageChange($event)"></app-pagination>
                             </div>
                         </section>
                         <!--Start pagination -->
-                        
+
                         <!-- End pagination  -->
                         <!-- Whats New End -->
                     </div>
@@ -59,58 +59,23 @@
                                 <form action="#">
                                     <div class="form-group">
                                         <div class="input-group mb-3">
-                                            <input [(ngModel)]="filterModel.searchTerm" name="searchTerm" type="text" class="form-control" placeholder='Search Keyword'
+                                            <input [(ngModel)]="filterModel.searchTerm" name="searchTerm" type="text"
+                                                class="form-control" placeholder='Search Keyword'
                                                 onfocus="this.placeholder = ''"
                                                 onblur="this.placeholder = 'Search Keyword'">
                                             <div class="input-group-append">
-                                                <button (click)="handleSearch()" class="btns" type="button"><i class="ti-search"></i></button>
+                                                <button (click)="handleSearch()" class="btns" type="button"><i
+                                                        class="ti-search"></i></button>
                                             </div>
                                         </div>
                                     </div>
-                                    <button (click)="handleSearch()" class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn"
+                                    <button (click)="handleSearch()"
+                                        class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn"
                                         type="submit">Search</button>
                                 </form>
                             </aside>
+                            <app-post-featured></app-post-featured>
                             <app-category></app-category>
-                        <aside class="single_sidebar_widget popular_post_widget">
-                            <h3 class="widget_title">Featured Post</h3>
-                            <div class="media post_item">
-                               <img src="assets/img/post/post_1.png" alt="post">
-                               <div class="media-body">
-                                  <a href="single-blog.html">
-                                     <h3>From life was you fish...</h3>
-                                  </a>
-                                  <p>January 12, 2019</p>
-                               </div>
-                            </div>
-                            <div class="media post_item">
-                               <img src="assets/img/post/post_2.png" alt="post">
-                               <div class="media-body">
-                                  <a href="single-blog.html">
-                                     <h3>The Amazing Hubble</h3>
-                                  </a>
-                                  <p>02 Hours ago</p>
-                               </div>
-                            </div>
-                            <div class="media post_item">
-                               <img src="assets/img/post/post_3.png" alt="post">
-                               <div class="media-body">
-                                  <a href="single-blog.html">
-                                     <h3>Astronomy Or Astrology</h3>
-                                  </a>
-                                  <p>03 Hours ago</p>
-                               </div>
-                            </div>
-                            <div class="media post_item">
-                               <img src="assets/img/post/post_4.png" alt="post">
-                               <div class="media-body">
-                                  <a href="single-blog.html">
-                                     <h3>Asteroids telescope</h3>
-                                  </a>
-                                  <p>01 Hours ago</p>
-                               </div>
-                            </div>
-                         </aside>
                         </div>
                     </div>
                 </div>
