@@ -15,6 +15,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Services.Implementations.Helpers;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -89,7 +90,9 @@ namespace Services.Implementations
 
         public async Task DeletePostAsync(int postId)
         {
-            await _postRepository.DeleteAsync(postId);
+            var post = await _postRepository.GetAll().FirstOrDefaultAsync(x => x.Id == postId);
+            post.DeleteAt = post.DeleteAt is null ? DateTime.Now : null;
+            await _postRepository.UpdateAsync(post);
             await _unitOfWork.CompleteAsync();
         }
 

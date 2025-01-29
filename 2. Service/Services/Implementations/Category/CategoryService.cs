@@ -28,7 +28,7 @@ namespace Services.Implementations
         {
             var result = await _categoryRepository
                         .GetAll()
-                        .Where(x => x.Id == categoryId)
+                        .Where(x => x.Id == categoryId && x.DeleteAt == null)
                         .FirstOrDefaultAsync();
             return result;
         }
@@ -44,6 +44,7 @@ namespace Services.Implementations
         {
             return await _categoryRepository.GetAll()
                 .Include(x => x.Posts)
+                .Where(x => x.DeleteAt == null)
                 .Select(x => new CategoryDto
                 {
                     Title = x.Title,
@@ -67,7 +68,9 @@ namespace Services.Implementations
 
         public async Task DeleteCategoryAsync(int categoryId)
         {
-            await _categoryRepository.DeleteAsync(categoryId);
+            var category = await _categoryRepository.GetAll().FirstOrDefaultAsync(x => x.Id == categoryId);
+            category.DeleteAt = category.DeleteAt is not null ? null : System.DateTime.Now;
+            await _categoryRepository.UpdateAsync(category);
             await _unitOfWork.CompleteAsync();
         }
 

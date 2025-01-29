@@ -81,8 +81,9 @@
             <div class="d-flex justify-content-center align-items-center">
               <i nz-icon class="edit-active pointer mr-3" nzType="edit" nzTheme="outline"
                 [routerLink]="['/admin/post/edit', item.id]"></i>
-                <i nz-icon class="edit-active pointer mr-3" nzType="delete" nzTheme="outline"
-                (click)="delete(item.id!)" ></i>
+                <!-- <i nz-icon class="edit-active pointer mr-3" nzType="delete" nzTheme="outline"
+                (click)="delete(item.id!)" ></i> -->
+                <nz-switch [ngModel]="!item?.deleteAt" nzSize="small" nzControl="true" (click)="delete(item.id!)"></nz-switch>
             </div>
           </td>
         </tr>

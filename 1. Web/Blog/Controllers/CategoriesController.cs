@@ -87,7 +87,7 @@ namespace Blog.Controllers
         [Route("{id}")]
         [ModelValidationFilter]
         [TypeFilter(typeof(ApiAuthorizeFilter))]
-        public async Task<IActionResult> UpdateCategory([FromQuery] UpdateCategoryDto updateCategoryDto, int id)
+        public async Task<IActionResult> UpdateCategory([FromBody] UpdateCategoryDto updateCategoryDto, int id)
         {
             await _categoryService.UpdateCategoryAsync(id, updateCategoryDto);
             return NoContent();

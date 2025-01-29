@@ -85,12 +85,12 @@ export class CategoryFormComponent implements OnInit {
   }
 
   onSubmit(): void{
-    this.categoryService.createOrUpdate(this.mappingModel(this.categoryForm.value)).subscribe((res) =>
+    this.categoryService.createOrUpdate(this.mappingModel(this.categoryForm.value), this.id).subscribe((res) =>
     {
       if (res)
       {
         this.router.navigate([`/admin/category/list`]);
-        this.nzNotificationService.success('Thông báo', 'Thêm danh mục thành công!', { nzPlacement: 'bottomRight'});
+        this.nzNotificationService.success('Thông báo', `${this.id ? 'Cập nhật' : 'Thêm'} danh mục thành công!`, { nzPlacement: 'bottomRight'});
       }
     });
   }
