@@ -1,14 +1,13 @@
-using System;
-using System.IO;
 using Common.Constants;
 using EntityFrameworkCore.Contexts;
-using Blog;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Serilog;
+using System;
+using System.IO;
 
 namespace Blog
 {
@@ -66,12 +65,12 @@ namespace Blog
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
-                    webBuilder.ConfigureAppConfiguration((context, configBuilder) =>
-                    {
-                        configBuilder.AddJsonFile("appsettings.json", false, true);
-                        configBuilder.AddJsonFile($"appsettings.{context.HostingEnvironment.EnvironmentName}.json", true, true);
-                        configBuilder.AddEnvironmentVariables();
-                    });
+                    //webBuilder.ConfigureAppConfiguration((context, configBuilder) =>
+                    //{
+                    //    configBuilder.AddJsonFile("appsettings.json", false, true);
+                    //    configBuilder.AddJsonFile($"appsettings.{context.HostingEnvironment.EnvironmentName}.json", true, true);
+                    //    configBuilder.AddEnvironmentVariables();
+                    //});
                 });
     }
 }
