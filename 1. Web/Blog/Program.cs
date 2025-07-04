@@ -65,12 +65,12 @@ namespace Blog
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
-                    //webBuilder.ConfigureAppConfiguration((context, configBuilder) =>
-                    //{
-                    //    configBuilder.AddJsonFile("appsettings.json", false, true);
-                    //    configBuilder.AddJsonFile($"appsettings.{context.HostingEnvironment.EnvironmentName}.json", true, true);
-                    //    configBuilder.AddEnvironmentVariables();
-                    //});
+                    webBuilder.ConfigureAppConfiguration((context, configBuilder) =>
+                    {
+                        configBuilder.AddJsonFile("1. Web/Blog/appsettings.json", false, true);
+                        configBuilder.AddJsonFile($"1. Web/Blog/appsettings.{context.HostingEnvironment.EnvironmentName}.json", true, true);
+                        configBuilder.AddEnvironmentVariables();
+                    });
                 });
     }
 }
