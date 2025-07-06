@@ -43,9 +43,9 @@ namespace Blog.Controllers
         [HttpGet]
         [ModelValidationFilter]
         [TypeFilter(typeof(ApiAuthorizeFilter))]
-        public async Task<IActionResult> GetPagingCategories([FromQuery] PagedResultRequestDto pagedResultRequestDto)
+        public async Task<IActionResult> GetPagingCategories([FromQuery] PagedResultRequestDto pagedResultRequestDto, [FromQuery] string searchTerm)
         {
-            var result = await _categoryService.GetCategories(pagedResultRequestDto);
+            var result = await _categoryService.GetCategories(pagedResultRequestDto, searchTerm);
             return Ok(ApiResponse<IPagedResultDto<Category>>.Success(result));
         }
 

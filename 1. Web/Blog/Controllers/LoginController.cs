@@ -1,5 +1,8 @@
-﻿using Common.Helpers;
+﻿using Abstractions.Interfaces;
+using Abstractions.Interfaces.Login;
+using Common.Helpers;
 using Common.Resources;
+using Common.Runtime.Security;
 using Common.Runtime.Session;
 using Common.Unknown;
 using DTOs.Blog.Login;
@@ -9,11 +12,8 @@ using Infrastructure.Filters;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
 using System;
-using Common.Runtime.Security;
-using Abstractions.Interfaces.Login;
-using Abstractions.Interfaces;
+using System.Threading.Tasks;
 
 namespace Blog.Controllers
 {
@@ -79,10 +79,14 @@ namespace Blog.Controllers
         public async Task<IActionResult> Refresh()
         {
             var refreshToken = Request.Cookies["_refreshToken"];
-            var principal = _tokenService.GetPrincipalFromExpiresRefreshToken(refreshToken);
-            var refreshTokenUser = await _userService.GetRefreshToken(principal.Identity.GetId());
-            if (refreshToken != null && refreshToken == refreshTokenUser)
+            if (refreshToken != null)
             {
+                var principal = _tokenService.GetPrincipalFromExpiresRefreshToken(refreshToken);
+                var refreshTokenUser = await _userService.GetRefreshToken(principal.Identity.GetId());
+                if (refreshToken != refreshTokenUser)
+                {
+                    return StatusCode(201);
+                }
                 var isExpires = _tokenService.CheckExpires(refreshToken);
                 if (isExpires)
                 {

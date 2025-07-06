@@ -44,7 +44,7 @@ namespace Services.Implementations
         {
             return await _categoryRepository.GetAll()
                 .Include(x => x.Posts)
-                .Where(x => x.DeleteAt == null)
+                .Where(x => x.DeleteAt == null && x.Posts.Where(y => y.FK_CategoryId == x.Id).Count() > 0)
                 .Select(x => new CategoryDto
                 {
                     Title = x.Title,
@@ -74,10 +74,11 @@ namespace Services.Implementations
             await _unitOfWork.CompleteAsync();
         }
 
-        public async Task<IPagedResultDto<Category>> GetCategories(PagedResultRequestDto pagedResultRequest)
+        public async Task<IPagedResultDto<Category>> GetCategories(PagedResultRequestDto pagedResultRequest, string searchTerm)
         {
             var categories = _categoryRepository.GetAll();
-            return await categories.GetPagedResultAsync(pagedResultRequest.Page, pagedResultRequest.PageSize, x => x);
+            return await categories.Where(x => !string.IsNullOrEmpty(searchTerm) ? x.Title.ToLower().Contains(searchTerm.ToLower()) : 1 == 1)
+                .GetPagedResultAsync(pagedResultRequest.Page, pagedResultRequest.PageSize, x => x);
         }
     }
 }
