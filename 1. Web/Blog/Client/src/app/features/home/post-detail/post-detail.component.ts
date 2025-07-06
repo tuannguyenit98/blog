@@ -70,9 +70,11 @@ export class PostDetailComponent implements OnInit, AfterViewInit {
   }
 
   onSubmit(parentId?: number): void{
-    this.commentService.createOrUpdate(this.mappingModel({...this.commentForm.value, parentId}), this.id).subscribe((res) =>
-    {
-      window.location.reload();
+    this.commentService.createOrUpdate(this.mappingModel({ ...this.commentForm.value, parentId }), this.id).subscribe((res) => {
+      this.postSerive.getBySlug(this.slug!).subscribe((postRes) => {
+      this.post = postRes;
+      this.commentForm.reset();
+      });
     });
   }
 

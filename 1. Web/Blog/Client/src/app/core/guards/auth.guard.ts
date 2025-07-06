@@ -1,14 +1,14 @@
-import { CanActivateFn } from '@angular/router';
+import { inject } from '@angular/core';
+import { CanActivateFn, Router } from '@angular/router';
 
 export const authGuard: CanActivateFn = (route, state) => {
+    const router = inject(Router);
   const currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
-    const isLoggedIn = currentUser && currentUser.userName;
-      if (isLoggedIn) {
-          // logged in so return true
-          return true;
-      }
-
-      // not logged in so redirect to login page with the return url
-      state.url = 'auth/login';
-      return false;
+  const isLoggedIn = currentUser && currentUser.userName;
+  if (isLoggedIn) {
+    return true;
+  }
+  // Chuyển hướng về trang login
+  router.navigate(['/auth/login']);
+  return false;
 };

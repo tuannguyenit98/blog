@@ -158,7 +158,7 @@ export class PostFormComponent {
   onSubmit(): void{
     this.postService.createOrUpdate(this.mappingModel(this.postForm.value), this.id).subscribe((res) =>
     {
-      this.router.navigate([`/admin/post/list`]);
+      this.router.navigate([`/dashboard/post/list`]);
         this.nzNotificationService.success('Thông báo', `${this.id ? 'Cập nhật' : 'Thêm bài'} thành công!`, { nzPlacement: 'bottomRight'});
     });
   }

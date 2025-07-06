@@ -10,6 +10,26 @@ import { CategoryService } from 'src/app/shared/services/category.service';
   styleUrls: ['./category-list.component.scss']
 })
 export class CategoryListComponent implements OnInit {
+    searchInput: string | undefined
+
+    orderColumn = [
+        {
+            title: 'ID',
+        },
+        {
+            title: 'Tên danh mục',
+        },
+        {
+            title: 'Ngày tạo',
+        },
+        {
+            title: 'Trang thái',
+        },
+        {
+            title: ''
+        }
+    ]
+
   filterModel: CategoryFilter = new CategoryFilter();
   categories: Category[] = [];
   searchTerm$ = new BehaviorSubject('');
@@ -19,12 +39,13 @@ export class CategoryListComponent implements OnInit {
   loading = false;
   constructor(
     private categoryService: CategoryService,
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
     this.loading = true;
     this.searchTerm$.pipe(debounceTime(200)).subscribe((_) => {
-      this.filterModel.keyWord = this.searchTerm$.value.trim();
+      this.filterModel.searchTerm = this.searchTerm$.value.trim();
       this.pageIndex = 1;
       this.filterProductList();
       this.loading = false;

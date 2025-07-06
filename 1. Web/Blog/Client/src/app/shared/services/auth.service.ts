@@ -52,7 +52,7 @@ export class AuthService extends BaseService {
     logout() {
       localStorage.removeItem('currentUser');
               this.currentUserSubject.next(new UserLogin());
-              this.router.navigateByUrl('/account/login');
+              this.router.navigateByUrl('/auth/login');
               this.accessToken = '';
   }
 
@@ -61,6 +61,7 @@ export class AuthService extends BaseService {
 
       return this.post(fullUrl).pipe(map(res => {
           this.logoutSubject$.next(true);
+          this.logout();
       }));
   }
 

@@ -22,6 +22,10 @@ import { NzBackTopModule } from 'ng-zorro-antd/back-top';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { AngularEditorModule } from '@kolkov/angular-editor';
+import { NzAvatarModule } from 'ng-zorro-antd/avatar';
+import { NzListModule } from 'ng-zorro-antd/list';
+import { NzPaginationModule } from 'ng-zorro-antd/pagination';
+import { NzTagModule } from 'ng-zorro-antd/tag';
 
 @NgModule({
   declarations: [],
@@ -50,7 +54,11 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
     NzSpinModule,
     CKEditorModule,
     NzIconModule,
-    AngularEditorModule
+    AngularEditorModule,
+    NzAvatarModule,
+    NzListModule,
+    NzPaginationModule,
+    NzTagModule
   ],
   exports: [
     // BrowserModule,
@@ -78,7 +86,11 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
     NzSpinModule,
     CKEditorModule,
     NzIconModule,
-    AngularEditorModule
+    AngularEditorModule,
+    NzAvatarModule,
+    NzListModule,
+    NzPaginationModule,
+    NzTagModule
   ],
 })
 export class SharedModule { }

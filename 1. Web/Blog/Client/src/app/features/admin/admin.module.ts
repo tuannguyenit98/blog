@@ -6,6 +6,8 @@ import { TagComponent } from './tag/tag.component';
 import { CommentComponent } from './comment/comment.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { AdminComponent } from './admin.component';
+import { ComponentModule } from "../../shared/component/component.module";
+import { TemplateModule } from 'src/app/shared/template/template.module';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { AdminComponent } from './admin.component';
   imports: [
     CommonModule,
     AdminRoutingModule,
-    SharedModule
-  ]
+    SharedModule,
+    // ComponentModule,
+    TemplateModule
+]
 })
 export class AdminModule { }

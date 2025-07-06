@@ -1,49 +1,180 @@
-
-<main>
-    <!-- About US Start -->
-   <div class="about-area">
-    <div class="container">
-            <!-- Hot Aimated News Tittle-->
-           <div class="row">
-                <div class="col-lg-9">
-                    <!-- Trending Tittle -->
-                            <div class="about-right mb-90 mt-30">
-                                <div class="about-img">
-                                    <img src="assets/img/post/about_heor.jpg" alt="">
-                                </div>
-                                <div class="section-tittle mb-30 pt-30">
-                                    <h3>About Us</h3>
-                                </div>
-                                <div class="about-prea"><p class="about-pera1 mb-25">
-                                        Experienced Software Engineer with a demonstrated history of working in the information technology and services industry. Skilled in C#, .NET Framework, Angular. Strong engineering professional with a Bachelor's degree focused on Software Engineering from Da Nang University of Science and Education.</p>
-                                </div>
-                            </div>
-                </div>
-                <div class="col-lg-3 pt-30">
-                    <div class="media contact-info">
-                        <span class="contact-info__icon"><i class="ti-home"></i></span>
-                        <div class="media-body">
-                            <h3>Quang Nam</h3>
-                            <p>Dien Ban</p>
-                        </div>
-                    </div>
-                    <div class="media contact-info">
-                        <span class="contact-info__icon"><i class="ti-tablet"></i></span>
-                        <div class="media-body">
-                            <h3>+84 77 784 4595</h3>
-                            <p>Mon to Fri 9am to 6pm</p>
-                        </div>
-                    </div>
-                    <div class="media contact-info">
-                        <span class="contact-info__icon"><i class="ti-email"></i></span>
-                        <div class="media-body">
-                            <h3>tuannguyenit98@gmail.com</h3>
-                            <p>Send us your query anytime!</p>
-                        </div>
-                    </div>
-                </div>
-           </div>
+<div class="container">
+  <nz-card>
+    <div class="row align-items-center">
+      <div class="col-md-7">
+        <div class="d-md-flex align-items-center">
+          <div class="text-center text-sm-left">
+            <nz-avatar
+              class="shadow-sm m-v-15"
+              [nzSize]="150"
+              nzSrc="assets/images/contacts/avatar.jpg"
+            ></nz-avatar>
+          </div>
+          <div class="text-center text-sm-left m-v-15 p-l-30">
+            <h2 class="m-b-5">Tuan Nguyen</h2>
+            <p class="text-dark m-b-20">Fullstack .Net, Angular Developer</p>
+            <!-- <button nz-button nzType="primary">Contact</button> -->
+          </div>
+        </div>
+      </div>
+      <div class="col-md-5">
+        <div class="row">
+          <div class="d-md-block d-none border-left col-1"></div>
+          <div class="col">
+            <ul class="list-unstyled m-t-10">
+              <li class="row">
+                <p class="col-sm-3 col-4 font-weight-semibold text-dark m-b-5">
+                  <i
+                    class="m-r-10 text-primary"
+                    nz-icon
+                    nzType="mail"
+                    theme="outline"
+                  ></i>
+                  <span>Email: </span>
+                </p>
+                <p class="col font-weight-semibold">tuannguyenit98@gmail.com</p>
+              </li>
+              <li class="row">
+                <p class="col-sm-3 col-4 font-weight-semibold text-dark m-b-5">
+                  <i
+                    class="m-r-10 text-primary"
+                    nz-icon
+                    nzType="phone"
+                    theme="outline"
+                  ></i>
+                  <span>Phone: </span>
+                </p>
+                <p class="col font-weight-semibold">0777844595</p>
+              </li>
+              <li class="row">
+                <p class="col-sm-3 col-4 font-weight-semibold text-dark m-b-5">
+                  <i
+                    class="m-r-10 text-primary"
+                    nz-icon
+                    nzType="compass"
+                    theme="outline"
+                  ></i>
+                  <span>Place: </span>
+                </p>
+                <p class="col font-weight-semibold">Dien Ban Tay, Da Nang</p>
+              </li>
+            </ul>
+            <div class="d-flex font-size-22">
+              <a href="" class="text-gray p-r-20">
+                <i nz-icon nzType="facebook" theme="outline"></i>
+              </a>
+              <!-- <a href="" class="text-gray p-r-20">    
+                                <i nz-icon nzType="twitter" theme="outline"></i>
+                            </a>
+                            <a href="" class="text-gray p-r-20">
+                                <i nz-icon nzType="behance" theme="outline"></i>
+                            </a> 
+                            <a href="" class="text-gray p-r-20">   
+                                <i nz-icon nzType="dribbble" theme="outline"></i>
+                            </a> -->
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </nz-card>
+  <nz-card>
+    <h5>About us</h5>
+    <p>A passionate and responsible C# Developer with over 3 years of 
+experience in .NET technologies, Angular, and WinForms. Always eager 
+to learn, improve technical skills, and contribute to team success.</p>
+    <hr />
+    <h5>Skills</h5>
+    <div class="m-t-20">
+      <nz-tag *ngFor="let item of skillListData">{{ item }}</nz-tag>
+    </div>
+    <hr />
+    <h5>Experices</h5>
+    <div class="m-t-20">
+      <div class="media m-b-30" *ngFor="let item of expListData">
+        <!-- <nz-avatar class="shadow-sm" [nzSrc]="item.img"></nz-avatar> -->
+        <div class="media-body">
+          <h6 class="m-b-0">
+            {{ item.title }}<span *ngIf="item.title">,</span> {{ item.company }}
+          </h6>
+          <span class="font-size-13 text-gray">{{ item.date }}</span>
+        </div>
+      </div>
+    </div>
+    <hr />
+    <h5>Education</h5>
+    <div class="m-t-20">
+      <div class="media m-b-30" *ngFor="let item of eduListData">
+        <!-- <nz-avatar class="shadow-sm" [nzSrc]="item.img"></nz-avatar> -->
+        <div class="media-body">
+          <h6 class="m-b-0">{{ item.degree }} at {{ item.school }}</h6>
+          <span class="font-size-13 text-gray">{{ item.date }}</span>
+        </div>
+      </div>
+    </div>
+  </nz-card>
+  <!-- <div class="row">
+        <div class="col-md-8">
+            <nz-card>
+                <h5>About us</h5>
+                <p>Tôi là một lập trình viên phần mềm giàu kinh nghiệm với lịch sử làm việc trong ngành công nghệ thông tin và dịch vụ. Thành thạo C#, .NET Framework, Angular. Có nền tảng kỹ thuật vững chắc với bằng Cử nhân chuyên ngành Công nghệ thông tin từ Đại học sư phạm Đà Nẵng.</p>
+                <hr>
+                <h5>Skills</h5>
+                <div class="m-t-20">
+                    <nz-tag *ngFor="let item of skillListData">{{item}}</nz-tag>
+                </div>
+                <hr>
+                <h5>Experices</h5>
+                <div class="m-t-20">
+                    <div class="media m-b-30" *ngFor="let item of expListData">
+                        <nz-avatar class="shadow-sm" [nzSrc]="item.img"></nz-avatar>
+                        <div class="media-body m-l-20">
+                            <h6 class="m-b-0">{{item.title}}<span *ngIf="item.title">,</span> {{item.company}} </h6>
+                            <span class="font-size-13 text-gray">{{item.date}}</span>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <h5>Education</h5>
+                <div class="m-t-20">
+                    <div class="media m-b-30" *ngFor="let item of eduListData">
+                        <nz-avatar class="shadow-sm" [nzSrc]="item.img"></nz-avatar>
+                        <div class="media-body m-l-20">
+                            <h6 class="m-b-0">{{item.degree}} at {{item.school}} </h6>
+                            <span class="font-size-13 text-gray">{{item.date}}</span>
+                        </div>
+                    </div>
+                </div>
+            </nz-card>
+        </div>
+        <div class="col-md-4">
+            <nz-card>
+                <h5>Projects</h5>
+                <div class="m-t-20">
+                    <div class="m-b-20 p-b-20 border-bottom" *ngFor="let item of projectListData">
+                        <div class="media align-items-center m-b-15">
+                            <nz-avatar class="shadow-sm" [nzSrc]="item.img"></nz-avatar>
+                            <div class="media-body m-l-20">
+                                <h5 class="m-b-0">
+                                    <a href="" class="text-dark">{{item.name}}</a>
+                                </h5>
+                            </div>
+                        </div>
+                        <p>{{item.desc}}</p>
+                        <div class="d-inline-block">
+                            <span *ngFor="let item of item.participate; let i = index;">
+                                <a class="m-r-5" nz-tooltip [nzTooltipTitle]="item.name" href="">
+                                    <nz-avatar class="shadow-sm" nzSize="small" [nzSrc]="item.img"></nz-avatar>
+                                </a>
+                            </span>
+                        </div>
+                        <div class="float-right">
+                            <nz-tag *ngIf="item.status == 'In Progress'" [nzColor]="'blue'">{{item.status}}</nz-tag>
+                            <nz-tag *ngIf="item.status == 'Completed'" [nzColor]="'cyan'">{{item.status}}</nz-tag>
+                        </div>
+                    </div>
+                </div>    
+            </nz-card>        
+        </div>
+    </div> -->
 </div>
-<!-- About US End -->
-</main>

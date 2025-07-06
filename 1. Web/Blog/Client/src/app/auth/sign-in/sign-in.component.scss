@@ -1,71 +1,71 @@
-h1 {
-  color: rgb(59, 143, 112);
-  margin-bottom: 1rem;
-  font-weight: bold;
-  font-family: 'Muli';
-  font-size: 20px;
-}
+// h1 {
+//   color: rgb(59, 143, 112);
+//   margin-bottom: 1rem;
+//   font-weight: bold;
+//   font-family: 'Muli';
+//   font-size: 20px;
+// }
 
-button{
-  cursor: pointer;
-  &:focus {
-    outline: none;
-  }
-}
+// button{
+//   cursor: pointer;
+//   &:focus {
+//     outline: none;
+//   }
+// }
 
-.color-btn {
-  background-color: rgb(59, 143, 112);
-  color: white;
-  border: none;
-}
+// .color-btn {
+//   background-color: rgb(59, 143, 112);
+//   color: white;
+//   border: none;
+// }
 
-.auth-popup {
-  background: white;
-  height: 100vh;
-  margin-left: 0px;
-  margin-right: 0px;
+// .auth-popup {
+//   background: white;
+//   height: 100vh;
+//   margin-left: 0px;
+//   margin-right: 0px;
 
-  .left-content {
-    background-color: #2f66b7;
-  }
+//   .left-content {
+//     background-color: #2f66b7;
+//   }
 
-  .banner {
-    &-bg {
-      height: 100%;
-      width: 100%;
-    }
-  }
+//   .banner {
+//     &-bg {
+//       height: 100%;
+//       width: 100%;
+//     }
+//   }
 
-  .content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+//   .content {
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     flex-direction: column;
 
-    .form-content {
-      margin: 0 20px;
-      padding-bottom: 10px;
-      width: 50%;
-    }
+//     .form-content {
+//       margin: 0 20px;
+//       padding-bottom: 10px;
+//       width: 50%;
+//     }
 
-    .icon {
-      color: #A9A9A9;
-    }
+//     .icon {
+//       color: #A9A9A9;
+//     }
 
-    &-input {
-      background-color: transparent;
-      border: none;
-      border-bottom: 1px solid #d5d5d5;
-      font-size: 16px;
+//     &-input {
+//       background-color: transparent;
+//       border: none;
+//       border-bottom: 1px solid #d5d5d5;
+//       font-size: 16px;
 
-    }
+//     }
 
-    .btn-login {
-      color: #ffffff;
-      background-color: #2f66b7;
-      border-color: transparent;
-      border-radius: 5px;
-      opacity: 0.85;
-    }
-  }
-}
+//     .btn-login {
+//       color: #ffffff;
+//       background-color: #2f66b7;
+//       border-color: transparent;
+//       border-radius: 5px;
+//       opacity: 0.85;
+//     }
+//   }
+// }

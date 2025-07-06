@@ -1,77 +1,70 @@
-<div class="row mx-0 align-items">
-    <div class="d-flex align-items-center">
-      <h4 class="text-uppercase font-weight-bold primary-color mb-0">
-        danh sách danh mục
-      </h4>
-    </div>
-    <div class="mx-0 ml-auto d-flex">
-      <div class="ml-auto d-flex flex-wrap w-100">
-        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 d-flex form-inline pl-0 pr-0">
-          <div class="search-area mx-1" nz-tooltip nzTooltipTitle="Tìm theo tên, email" nzTooltipPlacement="bottomLeft">
-            <nz-input-group class="search" nzSearch [nzAddOnAfter]="suffixButton">
-              <input type="text" nz-input [placeholder]="
-                    'Tìm theo tên'
-                  " (keyup)="searchTerm$.next($any($event.target).value)" [value]="searchTerm$.value" />
-            </nz-input-group>
-            <ng-template #suffixButton>
-              <button nz-button nzType="primary" nzSearch>
-                <i nz-icon nzType="search"></i>
-              </button>
-            </ng-template>
-          </div>
-          <button nz-button nzType="primary" type="submit"
-            class="text-uppercase d-flex align-items-center justify-content-center mx-1"
-            [routerLink]="['/admin/category/create']">
-            Tạo mới
-          </button>
-          <!-- <button nz-button nzType="primary" type="click"
-              class="text-uppercase d-flex align-items-center justify-content-center ml-1" (click)="filterUserList()">
-              <i nz-icon nzType="undo" nzTheme="outline"></i>
-            </button> -->
+<nz-card>
+    <div class="row m-b-30">
+        <div class="col-lg-8">
+            <div class="d-md-flex">
+                <div class="m-b-10 m-r-20">
+                    <nz-input-group [nzPrefix]="prefixTemplate">
+                        <input type="text" nz-input placeholder="Tìm theo tên danh mục" (keyup)="searchTerm$.next($any($event.target).value)" [value]="searchTerm$.value">
+                    </nz-input-group>      
+                    <ng-template #prefixTemplate>
+                        <i nz-icon nzType="search" class="opacity-05"></i>
+                    </ng-template>   
+                </div>
+                <!-- <div class="m-b-10 m-r-20 d-flex align-items-center">
+                    <nz-select style="min-width: 220px;" class="w-100" nzPlaceHolder="Status">
+                        <nz-option nzLabel="All" nzValue="all"></nz-option>
+                        <nz-option nzLabel="Approved" nzValue="approved"></nz-option>
+                        <nz-option nzLabel="Pending" nzValue="pending"></nz-option>
+                        <nz-option nzLabel="Rejected" nzValue="rejected"></nz-option>
+                    </nz-select>
+                </div> -->
+            </div>          
         </div>
-      </div>
+        <div class="col-lg-4 text-right">
+            <button nz-button nzType="primary" [routerLink]="['/dashboard/category/create']">
+                <i nz-icon nzType="plus" theme="outline"></i>
+                <span>Tạo mới</span>
+            </button>
+        </div>
     </div>
-  </div>
-  <div class="h-100 w-100 table-content pt-3">
-    <nz-table #basicTable nzBordered [nzFrontPagination]="false" [nzData]="categories"
+    <nz-table #categoriesListTable [nzData]="categories" [nzData]="categories"
       (nzPageIndexChange)="changePageIndex($event)" (nzPageSizeChange)="changPageSize($event)" [nzLoading]="loading"
-      [nzTotal]="total" [(nzPageIndex)]="pageIndex" [(nzPageSize)]="pageSize" [nzScroll]="{ x: '1100px' }">
-      <thead>
-        <tr>
-          <th class="table-col-stt text-center">
-            <p class="mb-0">STT</p>
-          </th>
-          <th class="table-col-name">
-            <p class="mb-0">Tên sản phẩm</p>
-          </th>
-          <th class="table-col-owner">
-            <p class="mb-0">Danh mục</p>
-          </th>
-          <th class="table-col-status">
-            <p class="mb-0">Trạng thái</p>
-          </th>
-          <th nzRight class="table-col-manipulation text-center">
-            <p class="mb-0">Thao tác</p>
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let item of basicTable.data; let i = index">
-          <td class="text-center">{{renderIndex(i)}}</td>
-          <td>{{item.title}}</td>
-          <td>{{item.metaTitle}}</td>
-          <td>{{item.deleteAt ? 'Không hoạt động' : 'Hoạt động'}}</td>
-          <td nzRight>
-            <div class="d-flex justify-content-center align-items-center">
-              <i nz-icon class="edit-active pointer mr-3" nzType="edit" nzTheme="outline"
-                [routerLink]="['/admin/category/edit', item.id]"></i>
-                <!-- <i nz-icon class="edit-active pointer mr-3" nzType="delete" nzTheme="outline"
-                (click)="delete(item.id!)" ></i> -->
-                <nz-switch [ngModel]="!item?.deleteAt" nzSize="small" nzControl="true" (click)="delete(item.id!)"></nz-switch>
-            </div>
-          </td>
-        </tr>
-      </tbody>
+      [nzTotal]="total" [(nzPageIndex)]="pageIndex" [(nzPageSize)]="pageSize">
+        <thead>
+            <tr>
+                <th *ngFor="let column of orderColumn">{{ column.title }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of categoriesListTable.data;  let i=index">
+                <td>{{renderIndex(i)}}</td>
+                <td>
+                    <div class="d-flex align-items-center">
+                        <!-- <nz-avatar [nzSize]="30" nzIcon="user" [nzSrc]="item.avatar"></nz-avatar> -->
+                        <h6 class="m-l-10 m-b-0">{{item.title}}</h6>
+                    </div>
+                </td>
+                <td>{{item.createdAt | date: 'dd/MM/yyyy' }}</td>
+                <!-- <td>${{item.amount | number:'3.2-5'}}</td> -->
+                <td>
+                    <!-- <nz-badge *ngIf="item.status == 'approved'" nzStatus="success"></nz-badge>
+                    <nz-badge *ngIf="item.status == 'rejected'" nzStatus="error"></nz-badge>
+                    <nz-badge *ngIf="item.status == 'pending'"  nzStatus="processing"></nz-badge>  -->
+                    <span>{{item.deleteAt ? 'Không hoạt động' : 'Hoạt động'}}</span>
+                </td>
+                <td class="text-md-right d-flex justify-content-center align-items-center">
+                    <a class="m-r-5" nz-button nzType="default" nzShape="circle" nz-tooltip nzTooltipTitle="Edit" [routerLink]="['/dashboard/category/edit', item.id]">
+                        <i nz-icon nzType="edit" theme="outline"></i>
+                    </a>
+                    <nz-switch
+              [ngModel]="!item?.deleteAt"
+              nzSize="small"
+              nzControl="true"
+              nz-tooltip="Delete"
+              (click)="delete(item.id!)"
+            ></nz-switch>
+                </td>
+            </tr>
+        </tbody>
     </nz-table>
-  </div>
-  
+</nz-card>

@@ -89,7 +89,7 @@ export class CategoryFormComponent implements OnInit {
     {
       if (res)
       {
-        this.router.navigate([`/admin/category/list`]);
+        this.router.navigate([`/dashboard/category/list`]);
         this.nzNotificationService.success('Thông báo', `${this.id ? 'Cập nhật' : 'Thêm'} danh mục thành công!`, { nzPlacement: 'bottomRight'});
       }
     });

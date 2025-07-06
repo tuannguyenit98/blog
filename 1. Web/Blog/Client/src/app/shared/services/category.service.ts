@@ -21,8 +21,8 @@ export class CategoryService extends BaseService {
 
      getCategories(params: CategoryFilter): Observable<PagePagination<Category>> {
       const paramsFilter: CategoryFilter = { ...params };
-    if (!paramsFilter.keyWord) {
-      delete paramsFilter.keyWord;
+    if (!paramsFilter.searchTerm) {
+      delete paramsFilter.searchTerm;
     }
       return this.get('api/blog/categories', paramsFilter);
      }

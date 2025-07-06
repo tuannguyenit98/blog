@@ -6,7 +6,7 @@ import { SignInComponent } from './sign-in/sign-in.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { SharedModule } from '../shared/shared.module';
 import { AuthComponent } from './auth.component';
-
+import { NzFormModule } from 'ng-zorro-antd/form';
 
 @NgModule({
   declarations: [
@@ -16,7 +16,8 @@ import { AuthComponent } from './auth.component';
   ],
   imports: [
     AuthRoutingModule,
-    SharedModule
+    SharedModule,
+    NzFormModule
   ]
 })
 export class AuthModule { }
