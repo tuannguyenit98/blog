@@ -15,34 +15,40 @@ const routes: Routes = [
       {
         path: '',
         pathMatch: 'full',
-        redirectTo: ''
+        redirectTo: '',
       },
       {
         path: '',
-        component: IndexComponent
+        component: IndexComponent,
+        data: { title: 'Trang chủ' },
       },
       {
         path: 'post/:slug',
-        component: PostDetailComponent
+        component: PostDetailComponent,
       },
       {
         path: 'post/:slug/category',
-        component: CategoryDetailComponent
+        component: CategoryDetailComponent,
+        data: {
+          title: '',
+        },
       },
       {
         path: 'contact',
-        component: ContactComponent
+        component: ContactComponent,
+        data: { title: 'Về mình' },
       },
       {
         path: 'search',
         component: PostSearchComponent,
+        data: { title: 'Tìm kiếm' },
       },
-    ]
-  }
+    ],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class HomeRoutingModule { }
+export class HomeRoutingModule {}

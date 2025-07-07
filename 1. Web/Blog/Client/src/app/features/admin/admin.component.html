@@ -1,56 +1,14 @@
-<div class="common-layout {{ 'is-' + selectedHeaderColor }}" 
-    [ngClass]="{
+<div class="common-layout {{ 'is-' + selectedHeaderColor }}" [ngClass]="{
         'is-folded': isFolded,
         'is-side-nav-dark' : isSideNavDark,
         'is-expand' : isExpand
-    }"
->
-    <app-header></app-header>
-    <app-sidenav></app-sidenav>
-    <div class="page-container">
-        <div class="main-content">
-            <!-- <div class="main-content-header" *ngIf="contentHeaderDisplay !== 'none'">
-                <h4 class="page-title" *ngIf="breadcrumbs$ | async; let breadcrumbs">{{(breadcrumbs[breadcrumbs.length - 1].label)}}</h4>
-                <nz-breadcrumb nzSeparator=">">
-                    <i class="m-r-5 text-gray" nz-icon nzType="home"></i>
-                    <nz-breadcrumb-item *ngFor="let breadcrumb of breadcrumbs$ | async">
-                        <a [routerLink]="breadcrumb.url">
-                            {{ breadcrumb.label }}
-                        </a>
-                    </nz-breadcrumb-item>
-                </nz-breadcrumb>
-            </div> -->
-            <router-outlet></router-outlet>
-        </div>
-        <app-footer></app-footer>
+    }">
+  <app-header></app-header>
+  <app-sidenav></app-sidenav>
+  <div class="page-container">
+    <div class="main-content">
+      <router-outlet></router-outlet>
     </div>
+    <app-footer></app-footer>
+  </div>
 </div>
-
-<!-- <nz-layout class="layout">
-    <nz-sider>
-      <div class="logo"></div>
-      <ul nz-menu nzTheme="dark" nzMode="inline">
-        <li nz-menu-item>
-          <span nz-icon nzType="file"></span>
-          <span [routerLink]="['/admin/category/list']">Danh mục</span>
-        </li>
-        <li nz-menu-item>
-          <span nz-icon nzType="profile" nzTheme="outline"></span>
-          <span [routerLink]="['/admin/post/list']">Bài đăng</span>
-        </li>
-        <li nz-menu-item>
-          <span nz-icon nzType="upload"></span>
-          <span>Bình luận</span>
-        </li>
-      </ul>
-    </nz-sider>
-    <nz-layout class="right-layout">
-      <nz-header></nz-header>
-      <nz-content>
-        <div class="inner-content">
-          <router-outlet></router-outlet>
-        </div>
-      </nz-content>
-      <nz-footer>Design ©2024 Implement By TuanKA</nz-footer>
-    </nz-layout>
-  </nz-layout> -->

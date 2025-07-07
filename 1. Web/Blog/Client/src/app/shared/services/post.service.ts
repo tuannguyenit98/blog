@@ -9,13 +9,12 @@ import { PagePagination } from '../models/page-pagination.model';
 import { PostDto } from '../models/post/post-feature.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PostService extends BaseService {
-
   constructor(
     private httpClient: HttpClient,
-    @Inject('API_BASE_URL') baseUrl: string,
+    @Inject('API_BASE_URL') baseUrl: string
   ) {
     super(httpClient, baseUrl);
   }
@@ -26,10 +25,6 @@ export class PostService extends BaseService {
       delete paramsFilter.searchTerm;
     }
     return this.get('api/blog/posts', paramsFilter);
-  }
-
-  getAll(): Observable<Post[]> {
-    return this.get('api/blog/posts/all');
   }
 
   getById(id: number): Observable<Post> {
@@ -48,14 +43,15 @@ export class PostService extends BaseService {
     formData.append('fK_CategoryId', form.fK_CategoryId.toString());
     if (form.file) {
       formData.append('file', form.file, form.file.name);
-    }
-    else {
+    } else {
       formData.append('file', form.file);
     }
     if (id) {
-      return this.http.put<any>(this.baseUrl + `api/blog/posts/${id}`, formData);
-    }
-    else {
+      return this.http.put<any>(
+        this.baseUrl + `api/blog/posts/${id}`,
+        formData
+      );
+    } else {
       return this.http.post<any>(this.baseUrl + `api/blog/posts`, formData);
     }
   }
@@ -72,7 +68,10 @@ export class PostService extends BaseService {
     return this.get('api/blog/posts/recent');
   }
 
-  getPostsByCategorySlug(params: PostFilter, slug: string): Observable<PagePagination<PostDto>> {
+  getPostsByCategorySlug(
+    params: PostFilter,
+    slug: string
+  ): Observable<PagePagination<PostDto>> {
     const paramsFilter: PostFilter = { ...params };
     return this.get(`api/blog/posts/${slug}/category`, paramsFilter);
   }

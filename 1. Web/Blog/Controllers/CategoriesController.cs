@@ -23,28 +23,20 @@ namespace Blog.Controllers
         }
 
         /// <summary>
-        /// Get all
-        /// </summary>
-        /// <returns></returns>
-        [HttpGet]
-        [Route("all")]
-        [AllowAnonymous]
-        public async Task<IActionResult> GetCategories()
-        {
-            var result = await _categoryService.GetAll();
-            return Ok(ApiResponse<List<CategoryDto>>.Success(result));
-        }
-
-        /// <summary>
         /// Get paging
         /// </summary>
         /// <param name="pagedResultRequestDto"></param>
         /// <returns></returns>
         [HttpGet]
         [ModelValidationFilter]
-        [TypeFilter(typeof(ApiAuthorizeFilter))]
-        public async Task<IActionResult> GetPagingCategories([FromQuery] PagedResultRequestDto pagedResultRequestDto, [FromQuery] string searchTerm)
+        [AllowAnonymous]
+        public async Task<IActionResult> GetCategories([FromQuery] PagedResultRequestDto pagedResultRequestDto, [FromQuery] string searchTerm)
         {
+            if (pagedResultRequestDto.Page == 0)
+            {
+                var res = await _categoryService.GetAll();
+                return Ok(ApiResponse<List<CategoryDto>>.Success(res));
+            }
             var result = await _categoryService.GetCategories(pagedResultRequestDto, searchTerm);
             return Ok(ApiResponse<IPagedResultDto<Category>>.Success(result));
         }

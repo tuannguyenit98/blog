@@ -6,6 +6,7 @@ using Entities.Blog;
 using Infrastructure.Filters;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Services.Implementations;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -44,8 +45,13 @@ namespace Blog.Controllers
         [HttpGet]
         [ModelValidationFilter]
         [TypeFilter(typeof(ApiAuthorizeFilter))]
-        public async Task<IActionResult> GetPagingTags([FromQuery] PagedResultRequestDto pagedResultRequestDto)
+        public async Task<IActionResult> GetTags([FromQuery] PagedResultRequestDto pagedResultRequestDto)
         {
+            if (pagedResultRequestDto.Page == 0)
+            {
+                var res = await _tagService.GetAll();
+                return Ok(ApiResponse<List<Tag>>.Success(res));
+            }
             var result = await _tagService.GetTags(pagedResultRequestDto);
             return Ok(ApiResponse<IPagedResultDto<Tag>>.Success(result));
         }

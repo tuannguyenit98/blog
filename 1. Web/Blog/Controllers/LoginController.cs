@@ -79,34 +79,26 @@ namespace Blog.Controllers
         public async Task<IActionResult> Refresh()
         {
             var refreshToken = Request.Cookies["_refreshToken"];
-            if (refreshToken != null)
+            if (refreshToken == null)
             {
-                var principal = _tokenService.GetPrincipalFromExpiresRefreshToken(refreshToken);
-                var refreshTokenUser = await _userService.GetRefreshToken(principal.Identity.GetId());
-                if (refreshToken != refreshTokenUser)
-                {
-                    return StatusCode(201);
-                }
+                return StatusCode(201);
+            }
+            var cookieOptions = new CookieOptions
+            {
+                HttpOnly = true,
+                SameSite = SameSiteMode.None,
+                Secure = true,
+            };
+            var principal = _tokenService.GetPrincipalFromExpiresRefreshToken(refreshToken);
+            {
                 var isExpires = _tokenService.CheckExpires(refreshToken);
                 if (isExpires)
                 {
-                    Response.Cookies.Delete("_refreshToken");
+                    Response.Cookies.Delete("_refreshToken", cookieOptions);
                     return StatusCode(201);
                 }
-                var tokenData = await _tokenService.RefreshToken(refreshToken);
-                var cookieOptions = new CookieOptions
-                {
-                    HttpOnly = true,
-                    SameSite = SameSiteMode.None,
-                    Secure = true
-                };
-                await _userService.SaveRefreshToken(principal.Identity.GetId(), tokenData.RefreshToken);
-                Response.Cookies.Append("_refreshToken", tokenData.RefreshToken, cookieOptions);
-                return Ok(ApiResponse<string>.Success(tokenData.Token));
-            }
-            else
-            {
-                return StatusCode(201);
+                var accessToken = await _tokenService.GetAccessTokenByRefreshToken(refreshToken);
+                return Ok(ApiResponse<string>.Success(accessToken));
             }
         }
 

@@ -7,6 +7,7 @@ using Infrastructure.Filters;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Services.Implementations;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -45,8 +46,13 @@ namespace Blog.Controllers
         [HttpGet]
         [ModelValidationFilter]
         [TypeFilter(typeof(ApiAuthorizeFilter))]
-        public async Task<IActionResult> GetPagingUsers([FromQuery] PagedResultRequestDto pagedResultRequestDto)
+        public async Task<IActionResult> GetUsers([FromQuery] PagedResultRequestDto pagedResultRequestDto)
         {
+            if (pagedResultRequestDto.Page == 0)
+            {
+                var res = await _userService.GetAll();
+                return Ok(ApiResponse<List<User>>.Success(res));
+            }
             var result = await _userService.GetUsers(pagedResultRequestDto);
             return Ok(ApiResponse<IPagedResultDto<User>>.Success(result));
         }

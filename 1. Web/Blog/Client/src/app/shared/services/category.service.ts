@@ -8,44 +8,44 @@ import { PagePagination } from '../models/page-pagination.model';
 import { CategoryCreateModel } from '../models/category/category-create.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CategoryService extends BaseService {
-
   constructor(
     private httpClient: HttpClient,
-    @Inject('API_BASE_URL') baseUrl: string,
-    ) {
-      super(httpClient, baseUrl);
-     }
+    @Inject('API_BASE_URL') baseUrl: string
+  ) {
+    super(httpClient, baseUrl);
+  }
 
-     getCategories(params: CategoryFilter): Observable<PagePagination<Category>> {
-      const paramsFilter: CategoryFilter = { ...params };
+  getCategories(params: CategoryFilter): Observable<PagePagination<Category>> {
+    const paramsFilter: CategoryFilter = { ...params };
     if (!paramsFilter.searchTerm) {
       delete paramsFilter.searchTerm;
     }
-      return this.get('api/blog/categories', paramsFilter);
-     }
+    return this.get('api/blog/categories', paramsFilter);
+  }
 
-     getAll(): Observable<Category[]> {
-      return this.get('api/blog/categories/all');
-     }
+  getAll(): Observable<Category[]> {
+    return this.get('api/blog/categories');
+  }
 
-     getById(id: number): Observable<Category> {
-      return this.get(`api/blog/categories/${id}`);
-     }
+  getById(id: number): Observable<Category> {
+    return this.get(`api/blog/categories/${id}`);
+  }
 
-     public createOrUpdate(form: CategoryCreateModel, id?: number): Observable<any>{
-      if (id)
-      {
-        return this.put<any>(`api/blog/categories/${id}`, form);
-      }
-      else{
-        return this.post<any>(`api/blog/categories`, form);
-      }
+  public createOrUpdate(
+    form: CategoryCreateModel,
+    id?: number
+  ): Observable<any> {
+    if (id) {
+      return this.put<any>(`api/blog/categories/${id}`, form);
+    } else {
+      return this.post<any>(`api/blog/categories`, form);
     }
+  }
 
-    deleteById(id: number): Observable<Category> {
-      return this.delete(`api/blog/categories/${id}`);
-    }
+  deleteById(id: number): Observable<Category> {
+    return this.delete(`api/blog/categories/${id}`);
+  }
 }

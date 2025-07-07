@@ -10,3 +10,40 @@
 @import '../../../../assets/css/slick.css';
 @import '../../../../assets/css/nice-select.css';
 @import '../../../../assets/css/style.css';
+/* ...existing code... */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  .search-box {
+    display: flex;
+    align-items: center;
+
+    input[type="text"] {
+      padding: 6px 10px;
+      border: 1px solid #ddd;
+      border-radius: 20px;
+      outline: none;
+      font-size: 15px;
+      transition: border-color 0.2s;
+      min-width: 170px;
+      background: #fafafa;
+    }
+
+    input[type="text"]:focus {
+      border-color: #c8120b;
+      background: #fff;
+    }
+  }
+
+  .search-tag {
+    color: #c8120b;
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+
+  .special-tag:hover {
+    color: #a00;
+  }
+}

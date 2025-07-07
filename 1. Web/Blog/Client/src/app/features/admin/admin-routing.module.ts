@@ -10,22 +10,24 @@ const routes: Routes = [
       {
         path: '',
         pathMatch: 'full',
-        redirectTo: 'category'
+        redirectTo: 'category',
       },
       {
         path: 'category',
-        loadChildren: () => import('./category/category.module').then( m => m.CategoryModule)
+        loadChildren: () =>
+          import('./category/category.module').then((m) => m.CategoryModule),
       },
       {
         path: 'post',
-        loadChildren: () => import('./post/post.module').then( m => m.PostModule)
-      }
-    ]
-  }
+        loadChildren: () =>
+          import('./post/post.module').then((m) => m.PostModule),
+      },
+    ],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AdminRoutingModule { }
+export class AdminRoutingModule {}

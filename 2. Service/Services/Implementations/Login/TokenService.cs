@@ -109,9 +109,8 @@ namespace Services.Implementations.Login
                 throw new ArgumentNullException(nameof(JwtIssuerOptions.JtiGenerator));
         }
 
-        public async Task<RefreshTokenDto> RefreshToken(string refreshToken)
+        public async Task<string> GetAccessTokenByRefreshToken(string refreshToken)
         {
-            var tokenData = new RefreshTokenDto();
             var token = new JwtSecurityToken(refreshToken);
             var userId = int.Parse(token.Claims.First(x => x.Type == GlotechClaimTypes.Id).Value);
             var user = await _userService.GetUserByIdAsync(userId);
@@ -124,9 +123,8 @@ namespace Services.Implementations.Login
 
             var identity = new ClaimsIdentity(new GenericIdentity(user.UserName, "Token"), userClaims);
 
-            tokenData.Token = await GenerateEncodedToken(identity, 0.0416666667, false);//token expires 1h
-            tokenData.RefreshToken = await GenerateEncodedToken(identity, 1, true);//refreshToken expires 1day
-            return tokenData;
+            var accessToken = await GenerateEncodedToken(identity, 0.0416666667, false);//token expires 1h
+            return accessToken;
         }
 
         public bool CheckExpires(string refreshToken)

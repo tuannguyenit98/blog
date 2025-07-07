@@ -23,20 +23,6 @@ namespace Blog.Controllers
         }
 
         /// <summary>
-        /// Get all
-        /// </summary>
-        /// <returns></returns>
-        [HttpGet]
-        [Route("all")]
-        [ModelValidationFilter]
-        [TypeFilter(typeof(ApiAuthorizeFilter))]
-        public async Task<IActionResult> GetPosts()
-        {
-            var result = await _postService.GetAll();
-            return Ok(ApiResponse<List<Post>>.Success(result));
-        }
-
-        /// <summary>
         /// Get paging
         /// </summary>
         /// <param name="pagedResultRequestDto"></param>
@@ -45,6 +31,11 @@ namespace Blog.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> GetPagingPosts([FromQuery] PagedResultRequestDto pagedResultRequestDto, [FromQuery] string searchTerm)
         {
+            if (pagedResultRequestDto.Page == 0)
+            {
+                var res = await _postService.GetAll();
+                return Ok(ApiResponse<List<Post>>.Success(res));
+            }
             var result = await _postService.GetPosts(pagedResultRequestDto, searchTerm);
             return Ok(ApiResponse<IPagedResultDto<PostDto>>.Success(result));
         }

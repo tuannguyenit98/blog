@@ -9,35 +9,32 @@
                         <section class="whats-news-area mt-30 pb-20">
                             <div class="container">
                                 <div class="row">
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <!-- Nav Card -->
-                                            <div class="tab-content" id="nav-tabContent">
-                                                <!-- card one -->
-                                                <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
-                                                    aria-labelledby="nav-home-tab">
-                                                    <div class="whats-news-caption">
-                                                        <div class="row">
-                                                            <div class="col-lg-6 col-md-6" *ngFor="let item of posts">
-                                                                <div class="single-what-news mb-100">
-                                                                    <div class="what-img">
-                                                                        <img src={{item.image}} alt="">
-                                                                    </div>
-                                                                    <div class="what-cap">
-                                                                        <span
-                                                                            class="color1">{{item.categoryName}}</span>
-                                                                        <h4><a
-                                                                                [routerLink]="['/post', item.slug]">{{item.title}}</a>
-                                                                        </h4>
-                                                                    </div>
+                                    <div class="col-12">
+                                        <!-- Nav Card -->
+                                        <div class="tab-content" id="nav-tabContent">
+                                            <!-- card one -->
+                                            <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
+                                                aria-labelledby="nav-home-tab">
+                                                <div class="whats-news-caption">
+                                                    <div class="row">
+                                                        <div class="col-lg-6 col-md-6" *ngFor="let item of posts">
+                                                            <div class="single-what-news mb-100">
+                                                                <div class="what-img">
+                                                                    <img src={{item.image}} alt="">
+                                                                </div>
+                                                                <div class="what-cap">
+                                                                    <span class="color1">{{item.categoryName}}</span>
+                                                                    <h4><a
+                                                                            [routerLink]="['/post', item.slug]">{{item.title}}</a>
+                                                                    </h4>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <!-- End Nav Card -->
                                         </div>
+                                        <!-- End Nav Card -->
                                     </div>
                                 </div>
                             </div>

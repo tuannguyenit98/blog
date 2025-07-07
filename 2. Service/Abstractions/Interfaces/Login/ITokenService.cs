@@ -8,7 +8,7 @@ namespace Abstractions.Interfaces.Login
     {
         Task<TokenResultDto> RequestTokenAsync(ClaimsIdentity identity);
         Task<string> GenerateEncodedToken(ClaimsIdentity identity, double dayNumber, bool isRefreshToken);
-        Task<RefreshTokenDto> RefreshToken(string refreshToken);
+        Task<string> GetAccessTokenByRefreshToken(string refreshToken);
         bool CheckExpires(string refreshToken);
         ClaimsPrincipal GetPrincipalFromExpiresRefreshToken(string token);
     }

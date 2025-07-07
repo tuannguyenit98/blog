@@ -13,26 +13,26 @@ const routes: Routes = [
       {
         path: '',
         pathMatch: 'full',
-        redirectTo: 'list'
+        redirectTo: 'list',
       },
       {
         path: 'list',
-        component: CategoryListComponent
+        component: CategoryListComponent,
       },
       {
         path: 'create',
-        component: CategoryCreateComponent
+        component: CategoryCreateComponent,
       },
       {
         path: 'edit/:id',
-        component: CategoryEditComponent
-      }
-    ]
-  }
+        component: CategoryEditComponent,
+      },
+    ],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class CategoryRoutingModule { }
+export class CategoryRoutingModule {}
