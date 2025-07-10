@@ -31,5 +31,5 @@ import { ComponentModule } from "./shared/component/component.module";
 export class AppModule { }
 
 export function getApiBaseUrl() {
-  return 'http://localhost:55288/';
+  return 'https://tuannguyen.up.railway.app/';
 }
