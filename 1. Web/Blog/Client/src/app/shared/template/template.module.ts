@@ -15,7 +15,6 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 
 import { HeaderComponent } from "./header/header.component";
-import { SearchComponent } from "./search/search.component";
 import { SideNavComponent } from "./side-nav/side-nav.component";
 import { FooterComponent } from "./footer/footer.component";
 
@@ -38,9 +37,7 @@ const antdModule = [
     exports: [
         CommonModule,
         HeaderComponent,
-        SearchComponent,
         SideNavComponent,
-        // SideNavDirective,
         FooterComponent
     ],
     imports: [
@@ -51,9 +48,7 @@ const antdModule = [
     ],
     declarations: [
         HeaderComponent,
-        SearchComponent,
         SideNavComponent,
-        // SideNavDirective,
         FooterComponent
     ],
     // providers: [ 

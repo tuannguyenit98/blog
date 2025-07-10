@@ -2788,10 +2788,6 @@ hr {
     padding: 12px
 }
 
-.trending-area .trending-main {
-    border-bottom: 1px solid #eeeeee
-}
-
 .trending-area .trending-main .trending-top .trend-top-img {
     overflow: hidden;
     position: relative
@@ -3778,17 +3774,16 @@ hr {
 }
 
 .footer-bottom-area {
-    background: #100f0f
+    background: #fbf9ff
 }
 
 .footer-bottom-area .footer-border {
-    border-top: 1px solid #242323;
-    padding: 40px 0px 23px
+    padding: 30px 0px 23px
 }
 
 @media (max-width: 767px) {
     .footer-bottom-area .footer-border {
-        padding: 35px 0px 20px
+        padding: 25px 0px 20px
     }
 }
 
@@ -3800,16 +3795,9 @@ hr {
     margin-bottom: 12px
 }
 
-.footer-bottom-area .footer-copy-right p i {
-    color: #f27420
-}
-
 .footer-bottom-area .footer-copy-right p a {
-    color: #f27420
-}
-
-.footer-bottom-area .footer-copy-right p a:hover {
-    color: #fff
+    color: #f27420;
+    font-weight: 500;
 }
 
 .footer-menu ul li {
