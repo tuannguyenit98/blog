@@ -128,6 +128,18 @@
             <param name="id"></param>
             <returns></returns>
         </member>
+        <member name="M:Blog.Controllers.PostsController.GetPostFeatures">
+            <summary>
+            Get posts features
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Blog.Controllers.PostsController.GetPostRecent">
+            <summary>
+            Get post recent
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:Blog.Controllers.PostsController.GetBySlug(System.String)">
             <summary>
             Get By Slug
