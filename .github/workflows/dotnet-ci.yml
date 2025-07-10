@@ -1,0 +1,39 @@
+name: .NET CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest # Or windows-latest, macOS-latest
+
+    steps:
+    - uses: actions/checkout@v4 # Checks out your repository
+      with:
+        fetch-depth: 0 # Fetches all history for all branches and tags
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '6.0.x' # Specify your desired .NET version
+
+    - name: Restore dependencies
+      run: dotnet restore
+
+    - name: Build
+      run: dotnet build --configuration Release --no-restore
+
+    - name: Test
+      run: dotnet test --configuration Release --no-build --verbosity normal
+
+    - name: Publish (Optional, for deployment)
+      run: dotnet publish --configuration Release --output publish_output
+      
+    - name: Upload a Build Artifact (Optional)
+      uses: actions/upload-artifact@v4
+      with:
+        name: my-app
+        path: publish_output # Path to the published output
