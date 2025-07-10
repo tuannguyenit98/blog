@@ -1,126 +1,208 @@
 <?xml version="1.0"?>
 <doc>
     <assembly>
-        <name>MegaShift</name>
+        <name>Blog</name>
     </assembly>
     <members>
-        <member name="M:MegaShift.Controllers.CompaniesController.Create(DTOs.MegaShift.Company.CreateCompanyDto)">
+        <member name="M:Blog.Controllers.CategoriesController.GetCategories(DTOs.Share.PagedResultRequestDto,System.String)">
             <summary>
-            Create company
+            Get paging
+            </summary>
+            <param name="pagedResultRequestDto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Blog.Controllers.CategoriesController.GetById(System.Int32)">
+            <summary>
+            Get By Id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Blog.Controllers.CategoriesController.CreateCategory(DTOs.Blog.Category.CreateCategoryDto)">
+            <summary>
+            Create
+            </summary>
+            <param name="createCategoryDto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Blog.Controllers.CategoriesController.UpdateCategory(DTOs.Blog.Category.UpdateCategoryDto,System.Int32)">
+            <summary>
+            Update
+            </summary>
+            <param name="updateCategoryDto"></param>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Blog.Controllers.CategoriesController.DeleteCategory(System.Int32)">
+            <summary>
+            Delete
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Blog.Controllers.CommentsController.GetComments">
+            <summary>
+            Get all
             </summary>
             <returns></returns>
         </member>
-        <member name="M:MegaShift.Controllers.CompaniesController.GetAll">
+        <member name="M:Blog.Controllers.CommentsController.GetPagingComments(DTOs.Share.PagedResultRequestDto)">
             <summary>
-            Get all company
+            Get paging
             </summary>
+            <param name="pagedResultRequestDto"></param>
             <returns></returns>
         </member>
-        <member name="M:MegaShift.Controllers.DepartmentsController.Create(DTOs.MegaShift.CreateDepartmentDto)">
+        <member name="M:Blog.Controllers.CommentsController.CreateComment(DTOs.Blog.Comment.CreateOrUpdateCommentDto)">
             <summary>
-            Create department
+            Create
             </summary>
+            <param name="createCommentDto"></param>
             <returns></returns>
         </member>
-        <member name="M:MegaShift.Controllers.DepartmentsController.GetDepartmentByCompanyId">
+        <member name="M:Blog.Controllers.CommentsController.UpdateComment(DTOs.Blog.Comment.CreateOrUpdateCommentDto,System.Int32)">
             <summary>
-            Get department by companyid
+            Update
             </summary>
+            <param name="updateCommentDto"></param>
+            <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:MegaShift.Controllers.DepartmentsController.GetAll">
+        <member name="M:Blog.Controllers.CommentsController.DeleteComment(System.Int32)">
             <summary>
-            Get all department
+            Delete
             </summary>
+            <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:MegaShift.Controllers.EmployeesController.Create(DTOs.MegaShift.Employee.CreateEmployeeDto)">
+        <member name="M:Blog.Controllers.LoginController.Login(DTOs.Blog.Login.LoginDto)">
             <summary>
-            Create employee
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:MegaShift.Controllers.EmployeesController.GetEmployeeWorkingShiftBySearchFilter(DTOs.MegaShift.Shift.FilterShiftDto)">
-            <summary>
-            Get employee, workingshift by searchFilter
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:MegaShift.Controllers.EmployeesController.GetEmployeeByDepartmentId(System.Int32)">
-            <summary>
-            Get employee by departmentId
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:MegaShift.Controllers.GeneralConfigurationsController.GetGeneralConfigureByKey(System.String)">
-            <summary>
-            Get general configuration by key
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:MegaShift.Controllers.LoginController.Login(DTOs.MegaShift.Login.LoginDto)">
-            <summary>
-            Đăng nhập
+            Login
             </summary>
         </member>
-        <member name="M:MegaShift.Controllers.LoginController.Refresh">
+        <member name="M:Blog.Controllers.LoginController.Refresh">
             <summary>
             Refresh token
             </summary>
             <returns></returns>
         </member>
-        <member name="M:MegaShift.Controllers.LoginController.Logout">
+        <member name="M:Blog.Controllers.LoginController.Logout">
             <summary>
             Logout
             </summary>
             <returns></returns>
         </member>
-        <member name="M:MegaShift.Controllers.ShiftsController.CreateShift(DTOs.MegaShift.Shift.CreateShiftDto)">
+        <member name="M:Blog.Controllers.PostsController.GetPagingPosts(DTOs.Share.PagedResultRequestDto,System.String)">
             <summary>
-            Create shift
+            Get paging
+            </summary>
+            <param name="pagedResultRequestDto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Blog.Controllers.PostsController.GetById(System.Int32)">
+            <summary>
+            Get By Id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Blog.Controllers.PostsController.CreatePost(DTOs.Blog.Post.CreatePostDto)">
+            <summary>
+            Create
+            </summary>
+            <param name="createPostDto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Blog.Controllers.PostsController.UpdatePost(DTOs.Blog.Post.UpdatePostDto,System.Int32)">
+            <summary>
+            Update
+            </summary>
+            <param name="updatePostDto"></param>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Blog.Controllers.PostsController.DeletePost(System.Int32)">
+            <summary>
+            Delete
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Blog.Controllers.PostsController.GetBySlug(System.String)">
+            <summary>
+            Get By Slug
+            </summary>
+            <param name="slug"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Blog.Controllers.TagsController.GetTags">
+            <summary>
+            Get all
             </summary>
             <returns></returns>
         </member>
-        <member name="M:MegaShift.Controllers.ShiftsController.GetShiftWorkingshiftByUserId">
+        <member name="M:Blog.Controllers.TagsController.GetTags(DTOs.Share.PagedResultRequestDto)">
             <summary>
-            Get shift by userId
+            Get paging
+            </summary>
+            <param name="pagedResultRequestDto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Blog.Controllers.TagsController.CreateTag(DTOs.Blog.Tag.CreateTagDto)">
+            <summary>
+            Create
+            </summary>
+            <param name="createTagDto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Blog.Controllers.TagsController.UpdateTag(DTOs.Blog.Tag.UpdateTagDto,System.Int32)">
+            <summary>
+            Update
+            </summary>
+            <param name="updateTagDto"></param>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Blog.Controllers.TagsController.DeleteTag(System.Int32)">
+            <summary>
+            Delete
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Blog.Controllers.UsersController.GetUsers">
+            <summary>
+            Get all
             </summary>
             <returns></returns>
         </member>
-        <member name="M:MegaShift.Controllers.ShiftsController.GetShiftBySearchFilter(DTOs.MegaShift.Shift.FilterShiftDto)">
+        <member name="M:Blog.Controllers.UsersController.GetUsers(DTOs.Share.PagedResultRequestDto)">
             <summary>
-            Get shift, workingshift by searchFilter
+            Get paging
             </summary>
+            <param name="pagedResultRequestDto"></param>
             <returns></returns>
         </member>
-        <member name="M:MegaShift.Controllers.ShiftsController.CreateWorkingshiftByShift(DTOs.MegaShift.Shift.CreateWorkingShiftDto)">
+        <member name="M:Blog.Controllers.UsersController.CreateUser(DTOs.Blog.User.CreateUserDto)">
             <summary>
-            Create workingshift by shifts
+            Create
             </summary>
+            <param name="createUserDto"></param>
             <returns></returns>
         </member>
-        <member name="M:MegaShift.Controllers.ShiftsController.CreateWorkingshiftByEmployees(DTOs.MegaShift.Shift.CreateWorkingShiftEmployeeDto)">
+        <member name="M:Blog.Controllers.UsersController.UpdateUser(DTOs.Blog.User.UpdateUserDto,System.Int32)">
             <summary>
-            Create workingshift by employees
+            Update
             </summary>
+            <param name="updateUserDto"></param>
+            <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:MegaShift.Controllers.ShiftsController.DeleteWorkingshift(System.Collections.Generic.List{System.Int32})">
+        <member name="M:Blog.Controllers.UsersController.DeleteUser(System.Int32)">
             <summary>
-            Delete workingshift
+            Delete
             </summary>
-            <returns></returns>
-        </member>
-        <member name="M:MegaShift.Controllers.UsersController.Create(DTOs.MegaShift.User.CreateUserDto)">
-            <summary>
-            Create user
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:MegaShift.Controllers.UsersController.GetAll">
-            <summary>
-            Get all user
-            </summary>
+            <param name="id"></param>
             <returns></returns>
         </member>
     </members>
