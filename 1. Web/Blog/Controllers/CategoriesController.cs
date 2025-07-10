@@ -2,7 +2,6 @@
 using Common.Helpers;
 using DTOs.Blog.Category;
 using DTOs.Share;
-using Entities.Blog;
 using Infrastructure.Filters;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -38,7 +37,7 @@ namespace Blog.Controllers
                 return Ok(ApiResponse<List<CategoryDto>>.Success(res));
             }
             var result = await _categoryService.GetCategories(pagedResultRequestDto, searchTerm);
-            return Ok(ApiResponse<IPagedResultDto<Category>>.Success(result));
+            return Ok(ApiResponse<IPagedResultDto<CategoryDto>>.Success(result));
         }
 
         /// <summary>
@@ -52,7 +51,7 @@ namespace Blog.Controllers
         public async Task<IActionResult> GetById(int id)
         {
             var result = await _categoryService.GetCategoryByIdAsync(id);
-            return Ok(ApiResponse<Category>.Success(result));
+            return Ok(ApiResponse<CategoryDto>.Success(result));
         }
 
         /// <summary>

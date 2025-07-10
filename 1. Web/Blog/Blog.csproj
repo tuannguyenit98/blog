@@ -10,6 +10,12 @@
 		<UserSecretsId>d6110a7f-526d-40b8-b39d-67406d29b714</UserSecretsId>
 		<AssemblyName>Blog</AssemblyName>
 		<RootNamespace>Blog</RootNamespace>
+		<RuntimeIdentifiers>win10-x64</RuntimeIdentifiers>
+		<ContainerRuntimeIdentifier>win10-x64</ContainerRuntimeIdentifier>
+		<EnableSdkContainerDebugging>True</EnableSdkContainerDebugging>
+		<ContainerBaseImage>mcr.microsoft.com/dotnet/aspnet:6.0</ContainerBaseImage>
+		<DockerfileContext>..\..</DockerfileContext>
+		<DockerDefaultTargetOS>Windows</DockerDefaultTargetOS>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -42,6 +48,7 @@
 	<ItemGroup>
 		<PackageReference Include="CloudinaryDotNet" Version="1.26.2" />
 		<PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="6.0.36" />
+		<PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.22.1" />
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
 		<PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="6.5.0" />
 		<PackageReference Include="Swashbuckle.AspNetCore.Newtonsoft" Version="6.5.0" />

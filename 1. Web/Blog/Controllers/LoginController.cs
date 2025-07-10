@@ -83,23 +83,22 @@ namespace Blog.Controllers
             {
                 return StatusCode(201);
             }
-            var cookieOptions = new CookieOptions
-            {
-                HttpOnly = true,
-                SameSite = SameSiteMode.None,
-                Secure = true,
-            };
             var principal = _tokenService.GetPrincipalFromExpiresRefreshToken(refreshToken);
+            var refreshTokenUser = await _userService.GetRefreshToken(principal.Identity.GetId());
+            if (refreshToken != refreshTokenUser)
             {
-                var isExpires = _tokenService.CheckExpires(refreshToken);
-                if (isExpires)
-                {
-                    Response.Cookies.Delete("_refreshToken", cookieOptions);
-                    return StatusCode(201);
-                }
-                var accessToken = await _tokenService.GetAccessTokenByRefreshToken(refreshToken);
-                return Ok(ApiResponse<string>.Success(accessToken));
+                Response.Cookies.Delete("_refreshToken");
+                return StatusCode(201);
             }
+            var isExpires = _tokenService.CheckExpires(refreshToken);
+            if (isExpires)
+            {
+                await _userService.SaveRefreshToken(principal.Identity.GetId(), null);
+                Response.Cookies.Delete("_refreshToken");
+                return StatusCode(201);
+            }
+            var accessToken = await _tokenService.GetAccessTokenByRefreshToken(refreshToken);
+            return Ok(ApiResponse<string>.Success(accessToken));
         }
 
         /// <summary>

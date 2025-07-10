@@ -99,6 +99,10 @@ namespace Blog.Controllers
             return NoContent();
         }
 
+        /// <summary>
+        /// Get posts features
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Route("featured")]
         [AllowAnonymous]
@@ -108,6 +112,10 @@ namespace Blog.Controllers
             return Ok(ApiResponse<List<PostDto>>.Success(result));
         }
 
+        /// <summary>
+        /// Get post recent
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Route("recent")]
         [AllowAnonymous]
