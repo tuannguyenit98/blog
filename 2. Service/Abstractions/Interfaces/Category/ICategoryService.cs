@@ -1,6 +1,5 @@
 ﻿using DTOs.Blog.Category;
 using DTOs.Share;
-using Entities.Blog;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -11,8 +10,8 @@ namespace Abstractions.Interfaces
         Task CreateCategoryAsync(CreateCategoryDto createCategoryDto);
         Task UpdateCategoryAsync(int categoryId, UpdateCategoryDto updateCategoryDto);
         Task DeleteCategoryAsync(int categoryId);
-        Task<Category> GetCategoryByIdAsync(int categoryId);
+        Task<CategoryDto> GetCategoryByIdAsync(int categoryId);
         Task<List<CategoryDto>> GetAll();
-        Task<IPagedResultDto<Category>> GetCategories(PagedResultRequestDto pagedResultRequest, string searchTerm);
+        Task<IPagedResultDto<CategoryDto>> GetCategories(PagedResultRequestDto pagedResultRequest, string searchTerm);
     }
 }

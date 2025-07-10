@@ -24,11 +24,21 @@ namespace Services.Implementations
             _mapper = mapper;
         }
 
-        public async Task<Category> GetCategoryByIdAsync(int categoryId)
+        public async Task<CategoryDto> GetCategoryByIdAsync(int categoryId)
         {
             var result = await _categoryRepository
                         .GetAll()
                         .Where(x => x.Id == categoryId && x.DeleteAt == null)
+                        .Select(x => new CategoryDto
+                        {
+                            Title = x.Title,
+                            MetaTitle = x.MetaTitle,
+                            Slug = x.Slug,
+                            Id = x.Id,
+                            CreatedAt = x.CreatedAt,
+                            PostNumber = x.Posts.Where(y => y.FK_CategoryId == x.Id).Count(),
+                            ParentId = x.ParentId
+                        })
                         .FirstOrDefaultAsync();
             return result;
         }
@@ -74,10 +84,20 @@ namespace Services.Implementations
             await _unitOfWork.CompleteAsync();
         }
 
-        public async Task<IPagedResultDto<Category>> GetCategories(PagedResultRequestDto pagedResultRequest, string searchTerm)
+        public async Task<IPagedResultDto<CategoryDto>> GetCategories(PagedResultRequestDto pagedResultRequest, string searchTerm)
         {
             var categories = _categoryRepository.GetAll();
             return await categories.Where(x => !string.IsNullOrEmpty(searchTerm) ? x.Title.ToLower().Contains(searchTerm.ToLower()) : 1 == 1)
+                .Select(x => new CategoryDto
+                {
+                    Title = x.Title,
+                    MetaTitle = x.MetaTitle,
+                    Slug = x.Slug,
+                    Id = x.Id,
+                    CreatedAt = x.CreatedAt,
+                    PostNumber = x.Posts.Where(y => y.FK_CategoryId == x.Id).Count(),
+                    ParentId = x.ParentId
+                })
                 .GetPagedResultAsync(pagedResultRequest.Page, pagedResultRequest.PageSize, x => x);
         }
     }

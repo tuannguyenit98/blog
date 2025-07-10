@@ -14,5 +14,6 @@ namespace DTOs.Blog.Category
         public string MetaTitle { get; set; }
         public string Slug { get; set; }
         public int PostNumber { get; set; }
+        public int? ParentId { get; set; }
     }
 }
