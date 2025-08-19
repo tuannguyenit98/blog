@@ -31,5 +31,5 @@ import { ComponentModule } from "./shared/component/component.module";
 export class AppModule { }
 
 export function getApiBaseUrl() {
-  return 'https://tuannguyen.up.railway.app/';
+  return 'https://blog-uwtz.onrender.com/';
 }
