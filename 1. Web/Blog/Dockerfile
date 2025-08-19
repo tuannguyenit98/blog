@@ -14,14 +14,14 @@ FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["1. Web/Blog/Blog.csproj", "1. Web/Blog/"]
-#COPY ["2. Service/Abstractions/Abstractions.csproj", "2. Service/Abstractions/"]
-#COPY ["4. Entity/DTOs/DTOs.csproj", "4. Entity/DTOs/"]
-#COPY ["5. Common/Common/Common.csproj", "5. Common/Common/"]
-#COPY ["4. Entity/Entities/Entities.csproj", "4. Entity/Entities/"]
-#COPY ["3. Repository/Infrastructure/Infrastructure.csproj", "3. Repository/Infrastructure/"]
-#COPY ["2. Service/Services/Services.csproj", "2. Service/Services/"]
-#COPY ["3. Repository/EntityFrameworkCore/EntityFrameworkCore.csproj", "3. Repository/EntityFrameworkCore/"]
-#COPY ["4. Entity/Mapper/Mapper.csproj", "4. Entity/Mapper/"]
+COPY ["2. Service/Abstractions/Abstractions.csproj", "2. Service/Abstractions/"]
+COPY ["4. Entity/DTOs/DTOs.csproj", "4. Entity/DTOs/"]
+COPY ["5. Common/Common/Common.csproj", "5. Common/Common/"]
+COPY ["4. Entity/Entities/Entities.csproj", "4. Entity/Entities/"]
+COPY ["3. Repository/Infrastructure/Infrastructure.csproj", "3. Repository/Infrastructure/"]
+COPY ["2. Service/Services/Services.csproj", "2. Service/Services/"]
+COPY ["3. Repository/EntityFrameworkCore/EntityFrameworkCore.csproj", "3. Repository/EntityFrameworkCore/"]
+COPY ["4. Entity/Mapper/Mapper.csproj", "4. Entity/Mapper/"]
 RUN dotnet restore "./1. Web/Blog/Blog.csproj"
 COPY . .
 WORKDIR "/src/1. Web/Blog"
